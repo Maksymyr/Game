@@ -1,0 +1,32 @@
+.menu-list {
+    width: 28.5em;
+    margin: 8em;
+float: right;
+    p { 
+        font-size: 3.9em;
+        font-weight: bold;
+        color: whitesmoke;
+        text-align: center;
+        margin: 1em auto;
+        width: 100%;
+    }
+    button {
+        width: 8em;
+        height: 4em;
+        background-color: #213e1b;
+        margin: 0.2em;
+        font-size: 3.4em;
+
+        color: whitesmoke;
+        text-align: center;
+        // border: 0.1em solid black;
+        &:hover {
+            background-color: black;
+        } 
+    }
+    a {
+       text-decoration: none;
+        color: whitesmoke;
+    }
+   
+}

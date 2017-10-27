@@ -1,0 +1,33 @@
+$blue: #006ec5;
+$grey: #585858;
+$accent: #5e4e2e;
+$darkAccent: rgb(223, 223, 223);
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+html, body {
+    font-family: "Tahoma";
+    font-size:10px;
+    line-height: 1.125;
+}
+
+body {
+    min-height: 100%;
+    background: $accent;
+    background-size: 100% 100%;
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.wrapper {
+    margin: auto;
+    width: 80%;
+    display: table;
+}
+
+  

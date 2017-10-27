@@ -1,0 +1,49 @@
+
+.cards-style {
+    margin: 3em 3em;
+    width: 40em;
+    height: 60em;
+    border: 1em solid;
+    padding: 2em;
+    box-sizing: border-box;
+    float: left;
+    p {
+        font-size: 2em;
+    }
+    span {
+        font-size: 1.5em;
+    }
+    h2, h3 {
+        font-size: 3em;
+        text-align: center; 
+    }
+}
+
+.image-style {
+    width: 30em;
+    height: 30em;
+    background-size: cover;
+    margin: auto;
+    display: block;
+}
+.exp {
+    color: yellow;
+}
+.mp {
+    color: blue;
+}
+.hp {
+    color: red;
+}
+.char-left {
+    float: left;
+    margin-left: 5em;
+
+}
+.char-right {
+    float: right;
+    margin-right: 5em;
+}
+.char-bot {
+    margin-left: 10em;
+}
