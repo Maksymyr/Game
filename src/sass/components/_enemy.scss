@@ -1,4 +1,4 @@
-.cards-style {
+.cards-enemy-style {
     background-color: white;
     // background-image: url('../../img/warrior.jpg');
     margin: 3em 3em;
@@ -9,7 +9,7 @@
     box-sizing: border-box;
     position: absolute;
     top: 5%;
-    left: 10%;
+    right: 10%;
     p {
         font-size: 2em;
     }
@@ -20,11 +20,13 @@
         font-size: 3em;
         text-align: center; 
     }
+
+
     .image-style {
         width: 30em;
-        height: 40em;
-        background-position: 50%;
+        height: 30em;
         background-size: cover;
+        background-position: 50% 50%;
         margin: auto;
         display: block;
     }

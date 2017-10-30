@@ -6,6 +6,8 @@ export default function forest(state = InitialState.levelOfForest, action) {
     switch(type){
         case types.CHANGE_LVL:
             return state + payload;
+        case types.SET_LVL:
+            return payload;
         default:
             return state;
     }

@@ -14,14 +14,15 @@ const mapDispatchToProps = (dispatch) => {
 export default class ChouseNameMenu extends React.Component {
 
     setName = () => {  
-        this.props.addHeroName({name: this.refs.name.value.trim()});
+        this.props.addHeroName({name: this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase()
+        });
     }
     
     render() {
         return (
-            <div className='start-btns'>  
+            <div className='start-name'>  
                 <p>Enter your name:</p>
-                <input ref="name" type="text" placeholder="name"/>
+                <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
                 <Link to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
             </div>
 
