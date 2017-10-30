@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroHP} from '../actions';
+import {heroHP, heroMP} from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({heroHP}, dispatch);
+    return bindActionCreators({heroHP, heroMP}, dispatch);
 }
 const mapStateToProps = (state, ownProps) => {
     return {hero: state.hero}
@@ -25,11 +25,16 @@ export default class Rest extends React.Component {
     resting() {
         this.setState({checkbox: !this.state.checkbox});
         let resttime;
-       
+        // if(this.state.checkbox) {
+        //     clearInterval(resttime);
+        // } else {
+        
             resttime = setInterval(() => {
                 (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? this.props.heroHP(-1): (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? null : clearInterval(resttime),
                 (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? this.props.heroMP(-1): (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? null : clearInterval(resttime)
             }, 2000)
+
+        // }
     
     }
         

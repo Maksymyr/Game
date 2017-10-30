@@ -7,10 +7,10 @@ import Enemy from '../logical_classes/Enemy.js';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroEXP, enemyHP, heroHP, setForestLvl} from '../actions';
+import {heroEXP, enemyHP, heroHP, setForestLvl, heroDeath} from '../actions';
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({heroEXP, enemyHP, heroHP, setForestLvl}, dispatch)
+    return bindActionCreators({heroEXP, enemyHP, heroHP, setForestLvl, heroDeath}, dispatch)
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -21,6 +21,9 @@ const mapStateToProps = (state, ownProps) => {
 export default class ForestPageBattle extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            hero_lvl: 0 
+        }
     }
 
     attacking = () => {
@@ -28,14 +31,23 @@ export default class ForestPageBattle extends React.Component {
             this.props.enemyHP(this.props.hero.str);
             this.props.heroHP(this.props.enemy.str);
             if (this.props.enemy.curHP-this.props.hero.str <= 0) {
+                this.setState({hero_lvl: this.props.hero.lvl}, () => {
+                    if (this.props.hero.lvl > this.state.hero_lvl) {
+                        console.log("up!")
+                        this.props.history.push("/levelup");
+                    } else this.props.history.push("/forest");
+                });
+                console.log(this.state.hero_lvl + " : "+ this.props.hero.lvl);
                 this.props.enemyHP(this.props.enemy.curHP);
                 this.props.heroEXP(this.props.enemy.exp);
-                this.props.history.push("/forest");
+                console.log(this.state.hero_lvl + " : " + this.props.hero.lvl);
+                
             }
             if (this.props.hero.curHP-this.props.enemy.str <= 0) {
                 this.props.enemyHP(this.props.enemy.curHP);
                 this.props.heroEXP(this.props.enemy.exp);
                 this.props.setForestLvl(0);
+                this.props.heroDeath();
                 this.props.history.push("/village");
             }
         }
@@ -43,6 +55,8 @@ export default class ForestPageBattle extends React.Component {
 
        
     }
+
+
     render() {
 
         return (

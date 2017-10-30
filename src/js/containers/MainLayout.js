@@ -8,6 +8,7 @@ import ChouseNameMenu from '../components/ChouseNameMenu.js';
 import ForestPage from '../components/ForestPage.js';
 import ForestPageBattle from '../components/ForestPageBattle.js';
 import Rest from '../components/Rest.js';
+import LevelUp from '../components/LevelUp.js';
 
 
 
@@ -25,6 +26,7 @@ export default class MainLayout extends React.Component {
                     <Route path="/rest" component={Rest} />
                     <Route path="/forest" component={ForestPage} />
                     <Route path="/forest-battle" component={ForestPageBattle} />
+                    <Route path="/levelup" component={LevelUp}/>
                 </Switch>
                 {/* <Route path={"/item"+this.state.viewvar.index} component={() => <Item data={this.state.viewvar}/>} /> */}
                 {/* <Route path="*" component={Footer} /> */}

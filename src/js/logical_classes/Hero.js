@@ -16,7 +16,7 @@ export default class Hero extends React.Component {
                     <h3>{this.props.newHero.type}</h3>
                     <div>
                         <img className="image-style" src={this.props.newHero.img} />
-                        <span>Lvl: {this.props.newHero.lvl}</span><span className='exp'> {this.props.newHero.maxEXP} / {this.props.newHero.curEXP}</span><br/>
+                        <span>Lvl: {this.props.newHero.lvl}</span><span className='exp'> {this.props.newHero.curEXP} / {this.props.newHero.maxEXP}</span><br/>
                         <span className='hp'>{this.props.newHero.maxHP} / {this.props.newHero.curHP}</span><br/> 
                         <span className='mp'>{this.props.newHero.maxMP} / {this.props.newHero.curMP}</span>
                     </div>
