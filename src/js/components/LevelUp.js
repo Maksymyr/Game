@@ -53,7 +53,6 @@ export default class LevelUp extends React.Component {
         if (this.state.count <= 5) {
             this.setState({checkbox: false})
         }
-        console.log(this.state.count)
     }
     submitting(){
         this.props.heroSTR(this.refs.str.value-this.props.hero.str);

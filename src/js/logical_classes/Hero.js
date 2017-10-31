@@ -16,14 +16,16 @@ export default class Hero extends React.Component {
                     <h3>{this.props.newHero.type}</h3>
                     <div>
                         <img className="image-style" src={this.props.newHero.img} />
-                        <span>Lvl: {this.props.newHero.lvl}</span><span className='exp'> {this.props.newHero.curEXP} / {this.props.newHero.maxEXP}</span><br/>
+                        <span className='exp'>Level: {this.props.newHero.lvl+1}</span><span> {this.props.newHero.curEXP} / {this.props.newHero.maxEXP}</span><br/>
                         <span className='hp'>{this.props.newHero.maxHP} / {this.props.newHero.curHP}</span><br/> 
                         <span className='mp'>{this.props.newHero.maxMP} / {this.props.newHero.curMP}</span>
                     </div>
-                    <div className='win-wrap'>
-                        <span className='char-left'>Str: {this.props.newHero.str}</span><span className='char-right'>Int: {this.props.newHero.int}</span><br/>
-                        <span className='char-left'>Dex: {this.props.newHero.dex}</span><span className='char-right'>Wit: {this.props.newHero.wit}</span><br/>
-                        <span className='char-bot'>Con: {this.props.newHero.con}</span> 
+                    <div className='chars'>
+                        <span className="char-right">Strength: {this.props.newHero.str}</span><br/>
+                        <span className="char-right">Intellect: {this.props.newHero.int}</span><br/>
+                        <span className="char-right">Dexterity: {this.props.newHero.dex}</span><br/>
+                        <span className="char-right">Wisdom: {this.props.newHero.wit}</span><br/>
+                        <span className="char-right">Constitution: {this.props.newHero.con}</span> 
                     </div>
                 </div>
             )

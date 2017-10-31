@@ -7,10 +7,10 @@ import Enemy from '../logical_classes/Enemy.js';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroEXP, enemyHP, heroHP, setForestLvl, heroDeath} from '../actions';
+import {heroEXP, enemyHP, heroHP, setForestLvl, heroDeath, enemyKilled} from '../actions';
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({heroEXP, enemyHP, heroHP, setForestLvl, heroDeath}, dispatch)
+    return bindActionCreators({heroEXP, enemyHP, heroHP, setForestLvl, heroDeath, enemyKilled}, dispatch)
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,31 +27,36 @@ export default class ForestPageBattle extends React.Component {
     }
 
     attacking = () => {
-        if (this.props.hero.type == "Warrior") {
-            this.props.enemyHP(this.props.hero.str);
-            this.props.heroHP(this.props.enemy.str);
-            if (this.props.enemy.curHP-this.props.hero.str <= 0) {
-                this.setState({hero_lvl: this.props.hero.lvl}, () => {
-                    if (this.props.hero.lvl > this.state.hero_lvl) {
-                        console.log("up!")
-                        this.props.history.push("/levelup");
-                    } else this.props.history.push("/forest");
-                });
-                console.log(this.state.hero_lvl + " : "+ this.props.hero.lvl);
-                this.props.enemyHP(this.props.enemy.curHP);
-                this.props.heroEXP(this.props.enemy.exp);
-                console.log(this.state.hero_lvl + " : " + this.props.hero.lvl);
-                
-            }
-            if (this.props.hero.curHP-this.props.enemy.str <= 0) {
-                this.props.enemyHP(this.props.enemy.curHP);
-                this.props.heroEXP(this.props.enemy.exp);
-                this.props.setForestLvl(0);
-                this.props.heroDeath();
-                this.props.history.push("/village");
-            }
-        }
+        let hero_attack;
+        let enemy_attack;
+        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str;}
+        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex;}
+        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int;}
 
+        enemy_attack = this.props.enemy.str;
+
+        this.props.enemyHP(hero_attack);
+        this.props.heroHP(enemy_attack);
+        if (this.props.enemy.curHP-hero_attack <= 0) {
+            this.setState({hero_lvl: this.props.hero.lvl}, () => {
+                if (this.props.hero.lvl > this.state.hero_lvl) {
+                    console.log("up!");
+                    this.props.history.push("/levelup");
+                } 
+                else this.props.history.push("/forest");
+            });
+            this.props.enemyHP(this.props.enemy.curHP);
+            this.props.heroEXP(this.props.enemy.exp);
+            this.props.enemyKilled();
+        }
+        if (this.props.hero.curHP-enemy_attack <= 0) {
+            this.props.enemyHP(this.props.enemy.curHP);
+            this.props.heroEXP(this.props.enemy.exp);
+            this.props.setForestLvl(0);
+            this.props.heroDeath();
+            this.props.history.push("/village");
+            this.props.enemyKilled();
+        }
 
        
     }

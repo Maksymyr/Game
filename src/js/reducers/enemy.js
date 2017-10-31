@@ -8,7 +8,8 @@ export default function enemy(state = InitialState.enemy, action) {
             return {...state, ...payload};
         case types.ENEMY_HP: 
             return{...state, curHP: state.curHP - payload}
-        
+        case types.KILLED:
+            return {};
         default:
             return state;
     }

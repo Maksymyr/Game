@@ -13,5 +13,6 @@ export const HERO_CON = "HERO_CON";
 export const HERO_INT = "HERO_INT";
 export const HERO_WIT = "HERO_WIT";
 export const HERO_DEATH = "HERO_DEATH";
+export const KILLED = "KILLED";
 
 

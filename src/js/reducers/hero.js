@@ -31,7 +31,7 @@ export default function hero(state = InitialState.hero, action) {
         case types.HERO_WIT: 
             return {...state, wit: state.wit + payload, maxMP: (state.wit + payload)*10};
         case types.HERO_DEATH: 
-            return {...state, curHP: 0, curMP: 0, curEXP: (state.curEXP - state.lvl*10) > 0 ? (state.curEXP - state.lvl*10) : 0};
+            return {...state, curHP: 0, curMP: 0, curEXP: (state.curEXP - (state.lvl+1)*10) > 0 ? (state.curEXP - (state.lvl+1)*10) : 0};
         default:
             return state;
     }

@@ -1,5 +1,7 @@
 const middleware = store => next => action => {
-    return next(action)
+     next(action)
+     localStorage.setItem('Store', JSON.stringify(store.getState()));
+     return;
 
 }
 export default middleware;
