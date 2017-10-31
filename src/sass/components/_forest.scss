@@ -1,44 +1,46 @@
-.forest {
-    width: 100%;
-    height: 100%;
-    img {
-    position: relative;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 100%;
-    }
-    .menu-list {
-        width: 28.5em;
-        margin: 8em;
-        position: absolute;
-        top: 5%;
-        right: 10%;
-        p { 
-            font-size: 3.9em;
-            font-weight: bold;
-            color: whitesmoke;
-            text-align: center;
-            margin: 1em auto;
-            width: 100%;
-        }
-        button {
-            width: 8em;
-            height: 4em;
-            background-color: #213e1b;
-            margin: 0.2em;
-            font-size: 3.4em;
-
-            color: whitesmoke;
-            text-align: center;
-            // border: 0.1em solid black;
-            &:hover {
-                background-color: black;
-            } 
-        }
-        a {
-        text-decoration: none;
-            color: whitesmoke;
-        }
-    }
-}
+// .forest {
+    // width: 100%;
+    // height: 100vh;
+    // .forest-img {
+    //     background-size: cover;
+    //     &:after {
+    //         content: "";
+    //         display: block;
+    //         clear: both;
+    //     }
+    // }
+//     .menu-list {
+//         // float: right;
+//         // width: 20%;
+//         p { 
+//             font-size: 3.9em;
+//             font-weight: bold;
+//             color: whitesmoke;
+//             text-align: center;
+//             margin: 0 auto;
+//             width: 100%;
+            
+//         }
+//         button {
+//             width: 100%;
+//             height: 10rem;
+//             background-color: #213e1b;
+//             margin: 0.2rem;
+//             text-align: center;
+//             font-size: 3.4em;
+            
+//             color: whitesmoke;
+//             text-align: center;
+//             // border: 0.1em solid black;
+//             &:hover {
+//                 background-color: black;
+//             } 
+//         }
+//         a {
+//             display: block;
+//             text-decoration: none;
+//             margin: auto;
+//             color: whitesmoke;
+//         }
+//     }
+// }

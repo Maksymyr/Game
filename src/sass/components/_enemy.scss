@@ -1,15 +1,10 @@
 .cards-enemy-style {
     background-color: white;
-    // background-image: url('../../img/warrior.jpg');
-    margin: 3em 3em;
-    width: 40em;
-    height: 60em;
+    width: 30em;
+    height: 50em;
     border: 1em solid;
-    padding: 2em;
     box-sizing: border-box;
-    position: absolute;
-    top: 5%;
-    right: 10%;
+    float: right;
     p {
         font-size: 2em;
     }
@@ -21,10 +16,9 @@
         text-align: center; 
     }
 
-
     .image-style {
-        width: 30em;
-        height: 30em;
+        width: 25em;
+        height: 25em;
         background-size: cover;
         background-position: 50% 50%;
         margin: auto;
@@ -39,16 +33,13 @@
     .hp {
         color: red;
     }
-    .char-left {
-        float: left;
-        margin-left: 5em;
-
-    }
     .char-right {
         float: right;
         margin-right: 5em;
     }
-    .char-bot {
-        margin-left: 10em;
+    .chars { 
+       &:after {
+        clear: both;
+       }
     }
 }

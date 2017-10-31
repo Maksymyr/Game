@@ -42,11 +42,19 @@ export default class Rest extends React.Component {
     render() {
         return (
            <div className="village">
-                <img src={require('../../img/fire.jpg')}/>
-                <Hero/>
-                <div className="menu-list">
-                    <button onClick={this.resting}>{this.state.checkbox ? "Awake" : "Sleep"}</button>
-                    {this.state.checkbox ? null : <Link to="/village"><button>Back</button></Link> }
+               <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/fire.jpg")+')'}}>
+                    {/* <img src={require('../../img/fire.jpg')}/> */}
+                    <div className="left">
+                        <Hero/>
+                    </div>
+                    <div className="center">
+                    </div>
+                    <div className="right">
+                        <div className="btns">
+                            <a className="torest"><button onClick={this.resting}>{this.state.checkbox ? "Awake" : "Sleep"}</button></a>
+                            {this.state.checkbox ? null : <Link className="inforest" to="/village"><button>Back</button></Link> }
+                        </div>
+                    </div>
                 </div>
            </div>
 

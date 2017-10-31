@@ -35,15 +35,22 @@ export default class ForestPage extends React.Component {
         // console.log(this.props.hero);
         return (
             <div className='forest'>
-                <img src={require('../../img/forest.jpg')}/>
-                 <Hero/>
-                <div className="menu-list">
-                    <p>Forest lvl: {this.props.forest}</p>
-                    <Link to={"/forest-battle"}><button onClick={this.addEnemy}>Hunt</button></Link>
-                    {this.props.heroLvl+1 >= this.props.forest ? <button onClick={this.levelUp}>Go deeper in forest</button>  : null}
-                    <Link to={this.props.forest == 1 ? "/village" : "forest"}><button onClick={this.levelDown}>Go back</button></Link>
-                </div>
-              
+                {/* <img src={require('../../img/forest.jpg')}/> */}
+                <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest2.jpg")+')'}}>
+                    <div className="left">
+                        <Hero/>
+                    </div>
+                    <div className="center">
+                    </div>
+                    <div className="right">
+                        <div className="btns">
+                            <p>Forest lvl: {this.props.forest}</p>
+                            <Link className="hunt" to={"/forest-battle"}><button onClick={this.addEnemy}>Hunt</button></Link>
+                            {this.props.heroLvl+1 >= this.props.forest ? <a className="deep"><button onClick={this.levelUp}>Go deeper in forest</button></a>  : null}
+                            <Link className="goback" to={this.props.forest == 1 ? "/village" : "forest"}><button onClick={this.levelDown}>Go back</button></Link>
+                        </div>
+                    </div>
+              </div>
             </div>
         )
     }

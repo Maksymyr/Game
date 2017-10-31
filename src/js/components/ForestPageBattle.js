@@ -66,15 +66,23 @@ export default class ForestPageBattle extends React.Component {
 
         return (
             <div className='forest'>
-                <img src={require('../../img/forest.jpg')}/>
-                <Hero/>
-                <div className="battle-btns">
-                    <button onClick={this.attacking}>Attack</button>
-                    <button>Defence</button>    
-                    <button>Surrender</button>    
-                    <button>Continue</button>                            
+                {/* <img src={require('../../img/forest.jpg')}/> */}
+                <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest3.jpg")+')'}}>
+                    <div className="left">
+                        <Hero/>
+                    </div>
+                    <div className="center">
+                        <div className="battle-btns">
+                            <button className='atck' onClick={this.attacking}>Attack</button>
+                            <button className='skill'>Use skill</button>    
+                            <button className='skill2'>Use skill2</button>    
+                            <button className='surr'>Surrender</button>                            
+                        </div>
+                    </div>
+                    <div className="right">
+                        <Enemy/>
+                    </div>
                 </div>
-                <Enemy/>
             </div>
         )
     }

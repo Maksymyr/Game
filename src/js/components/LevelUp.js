@@ -65,40 +65,39 @@ export default class LevelUp extends React.Component {
     render() {
         return (
            <div className="village">
-                <img src={require('../../img/fire.jpg')}/>
-                <div className="lvlup-list">
-                    <h3>Congratulations! You get level {this.props.hero.lvl}!</h3>
-                    <p>
-                        <span>Strength</span><input ref="str" disabled defaultValue={this.props.hero.str}/>
-                        {this.state.checkbox ? null : <button onClick={() => this.plus("str")}>+</button>}
-                        {this.state.str_up ? <button onClick={() => this.minus("str")}>-</button> : null}
-                    </p>
-                    <p>
-                        <span>Dexterity</span><input ref="dex" disabled defaultValue={this.props.hero.dex}/>
-                        {this.state.checkbox ? null : <button onClick={() => this.plus("dex")}>+</button>}
-                        {this.state.dex_up ? <button onClick={() => this.minus("dex")}>-</button> : null}
-                    </p>
-                    <p>
-                        <span>Constitution</span><input ref="con" disabled defaultValue={this.props.hero.con}/>
-                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
-                        {this.state.con_up ? <button onClick={() => this.minus("con")}>-</button> : null}
-                    </p>
-                    <p>
-                        <span>Intellect</span><input ref="int" defaultValue={this.props.hero.int}/>
-                        {this.state.checkbox ? null : <button onClick={() => this.plus("int")}>+</button>}
-                        {this.state.int_up ? <button onClick={() => this.minus("int")}>-</button> : null}
-                    </p>
-                    <p>
-                        <span>Wisdom</span><input ref="wit" disabled defaultValue={this.props.hero.wit}/>
-                        {this.state.checkbox ? null : <button onClick={() => this.plus("wit")}>+</button>}
-                        {this.state.wit_up ? <button onClick={() => this.minus("wit")}>-</button> : null}
-                    </p>
-                    {this.state.checkbox ? <button onClick={this.submitting}>Submit</button> : null}
+                {/* <img src={require('../../img/fire.jpg')}/> */}
+                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/fire.jpg")+')'}}>
+                    <div className="lvlup-list">
+                        <h3>Congratulations! You get level {this.props.hero.lvl}!</h3>
+                        <p>
+                            <span>Strength</span><input ref="str" disabled defaultValue={this.props.hero.str}/>
+                            {this.state.checkbox ? null : <button onClick={() => this.plus("str")}>+</button>}
+                            {this.state.str_up ? <button onClick={() => this.minus("str")}>-</button> : null}
+                        </p>
+                        <p>
+                            <span>Dexterity</span><input ref="dex" disabled defaultValue={this.props.hero.dex}/>
+                            {this.state.checkbox ? null : <button onClick={() => this.plus("dex")}>+</button>}
+                            {this.state.dex_up ? <button onClick={() => this.minus("dex")}>-</button> : null}
+                        </p>
+                        <p>
+                            <span>Constitution</span><input ref="con" disabled defaultValue={this.props.hero.con}/>
+                            {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                            {this.state.con_up ? <button onClick={() => this.minus("con")}>-</button> : null}
+                        </p>
+                        <p>
+                            <span>Intellect</span><input ref="int" defaultValue={this.props.hero.int}/>
+                            {this.state.checkbox ? null : <button onClick={() => this.plus("int")}>+</button>}
+                            {this.state.int_up ? <button onClick={() => this.minus("int")}>-</button> : null}
+                        </p>
+                        <p>
+                            <span>Wisdom</span><input ref="wit" disabled defaultValue={this.props.hero.wit}/>
+                            {this.state.checkbox ? null : <button onClick={() => this.plus("wit")}>+</button>}
+                            {this.state.wit_up ? <button onClick={() => this.minus("wit")}>-</button> : null}
+                        </p>
+                        {this.state.checkbox ? <button onClick={this.submitting}>Submit</button> : null}
+                    </div>
                 </div>
-                
            </div>
-
-
         )
     }
 }

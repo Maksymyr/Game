@@ -22,13 +22,21 @@ export default class VillagePage extends React.Component {
     render() {
         return (
             <div className="village">
-            <img className='village-img' src={require('../../img/village.jpg')}/>
-                 <Hero/>
-                <div className="menu-list">
-                    {/* <Link to="/store"><button>Store</button></Link>
-                    <Link to="/headman"><button>Headman</button></Link> */}
-                    <Link to="/rest"><button>Rest</button></Link>
-                    <Link to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
+                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/village2.jpg")+')'}}>
+                    <div className="left">
+                        <Hero/>
+                    </div>
+                    <div className="center">
+ 
+                    </div>
+                    <div className="right">
+                        <div className="btns">
+                            {/* <Link to="/store"><button>Store</button></Link>
+                            <Link to="/headman"><button>Headman</button></Link> */}
+                            <Link className='torest' to="/rest"><button>Rest</button></Link>
+                            <Link className='inforest' to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
+                        </div>
+                    </div>
                 </div>
               
             </div>

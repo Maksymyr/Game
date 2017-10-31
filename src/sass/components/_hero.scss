@@ -1,15 +1,12 @@
 .cards-style {
     background-color: white;
-    // background-image: url('../../img/warrior.jpg');
-    margin: 3em 3em;
-    width: 40em;
-    height: 60em;
-    border: 1em solid;
-    padding: 2em;
+    width: 30em;
+    height: 50em;
+    border: 1em solid #21170d;
+    // padding: 3em;
     box-sizing: border-box;
-    position: absolute;
-    top: 5%;
-    left: 10%;
+    float: left;
+    
     p {
         font-size: 2em;
     }
@@ -17,44 +14,142 @@
         font-size: 1.5em;
     }
     h2, h3 {
+        color: #ffffbe;
+        background-color: #211c19; 
+        border: 2px solid #312a22;
+        border-bottom: none;
         font-size: 3em;
         text-align: center; 
     }
     .image-style {
-        width: 30em;
-        height: 40em;
+        overflow: hidden;
+        width: 100%;
+        height: 80%;
         background-position: 50%;
         background-size: cover;
         margin: auto;
         display: block;
+        border: 2px solid #312a22;
+        position: relative;
+        // .lvl-bar {
+        //     // border: 2px solid black;
+        //     // border-radius: 50%;
+        //     width: 30px;
+        //     height: 20px;
+        //     margin: -20px 0 0 0px;
+        //     color: white;
+        //     background: #150b01;
+        //     font-size: 14px;
+        //     // padding-left: 30px;
+        //     // padding-top: 30px;
+        // }
+        .under-exp-bar {
+            background-color: #1b1203;
+            height: 10px;
+            width:100%;
+            border: 1px solid #150b01;
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 1;
+        }
+        .exp-bar {
+            height: 8px;
+            background-color: rgb(214, 214, 98);
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 2;
+            
+        }
+        .under-hp-bar {
+            background-color: #1b1203;
+            height: 10px;
+            width:100%;
+            border: 1px solid #150b01;
+            
+            position: absolute;
+            bottom:10px;
+            left:0;
+        }
+        .hp-bar {
+            // margin-top: 82%; 
+            height: 8px;
+            background-color: rgb(185, 63, 54);
+            position: absolute;
+            bottom:11px;
+            left:0;
+        }
+        .under-mp-bar {
+            background-color: #1b1203;
+            height: 10px;
+            width:100%;
+            border: 1px solid #150b01;
+            
+            position: absolute;
+            bottom:0px;
+            left:0;
+        }
+        .mp-bar {
+            // margin-top: 82%; 
+            height: 8px;
+            background-color: rgb(58, 80, 177);
+            position: absolute;
+            bottom:1px;
+            left:0;
+        }
     }
-    .exp {
-  
-        color: black;
-    }
-    .mp {
-   
-        color: blue;
-    }
-    .hp {
-    
-        color: red;
-    }
-    .char-left {
-        float: left;
-        margin-left: 5em;
+    .profile-btns{
+        width: 101%;
+        height: 13%;
+        .profile, .character {
+            background-color: #030303;
+            display: inline-table;
+            width: 50%;
+            height: 100%;
+            button {
+                background-color: #472d16;
+                color: #ead59c;
+                width: 90%;
+                height: 90%;
+                display: inline-table;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                border: 1px solid white;
 
+            }
+        }
+        .profile {
+            button {
+                margin: 3% 0 0 6%;
+                
+              
+            }
+        }
+        .character {
+            button {
+                margin: 3% 6% 0 0;
+              
+            }
+        }
+        .clicked {
+            button{
+                background-color: #221819;
+                box-shadow: inset 0 0 10px 6px black;
+            }
+        }
     }
+    
+
     .char-right {
         float: right;
-        margin-top: -3px; 
         margin-right: 5em;
     }
-    .chars {
-        margin-top: -30px; 
-        clear: both;
-    }
-    .char-bot {
-        margin-left: 10em;
-    }
+    .chars { 
+        &:after {
+         clear: both;
+        }
+     }
 }
