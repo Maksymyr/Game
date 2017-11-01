@@ -1,34 +1,40 @@
 .cards-style {
     background-color: white;
-    width: 30em;
-    height: 50em;
-    border: 1em solid #21170d;
+    width: 60%;
+    height: 80%;
+    border: 5px solid #21170d;
     // padding: 3em;
-    box-sizing: border-box;
-    float: left;
+    // box-sizing: border-box;
+    // float: left;
     
     p {
-        font-size: 2em;
+        font-size: 2rem;
     }
     span {
-        font-size: 1.5em;
+        font-size: 1.5rem;
+    }
+    h4 {
+        color: #cf5322;
+        font-size: 2rem;
+        text-align: right;
+        padding-right: 10px;
     }
     h2, h3 {
         color: #ffffbe;
         background-color: #211c19; 
         border: 2px solid #312a22;
         border-bottom: none;
-        font-size: 3em;
+        font-size: 3rem;
         text-align: center; 
     }
     .image-style {
-        overflow: hidden;
+        // overflow: hidden;
         width: 100%;
         height: 80%;
         background-position: 50%;
         background-size: cover;
         margin: auto;
-        display: block;
+        // display: block;
         border: 2px solid #312a22;
         position: relative;
         // .lvl-bar {
@@ -51,7 +57,7 @@
             position: absolute;
             top:0;
             left:0;
-            z-index: 1;
+          
         }
         .exp-bar {
             height: 8px;
@@ -59,7 +65,7 @@
             position: absolute;
             top:0;
             left:0;
-            z-index: 2;
+           
             
         }
         .under-hp-bar {
@@ -100,38 +106,28 @@
         }
     }
     .profile-btns{
-        width: 101%;
-        height: 13%;
+        background-color: #030303;
+        
+        width: 100%;
+        height: 12%;
         .profile, .character {
             background-color: #030303;
             display: inline-table;
-            width: 50%;
-            height: 100%;
+            width: 48%;
+            height: 94%;
+            margin: 1%;
             button {
                 background-color: #472d16;
                 color: #ead59c;
-                width: 90%;
-                height: 90%;
-                display: inline-table;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                width: 100%;
+                height: 100%;
+                // display: inline-table;
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
                 border: none;
-                border: 1px solid white;
+                border: 2px solid #312a22;
 
-            }
-        }
-        .profile {
-            button {
-                margin: 3% 0 0 6%;
-                
-              
-            }
-        }
-        .character {
-            button {
-                margin: 3% 6% 0 0;
-              
             }
         }
         .clicked {
@@ -141,15 +137,19 @@
             }
         }
     }
-    
 
-    .char-right {
-        float: right;
-        margin-right: 5em;
-    }
+  
     .chars { 
-        &:after {
-         clear: both;
+        background-color: #1b1203;
+        border: 2px solid #312a22;
+        color: whitesmoke;
+        text-align: left;
+        height: 80%;
+        width: 100%;
+        p {
+            color: #4d66b9;
+            padding: 10px;
+            font-size: 1.5rem; 
         }
      }
 }

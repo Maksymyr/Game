@@ -19,9 +19,19 @@ const mapStateToProps = (state, ownProps) => {
 export default class ForestPage extends React.Component {
     levelUp = () => {
         this.props.changeForestLvl(1);
+        let rand = Math.floor(Math.random()*5);
+        if(rand == 4) {
+            this.addEnemy();
+            this.props.history.push("/forest-battle");
+        }
     }
     levelDown = () => {
         this.props.changeForestLvl(-1);
+        let rand = Math.floor(Math.random()*5);
+        if(rand == 4) {
+            this.addEnemy;
+            this.props.history.push("/forest-battle");
+        }
     }
     addEnemy = () => {
         const shuffle = arr => arr.sort(() => Math.random() - 0.5);
@@ -29,13 +39,8 @@ export default class ForestPage extends React.Component {
         
     }
     render() {
-        // const shuffle = arr => arr.sort(() => Math.random() - 0.5);
-        // let rand = shuffle(types.road);
-
-        // console.log(this.props.hero);
         return (
             <div className='forest'>
-                {/* <img src={require('../../img/forest.jpg')}/> */}
                 <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest2.jpg")+')'}}>
                     <div className="left">
                         <Hero/>
