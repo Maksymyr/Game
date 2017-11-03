@@ -16,3 +16,5 @@ export const heroINT = (payload) => ({type: types.HERO_INT, payload});
 export const heroWIT = (payload) => ({type: types.HERO_WIT, payload});
 export const heroDeath = (payload) => ({type: types.HERO_DEATH, payload});
 export const enemyKilled = (payload) => ({type: types.KILLED, payload});
+export const heroLvlPoints = (payload) => ({type: types.LVL_POINTS})
+

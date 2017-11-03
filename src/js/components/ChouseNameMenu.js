@@ -20,10 +20,20 @@ export default class ChouseNameMenu extends React.Component {
     
     render() {
         return (
-            <div className='start-name'>  
-                <p>Enter your name:</p>
-                <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
-                <Link to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
+            <div className='start-menu'> 
+                 <div className="name-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/font_starter.jpg")+')'}}>
+                    <div className="left">
+                    </div>
+                    <div className="center">
+                        <div className="btns"> 
+                            <p className="start-p">Enter your name:</p>
+                            <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
+                            <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
+                        </div>
+                    </div>
+                    <div className="right">
+                    </div>
+                </div>
             </div>
 
         )

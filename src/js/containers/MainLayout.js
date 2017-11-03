@@ -16,11 +16,17 @@ import LevelUp from '../components/LevelUp.js';
 export default class MainLayout extends React.Component {
 
     render() {
-       
+    //    console.log(localStorage.getItem("Enemy"));
         return(
             <div className='wrapper'>
                 <Switch>
-                    <Route exact path="/" component={ChouseNameMenu} /> 
+                    {localStorage.getItem("Hero") ? localStorage.getItem("Forest") > 0 ? 
+                    JSON.parse(localStorage.getItem("Enemy")).name != null ? 
+                    <Route exact path="/" component={ForestPageBattle} /> :
+                    <Route exact path="/" component={ForestPage} /> :
+                    <Route exact path="/" component={VillagePage} /> : 
+                    <Route exact path="/" component={ChouseNameMenu} />}
+
                     <Route path="/start" component={StartMenu} />
                     <Route path="/village" component= {VillagePage} />
                     <Route path="/rest" component={Rest} />

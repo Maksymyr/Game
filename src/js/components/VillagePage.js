@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import Inventory from './Inventory.js';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -24,6 +25,7 @@ export default class VillagePage extends React.Component {
             <div className="village">
                 <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/village2.jpg")+')'}}>
                     <div className="left">
+                        <div></div>
                         <Hero/>
                     </div>
                     <div className="center">

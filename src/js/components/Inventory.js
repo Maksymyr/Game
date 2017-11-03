@@ -11,33 +11,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(null, mapDispatchToProps)
-export default class StartMenu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.setClass = this.setClass.bind(this);
-    }
-
-    setClass(type) {  
-        let hero = null;
-            if (type == "Warrior") {
-                hero = choosenTypes.chooseWar;
- 
-            }
-            else if (type == "Archer") {
-                hero = choosenTypes.chooseArch;
-
-            }
-            else if (type == "Wizard") {
-                hero = choosenTypes.chooseMage;
-       
-            }
-            this.props.addHeroType(hero);
-
-        }
-    
+export default class Inventory extends React.Component {
+  
     render() {
         return (
-            <div className='start-btns'>  
+            <div className='menu'>  
                 <div className="name-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/class_chouse.jpg")+')'}}>
                     <div className="left">
                     </div>

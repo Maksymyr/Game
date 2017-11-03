@@ -14,5 +14,6 @@ export const HERO_INT = "HERO_INT";
 export const HERO_WIT = "HERO_WIT";
 export const HERO_DEATH = "HERO_DEATH";
 export const KILLED = "KILLED";
+export const LVL_POINTS = "LVL_POINTS";
 
 

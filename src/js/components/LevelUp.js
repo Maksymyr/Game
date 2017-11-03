@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT} from '../actions';
+import {heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints} from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT}, dispatch);
+    return bindActionCreators({heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints}, dispatch);
 }
 const mapStateToProps = (state, ownProps) => {
     return {hero: state.hero}
@@ -25,6 +25,7 @@ export default class LevelUp extends React.Component {
             con_up: false,
             int_up: false,
             wit_up: false,
+            lvlup: true
         }
         this.plus = this.plus.bind(this);
         this.minus = this.minus.bind(this);
@@ -60,15 +61,21 @@ export default class LevelUp extends React.Component {
         this.props.heroCON(this.refs.con.value-this.props.hero.con);
         this.props.heroINT(this.refs.int.value-this.props.hero.int);        
         this.props.heroWIT(this.refs.wit.value-this.props.hero.wit);  
-        this.props.history.push("/forest");
+        this.props.heroLvlPoints();
+        if (this.props.hero.points > 5)
+        this.setState({lvlup: true, count: 0, checkbox: false, str_up: false, dex_up: false, con_up: false, int_up: false, wit_up: false})
+        else
+        this.setState({lvlup: false, checkbox: true, str_up: false, dex_up: false, con_up: false, int_up: false, wit_up: false})
+    }
+    returning = () => {
+        this.props.history.push("/");
     }
     render() {
         return (
            <div className="village">
-                {/* <img src={require('../../img/fire.jpg')}/> */}
-                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/fire.jpg")+')'}}>
+                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/levelup.jpg")+')'}}>
                     <div className="lvlup-list">
-                        <h3>Congratulations! You get level {this.props.hero.lvl}!</h3>
+                        <h3>Congratulations! You get level {this.props.hero.lvl+1}!</h3>
                         <p>
                             <span>Strength</span><input ref="str" disabled defaultValue={this.props.hero.str}/>
                             {this.state.checkbox ? null : <button onClick={() => this.plus("str")}>+</button>}
@@ -94,8 +101,9 @@ export default class LevelUp extends React.Component {
                             {this.state.checkbox ? null : <button onClick={() => this.plus("wit")}>+</button>}
                             {this.state.wit_up ? <button onClick={() => this.minus("wit")}>-</button> : null}
                         </p>
-                        {this.state.checkbox ? <button onClick={this.submitting}>Submit</button> : null}
+                        {this.state.checkbox && this.state.lvlup ? <button onClick={this.submitting}>Submit</button> : null}
                     </div>
+                    <button onClick={this.returning}>Back</button>
                 </div>
            </div>
         )

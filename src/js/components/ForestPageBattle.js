@@ -7,10 +7,10 @@ import Enemy from '../logical_classes/Enemy.js';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroEXP, enemyHP, heroHP, setForestLvl, heroDeath, enemyKilled} from '../actions';
+import {heroEXP, enemyHP, heroHP, heroMP, setForestLvl, heroDeath, enemyKilled} from '../actions';
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({heroEXP, enemyHP, heroHP, setForestLvl, heroDeath, enemyKilled}, dispatch)
+    return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP,  setForestLvl, heroDeath, enemyKilled}, dispatch)
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -50,8 +50,6 @@ export default class ForestPageBattle extends React.Component {
             this.props.enemyKilled();
         }
         if (this.props.hero.curHP-enemy_attack <= 0) {
-            this.props.enemyHP(this.props.enemy.curHP);
-            this.props.heroEXP(this.props.enemy.exp);
             this.props.setForestLvl(0);
             this.props.heroDeath();
             this.props.history.push("/village");
@@ -60,7 +58,14 @@ export default class ForestPageBattle extends React.Component {
 
        
     }
-
+    surrender = () => {
+      console.log(-Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1)));
+        this.props.heroHP(Math.floor(this.props.hero.curHP/3) + Math.floor(Math.random())*(this.props.hero.curHP/2));
+        this.props.heroMP(Math.floor(this.props.hero.curMP/3) + Math.floor(Math.random())*(this.props.hero.curMP/2));
+        this.props.heroEXP(-Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1)));
+        this.props.history.push("/forest");
+        this.props.enemyKilled();
+    }
 
     render() {
 
@@ -76,7 +81,7 @@ export default class ForestPageBattle extends React.Component {
                             <button className='atck' onClick={this.attacking}>Attack</button>
                             <button className='skill'>Use skill</button>    
                             <button className='skill2'>Use skill2</button>    
-                            <button className='surr'>Surrender</button>                            
+                            <button className='surr' onClick={this.surrender}>Surrender</button>                            
                         </div>
                     </div>
                     <div className="right">
