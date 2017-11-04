@@ -1,0 +1,266 @@
+.side-menu {
+    width: 300px;
+    height: 65px;
+    background-color: #21170d;
+    border: 2px solid #312a22;
+    position: absolute;
+    .menu-img {
+        // height: 60px;
+        float: left;
+        background-size: 80%;
+        background-position: 32% 50%;
+        background-repeat: no-repeat;
+        border: 1px solid #312a22;
+    }
+    .menu-img:nth-child(3) {
+        background-position: 22% 50%;
+    }
+}
+.char-window {
+    opacity: 0.95;    
+    padding: 40px;
+    font-size: 2rem;
+    color: #ead59c;
+    .first {
+        float: left;
+        width: 450px;
+        background-color: #21170d;
+        border: 3px solid #312a22;
+        border-right: none; 
+        .fst-window {
+            height: 200px;
+            width: 100%;
+            background-color: #21170d;
+            border: 1px solid #312a22;
+            // padding: 20px; 
+            text-align: center;        
+            div:nth-child(2) {
+                border-left: none;
+            }
+            h3 {
+                color: #975050;
+                font-size: 3.0rem;
+                font-weight: bold;
+                height: 45px;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            div {
+                border: 1px solid #312a22;
+                border-right:none; 
+                float: left;
+                width: 50%;
+                color: #ead59c;
+                margin-bottom: 15px;
+                
+                p{
+                    clear: both;
+                    margin: 10px 0;
+                    font-size: 2.5rem;
+                }
+                
+            }
+            
+            p {
+                
+                color: #ead59c;
+                font-size: 2.5rem;
+                
+            }
+            
+        }
+        .scd-window {
+            height: 200px;
+            width: 100%;
+            background-color: #21170d;
+            border: 1px solid #312a22;
+            .submit-lvl {
+                float: right;
+                background-color: #472d16;
+                color: #ead59c;
+                width: 60px;
+                height: 25px;
+                margin: 160px 15px 20px;
+                border: none;
+                border: 2px solid #312a22;
+            }
+            div:first-child {
+                p {
+                    margin: 14px 50px;
+                    margin-right: 100px;
+                }
+            }
+            .att-icons {
+                text-align: center;
+                
+                p{
+                    position: relative; 
+                    .att-icon {
+                        border: 2px solid #352d1a;
+                        background-color: black;
+                        color: #ead59c;
+                        font-size: 2rem;
+                        border-radius: 50%;
+                        height: 30px;
+                        width: 50px;
+                        text-align: center;    
+                        margin: 4px;       
+                            
+                    }
+                    
+                    button {
+                        position: absolute;
+                        left: 47px;
+                        top: 13px;
+                        border-radius: 50% ;
+                        border: none;
+                        width: 10px;
+                        height: 10px;
+                        text-align: center;
+                        background-color: #8a7f64;
+                        line-height: 0;
+                        font-size: 1rem;
+                    }
+                    .min-icon {
+                        left: 2px;
+                    }
+                }
+            }
+            div {
+                float: left;
+            }
+        }
+        .trd-window {
+            height: 200px;
+            width: 100%;
+            background-color: #21170d;
+            border: 1px solid #312a22;
+            div:first-child {
+                margin-top: 50px;
+                p {
+                    margin: 14px 50px;
+                    margin-right: 100px;
+                }
+            }
+            .att-icons {
+                text-align: center;
+                margin-top: 50px;
+                p{
+                    position: relative; 
+                    .att-icon {
+                        border: 2px solid #352d1a;
+                        background-color: black;
+                        color: #ead59c;
+                        font-size: 2rem;
+                        border-radius: 50%;
+                        height: 30px;
+                        width: 50px;
+                        text-align: center;    
+                        margin: 4px;       
+                            
+                    }
+                    
+                    button {
+                        position: absolute;
+                        left: 47px;
+                        top: 13px;
+                        border-radius: 50% ;
+                        border: none;
+                        width: 10px;
+                        height: 10px;
+                        text-align: center;
+                        background-color: #8a7f64;
+                        line-height: 0;
+                        font-size: 1rem;
+                    }
+                    .min-icon {
+                        left: 2px;
+                    }
+                }
+            }
+            div {
+                float: left;
+            }
+        }
+    }
+    .second {
+        float: left;
+        width: 50vw;
+        background-color: #21170d;
+        border: 3px solid #312a22;
+        border-left: none; 
+        .frt-window {
+            height: 300px;
+            width: 100%;
+            background-color: #21170d;
+            border: 1px solid #312a22;
+
+            div:nth-child(2) {
+                border-top: 1px solid #312a22;
+                border-right: 1px solid #312a22;
+                border-bottom: 1px solid #312a22;
+            }
+            div:nth-child(3){
+                border-top: 1px solid #312a22;
+                border-bottom: 1px solid #312a22;
+            }
+            div:nth-child(4){
+                
+                border-right: 1px solid #312a22;
+            }
+            .skill-title {
+                text-align: center;
+                margin-top: 13px;
+                width:100%;
+                height: 42px;
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: rgb(64, 64, 163); 
+            }
+            div {
+                width: 50%;
+                height: 122px;
+                float: left;
+                padding: 11px;
+                &.closed-skill {
+                    background-color: grey;
+                    color: grey;
+                    div {
+                        display: none;
+                    }
+                }
+                div{
+                    height: 100px;
+                    width: 100px; 
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+            
+        }
+        .fth-window {
+            height: 300px;
+            width: 100%;
+            background-color: #21170d;
+            border: 1px solid #312a22;
+        }
+    }
+    .menu-list {
+        float: right;
+        width: 65px;
+        height: 280px;
+        background-color: #21170d;
+        border: 2px solid #312a22;
+
+        .menu-img {
+            background-size: 80%;
+            background-position: 32% 50%;
+            background-repeat: no-repeat;
+            border: 1px solid #312a22;
+        }
+        .menu-img:nth-child(3) {
+            background-position: 22% 50%;
+        }
+    }
+}

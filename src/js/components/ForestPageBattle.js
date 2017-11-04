@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import * as types from '../constants/RoadWay.js'
 import Hero from '../logical_classes/Hero.js';
 import Enemy from '../logical_classes/Enemy.js';
 
@@ -41,7 +40,7 @@ export default class ForestPageBattle extends React.Component {
             this.setState({hero_lvl: this.props.hero.lvl}, () => {
                 if (this.props.hero.lvl > this.state.hero_lvl) {
                     console.log("up!");
-                    this.props.history.push("/levelup");
+                    this.props.history.push("/character");
                 } 
                 else this.props.history.push("/forest");
             });

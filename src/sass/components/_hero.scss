@@ -37,6 +37,7 @@
         // display: block;
         border: 2px solid #312a22;
         position: relative;
+        box-sizing: border-box;
         // .lvl-bar {
         //     // border: 2px solid black;
         //     // border-radius: 50%;
@@ -113,9 +114,9 @@
         .profile, .character {
             background-color: #030303;
             display: inline-table;
-            width: 48%;
-            height: 94%;
-            margin: 1%;
+            width: 50%;
+            height: 100%;
+            
             button {
                 background-color: #472d16;
                 color: #ead59c;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import * as types from '../constants/RoadWay.js';
 
 import StartMenu from '../components/StartMenu.js';
 import VillagePage from '../components/VillagePage.js';
@@ -8,7 +7,10 @@ import ChouseNameMenu from '../components/ChouseNameMenu.js';
 import ForestPage from '../components/ForestPage.js';
 import ForestPageBattle from '../components/ForestPageBattle.js';
 import Rest from '../components/Rest.js';
-import LevelUp from '../components/LevelUp.js';
+import Character from '../components/Character.js';
+import Inventory from '../components/Inventory.js';
+import Achivments from '../components/Achivments.js';
+import Settings from '../components/Settings.js';
 
 
 
@@ -16,7 +18,6 @@ import LevelUp from '../components/LevelUp.js';
 export default class MainLayout extends React.Component {
 
     render() {
-    //    console.log(localStorage.getItem("Enemy"));
         return(
             <div className='wrapper'>
                 <Switch>
@@ -32,9 +33,11 @@ export default class MainLayout extends React.Component {
                     <Route path="/rest" component={Rest} />
                     <Route path="/forest" component={ForestPage} />
                     <Route path="/forest-battle" component={ForestPageBattle} />
-                    <Route path="/levelup" component={LevelUp}/>
+                    <Route path="/character" component={Character}/>
+                    <Route path="/inventory" component={Inventory}/>
+                    <Route path="/settings" component={Settings}/>
+                    <Route path="/achivments" component={Achivments}/>
                 </Switch>
-                {/* <Route path={"/item"+this.state.viewvar.index} component={() => <Item data={this.state.viewvar}/>} /> */}
                 {/* <Route path="*" component={Footer} /> */}
             </div>
         )

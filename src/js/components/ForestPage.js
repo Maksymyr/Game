@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeForestLvl, setEnemy} from '../actions';
+import Sidebar from './Sidebar.js';
 
 import * as mobs from '../constants/Mobs.js';
-import * as types from '../constants/RoadWay.js'
 import Hero from '../logical_classes/Hero.js';
 
 const mapDispatchToProps = (dispatch) => {
@@ -17,6 +17,13 @@ const mapStateToProps = (state, ownProps) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ForestPage extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = { 
+            images: [require("../../img/forest2.jpg"), require("../../img/forest3.jpg")
+            ,require("../../img/forest4.jpg"), require("../../img/forest5.jpg")]
+        }
+    }
     levelUp = () => {
         this.props.changeForestLvl(1);
         let rand = Math.floor(Math.random()*5);
@@ -41,7 +48,8 @@ export default class ForestPage extends React.Component {
     render() {
         return (
             <div className='forest'>
-                <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest2.jpg")+')'}}>
+                <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url(' + this.state.images[Math.floor(Math.random()*4)]+')'}}>
+                    <Sidebar />
                     <div className="left">
                         <Hero/>
                     </div>

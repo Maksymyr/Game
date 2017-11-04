@@ -10,12 +10,12 @@ $darkAccent: rgb(223, 223, 223);
 }
 
 html, body {
-    font-family: "Tahoma";
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-size:10px;
     line-height: 1.125;
 }
 body {
-    min-height: 100%;
+    min-height: 800px;
     min-width: 1000px;
     background: $accent;
     background-size: 100% 100%;
@@ -159,5 +159,12 @@ body {
     
     }
 }
-
-  
+.red {
+    color: red;
+}
+.blue {
+    color: blue;
+}
+.gold {
+    color: gold;
+}

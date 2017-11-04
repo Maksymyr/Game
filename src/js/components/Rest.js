@@ -5,6 +5,7 @@ import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {heroHP, heroMP} from '../actions';
+import Sidebar from './Sidebar.js';
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({heroHP, heroMP}, dispatch);
@@ -25,16 +26,12 @@ export default class Rest extends React.Component {
     resting() {
         this.setState({checkbox: !this.state.checkbox});
         let resttime;
-        // if(this.state.checkbox) {
-        //     clearInterval(resttime);
-        // } else {
-        
+
             resttime = setInterval(() => {
                 (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? this.props.heroHP(-1): (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? null : clearInterval(resttime),
                 (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? this.props.heroMP(-1): (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? null : clearInterval(resttime)
             }, 2000)
 
-        // }
     
     }
         
@@ -43,7 +40,7 @@ export default class Rest extends React.Component {
         return (
            <div className="village">
                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/fire.jpg")+')'}}>
-                    {/* <img src={require('../../img/fire.jpg')}/> */}
+                    <Sidebar />
                     <div className="left">
                         <Hero/>
                     </div>

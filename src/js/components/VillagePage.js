@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import Inventory from './Inventory.js';
+import Sidebar from './Sidebar.js';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -16,16 +17,22 @@ const mapStateToProps = (state, ownProps) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class VillagePage extends React.Component {
-
+    constructor(props){
+        super(props);
+        this.state = { 
+            images: [require("../../img/village.jpg"), require("../../img/village2.jpg"), require("../../img/village3.jpg")]
+        }
+    }
     levelUp = () => {
         this.props.changeForestLvl(1); 
     }
     render() {
         return (
             <div className="village">
-                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/village2.jpg")+')'}}>
+                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+ this.state.images[Math.floor(Math.random()*3)]+')'}}>
+                    <Sidebar />
                     <div className="left">
-                        <div></div>
+                        
                         <Hero/>
                     </div>
                     <div className="center">

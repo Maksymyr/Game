@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(null, mapDispatchToProps)
-export default class Inventory extends React.Component {
+export default class Achivments extends React.Component {
     returning = () => {
         this.props.history.push("/");
     }

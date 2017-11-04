@@ -12,22 +12,27 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(null, mapDispatchToProps)
-export default class Inventory extends React.Component {
+export default class Settings extends React.Component {
     returning = () => {
+        this.props.history.push("/");
+    }
+    restarting = () => {
+        localStorage.clear();
         this.props.history.push("/");
     }
     render() {
         return (
             <div className='menu'>  
                 <div className="name-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/class_chouse.jpg")+')'}}>
-                    <Sidebar />
+                    {/* <Sidebar /> */}
                     <div className="left">
                     </div>
                     <div className="center">
                     </div>
                     <div className="right">
-              
+                 
                     <button onClick={this.returning}>Back</button>
+                    <button onClick={this.restarting}>Restart</button>
                     </div>
                 </div>
 
