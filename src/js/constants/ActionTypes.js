@@ -15,10 +15,16 @@ export const HERO_WIT = "HERO_WIT";
 export const HERO_DEATH = "HERO_DEATH";
 export const KILLED = "KILLED";
 export const LVL_POINTS = "LVL_POINTS";
+export const LVL_ATT_POINTS = "LVL_ATT_POINTS";
 export const HERO_CD1 = "HERO_CD1";
 export const HERO_CD2 = "HERO_CD2";
 export const HERO_CD3 = "HERO_CD3";
 export const HERO_CD4 = "HERO_CD4";
+export const HERO_ATT1 = "HERO_ATT1";
+export const HERO_ATT2 = "HERO_ATT2";
+export const HERO_ATT3 = "HERO_ATT3";
+export const HERO_ATT4 = "HERO_ATT4";
+
 
 
 

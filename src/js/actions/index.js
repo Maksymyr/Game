@@ -17,9 +17,14 @@ export const heroWIT = (payload) => ({type: types.HERO_WIT, payload});
 export const heroDeath = (payload) => ({type: types.HERO_DEATH, payload});
 export const enemyKilled = (payload) => ({type: types.KILLED, payload});
 export const heroLvlPoints = (payload) => ({type: types.LVL_POINTS, payload});
+export const heroLvlAttPoints = (payload) => ({type: types.LVL_ATT_POINTS, payload});
 export const skill1CD = (payload) => ({type: types.HERO_CD1, payload});
 export const skill2CD = (payload) => ({type: types.HERO_CD2, payload});
 export const skill3CD = (payload) => ({type: types.HERO_CD3, payload});
 export const skill4CD = (payload) => ({type: types.HERO_CD4, payload});
+export const heroAtt1 = (payload) => ({type: types.HERO_ATT1, payload});
+export const heroAtt2 = (payload) => ({type: types.HERO_ATT2, payload});
+export const heroAtt3 = (payload) => ({type: types.HERO_ATT3, payload});
+export const heroAtt4 = (payload) => ({type: types.HERO_ATT4, payload});
 
 

@@ -4,10 +4,12 @@ import {Link} from 'react-router-dom';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints} from '../actions';
+import {heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints,
+heroAtt1, heroAtt2, heroAtt3, heroAtt4, heroLvlAttPoints} from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints}, dispatch);
+    return bindActionCreators({heroHP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, heroLvlPoints,
+        heroAtt1, heroAtt2, heroAtt3, heroAtt4, heroLvlAttPoints}, dispatch);
 }
 const mapStateToProps = (state, ownProps) => {
     return {hero: state.hero}
@@ -18,28 +20,41 @@ export default class Character extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
+            att_lvlup: false,
             lvlup: false,
+            att_checkbox: true,
             checkbox: true,
             count: 0,
+            att_count: 0,
             str_up: false,
             dex_up: false,
             con_up: false,
             int_up: false,
-            wit_up: false
+            wit_up: false,
+            att1_up: false,
+            att2_up: false,
+            att3_up: false,
+            att4_up: false,
             
         }
         this.plus = this.plus.bind(this);
         this.minus = this.minus.bind(this);
         this.submitting = this.submitting.bind(this);
+        this.att_plus = this.att_plus.bind(this);
+        this.att_minus = this.att_minus.bind(this);
+        this.att_submitting = this.att_submitting.bind(this);
     }
     componentWillMount() {
         if (this.props.hero.points >= 5) {
             this.setState({ lvlup: true, checkbox: false })
         }
+        if (this.props.hero.att_points >= 1) {
+            this.setState({ att_lvlup: true, att_checkbox: false })
+        }
     }
     componentWillReceiveProps(nextProps){
         if (nextProps != this.props) {
-            this.refs.att.value = this.refs.str.value;
+            this.refs.att.value = Math.floor(this.refs.str.value * (1 +parseInt(this.refs.att1.value)/100));
             this.refs.def.value = this.refs.con.value;
         } 
     }
@@ -67,6 +82,30 @@ export default class Character extends React.Component {
             this.setState({checkbox: false})
         }
     }
+    att_plus(att) {
+        if (this.state.att_count < 1) {
+            this.refs[att].value = (parseInt(this.refs[att].value) + 10)+'%';
+            this.setState({att_count: this.state.att_count+1});
+            this.setState({[att+"_up"]: true})
+        }
+        if (this.state.att_count == 0) {
+            this.setState({att_checkbox: true})
+        }
+ 
+        
+    }
+    att_minus(att) {
+        if (parseInt(this.refs[att].value) > this.props.hero[att]) {
+            this.refs[att].value = (parseInt(this.refs[att].value) - 10)+'%';
+            this.setState({att_count: this.state.att_count-1})
+        }
+        if (parseInt(this.refs[att].value) == this.props.hero[att]) {
+            this.setState({[att+"_up"]: false}) 
+        }
+        if (this.state.att_count <= 1) {
+            this.setState({att_checkbox: false})
+        }
+    }
     submitting(){
         this.props.heroSTR(this.refs.str.value-this.props.hero.str);
         this.props.heroDEX(this.refs.dex.value-this.props.hero.dex);
@@ -78,6 +117,17 @@ export default class Character extends React.Component {
         this.setState({lvlup: true, count: 0, checkbox: false, str_up: false, dex_up: false, con_up: false, int_up: false, wit_up: false})
         else
         this.setState({lvlup: false, checkbox: true, str_up: false, dex_up: false, con_up: false, int_up: false, wit_up: false})
+    }
+    att_submitting(){
+        this.props.heroAtt1(parseInt(this.refs.att1.value)/10-this.props.hero.att1);
+        this.props.heroAtt2(parseInt(this.refs.att2.value)/10-this.props.hero.att2);
+        this.props.heroAtt3(parseInt(this.refs.att3.value)/10-this.props.hero.att3);
+        this.props.heroAtt4(parseInt(this.refs.att4.value)/10-this.props.hero.att4);        
+        this.props.heroLvlAttPoints();
+        if (this.props.hero.att_points > 1)
+        this.setState({att_lvlup: true, att_count: 0, att_checkbox: false, att1_up: false, att2_up: false, att3_up: false, att4_up: false})
+        else
+        this.setState({att_lvlup: false, att_checkbox: true, att1_up: false, att2_up: false, att3_up: false, att4_up: false})
     }
     returning = () => {
         this.props.history.push("/");
@@ -148,9 +198,9 @@ export default class Character extends React.Component {
                                 <div className="att-icons">
                                     <p>
                                         <input className="att-icon" ref="att" disabled defaultValue={
-                                            this.props.hero.att1 > 0 ? 
-                                            this.props.hero.str * (1 + this.props.hero.att1*10) : 
-                                            this.props.hero.str
+                                            
+                                            Math.floor(this.props.hero.str * (1 +this.props.hero.att1*10/100)) 
+                                            
                                         }/>
                                     </p>
                                     <p>
@@ -193,26 +243,28 @@ export default class Character extends React.Component {
                                 </div>
                                 <div className="att-icons">
                                     <p>
-                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
-                                        <input className="att-icon" ref="weapon" disabled defaultValue={this.props.hero.att1 + "%"}/>
-                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                        {this.state.att1_up ? <button className="min-icon" onClick={() => this.att_minus("att1")}>-</button> : null}
+                                        <input className="att-icon" ref="att1" disabled defaultValue={this.props.hero.att1*10 + "%"}/>
+                                        {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att1")}>+</button>}
                                     </p>
                                     <p>
-                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
-                                        <input className="att-icon" ref="armor" disabled defaultValue={this.props.hero.att2 + "%"}/>
-                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                        {this.state.att2_up ? <button className="min-icon" onClick={() => this.att_minus("att2")}>-</button> : null}
+                                        <input className="att-icon" ref="att2" disabled defaultValue={this.props.hero.att2*10 + "%"}/>
+                                        {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att2")}>+</button>}
                                     </p>
                                     <p>
-                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
-                                        <input className="att-icon" ref="fort" disabled defaultValue={this.props.hero.att3 + "%"}/>
-                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                        {this.state.att3_up ? <button className="min-icon" onClick={() => this.att_minus("att3")}>-</button> : null}
+                                        <input className="att-icon" ref="att3" disabled defaultValue={this.props.hero.att3*10 + "%"}/>
+                                        {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att3")}>+</button>}
                                     </p>
                                     <p>
-                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
-                                        <input className="att-icon" ref="will" disabled defaultValue={this.props.hero.att4 + "%"}/>
-                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                        {this.state.att4_up ? <button className="min-icon" onClick={() => this.att_minus("att4")}>-</button> : null}
+                                        <input className="att-icon" ref="att4" disabled defaultValue={this.props.hero.att4*10 + "%"}/>
+                                        {this.state.att_checkbox ? null : <button onClick={() => this.att_plus("att4")}>+</button>}
                                     </p>
                                 </div>
+                                {this.state.att_checkbox && this.state.att_lvlup ? <button className="submit-lvl" onClick={this.att_submitting}>Submit</button> : null}
+                                
                             </div>
                         </div> 
                         <div className="menu-list">

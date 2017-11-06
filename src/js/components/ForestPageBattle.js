@@ -32,7 +32,12 @@ export default class ForestPageBattle extends React.Component {
         this.skill3 = this.skill3.bind(this);
         this.skill4 = this.skill4.bind(this);
     }
-
+    componentWillMount () {
+        this.props.skill1CD(0);
+        this.props.skill2CD(0);
+        this.props.skill3CD(0);
+        this.props.skill4CD(0);
+    }
     attacking(imp_dmg) {
         let hero_attack;
         let enemy_attack;
@@ -47,7 +52,6 @@ export default class ForestPageBattle extends React.Component {
             hero_attack = imp_dmg; 
             console.log(hero_attack);
         }
-        // console.log(hero_attack);
         enemy_attack = this.props.enemy.str;
 
         this.props.enemyHP(hero_attack);
@@ -62,12 +66,32 @@ export default class ForestPageBattle extends React.Component {
             this.props.enemyHP(this.props.enemy.curHP);
             this.props.heroEXP(this.props.enemy.exp);
             this.props.enemyKilled();
+
         }
         if (this.props.hero.curHP-enemy_attack <= 0) {
             this.props.setForestLvl(0);
             this.props.heroDeath();
             this.props.history.push("/village");
             this.props.enemyKilled();
+
+        }
+        if (this.props.hero.cdSkill1  >= 1) {
+            this.props.skill1CD(this.props.hero.cdSkill1 +1);
+            if (this.props.hero.cdSkill1  == 3){
+                this.props.skill1CD(0);
+            }
+        }
+        if (this.props.hero.cdSkill2  >= 1) {
+            this.props.skill2CD(this.props.hero.cdSkill2 +1);
+            if (this.props.hero.cdSkill2  == 4){
+                this.props.skill2CD(0);
+            }
+        }
+        if (this.props.hero.cdSkill3  >= 1) {
+            this.props.skill3CD(this.props.hero.cdSkill3 +1);
+            if (this.props.hero.cdSkill3  == 5){
+                this.props.skill3CD(0);
+            }
         }
     }
     surrender() {
@@ -76,34 +100,47 @@ export default class ForestPageBattle extends React.Component {
         this.props.heroEXP(-Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1)));
         this.props.history.push("/forest");
         this.props.enemyKilled();
+
     }
     skill() {
-        let hero_attack;
-        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
-        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
-        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
-        this.attacking(hero_attack);
+        if (this.props.hero.cdSkill1  == 0) {
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
+            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
+            this.attacking(hero_attack);
+            this.props.skill1CD(1);
+        }
     }
     skill2() {
-        let hero_attack;
-        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*3;}
-        if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex*4.5);}
-        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*6;}
-        this.attacking(hero_attack);
+        if (this.props.hero.cdSkill2  == 0) {
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*3;}
+            if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex*4.5);}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*6;}
+            this.attacking(hero_attack);
+            this.props.skill2CD(1);
+        }
     }
     skill3() {
-        let hero_attack;
-        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
-        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
-        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
-        this.attacking(hero_attack);
+        if (this.props.hero.cdSkill3  == 0) {
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
+            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
+            this.attacking(hero_attack);
+            this.props.skill3CD(1);
+        }
     }
     skill4() {
-        let hero_attack;
-        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*5;}
-        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*9;}
-        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*15;}
-        this.attacking(hero_attack);
+        if (this.props.hero.cdSkill4  == 0) {
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*5;}
+            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*9;}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*15;}
+            this.attacking(hero_attack);
+            this.props.skill4CD(1);
+        }
     }
     render() {
         return (
@@ -115,10 +152,10 @@ export default class ForestPageBattle extends React.Component {
                     <div className="center">
                         <div className="battle-btns">
                             <button className='atck' onClick={() => this.attacking(null)}>Attack</button>
-                            <button className='skill' onClick={this.skill}>1</button>    
-                            <button className={this.props.hero.lvl < 5 ? 'disp-none' : 'skill' } onClick={this.skill2}>2</button>
-                            <button className={this.props.hero.lvl < 10 ? 'disp-none' : 'skill'} onClick={this.skill3}>3</button>    
-                            <button className={this.props.hero.lvl < 15 ? 'disp-none' : 'skill'} onClick={this.skill4}>4</button>     
+                            <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-none'} onClick={this.skill}>1</button>    
+                            <button className={this.props.hero.lvl < 5 ? 'disp-none' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-none'} onClick={this.skill2}>2</button>
+                            <button className={this.props.hero.lvl < 10 ? 'disp-none' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-none'} onClick={this.skill3}>3</button>    
+                            <button className={this.props.hero.lvl < 15 ? 'disp-none' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-none'} onClick={this.skill4}>4</button>     
                             <button className='surr' onClick={this.surrender}>Surrender</button>                            
                         </div>
                     </div>
