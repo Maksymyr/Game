@@ -6,10 +6,12 @@ import Enemy from '../logical_classes/Enemy.js';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroEXP, enemyHP, heroHP, heroMP, setForestLvl, heroDeath, enemyKilled} from '../actions';
+import {heroEXP, enemyHP, heroHP, heroMP, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
+    skill3CD, skill4CD} from '../actions';
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP,  setForestLvl, heroDeath, enemyKilled}, dispatch)
+    return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP,  setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
+        skill3CD, skill4CD}, dispatch)
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,15 +25,29 @@ export default class ForestPageBattle extends React.Component {
         this.state = {
             hero_lvl: 0 
         }
+        this.attacking = this.attacking.bind(this);
+        this.surrender = this.surrender.bind(this);
+        this.skill = this.skill.bind(this);
+        this.skill2 = this.skill2.bind(this);
+        this.skill3 = this.skill3.bind(this);
+        this.skill4 = this.skill4.bind(this);
     }
 
-    attacking = () => {
+    attacking(imp_dmg) {
         let hero_attack;
         let enemy_attack;
-        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str;}
-        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex;}
-        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int;}
-
+        console.log(imp_dmg);
+        if (imp_dmg == null) {
+            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str;}
+            if (this.props.hero.type == "Archer") { hero_attack = Math.floor(this.props.hero.dex*1.5);}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*2;}
+            console.log(hero_attack);
+        }
+        else {
+            hero_attack = imp_dmg; 
+            console.log(hero_attack);
+        }
+        // console.log(hero_attack);
         enemy_attack = this.props.enemy.str;
 
         this.props.enemyHP(hero_attack);
@@ -39,7 +55,6 @@ export default class ForestPageBattle extends React.Component {
         if (this.props.enemy.curHP-hero_attack <= 0) {
             this.setState({hero_lvl: this.props.hero.lvl}, () => {
                 if (this.props.hero.lvl > this.state.hero_lvl) {
-                    console.log("up!");
                     this.props.history.push("/character");
                 } 
                 else this.props.history.push("/forest");
@@ -54,32 +69,56 @@ export default class ForestPageBattle extends React.Component {
             this.props.history.push("/village");
             this.props.enemyKilled();
         }
-
-       
     }
-    surrender = () => {
-      console.log(-Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1)));
+    surrender() {
         this.props.heroHP(Math.floor(this.props.hero.curHP/3) + Math.floor(Math.random())*(this.props.hero.curHP/2));
         this.props.heroMP(Math.floor(this.props.hero.curMP/3) + Math.floor(Math.random())*(this.props.hero.curMP/2));
         this.props.heroEXP(-Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1)));
         this.props.history.push("/forest");
         this.props.enemyKilled();
     }
-
+    skill() {
+        let hero_attack;
+        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
+        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
+        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
+        this.attacking(hero_attack);
+    }
+    skill2() {
+        let hero_attack;
+        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*3;}
+        if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex*4.5);}
+        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*6;}
+        this.attacking(hero_attack);
+    }
+    skill3() {
+        let hero_attack;
+        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
+        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
+        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
+        this.attacking(hero_attack);
+    }
+    skill4() {
+        let hero_attack;
+        if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*5;}
+        if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*9;}
+        if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*15;}
+        this.attacking(hero_attack);
+    }
     render() {
-
         return (
             <div className='forest'>
-                {/* <img src={require('../../img/forest.jpg')}/> */}
                 <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest3.jpg")+')'}}>
                     <div className="left">
                         <Hero/>
                     </div>
                     <div className="center">
                         <div className="battle-btns">
-                            <button className='atck' onClick={this.attacking}>Attack</button>
-                            <button className='skill'>Use skill</button>    
-                            <button className='skill2'>Use skill2</button>    
+                            <button className='atck' onClick={() => this.attacking(null)}>Attack</button>
+                            <button className='skill' onClick={this.skill}>1</button>    
+                            <button className={this.props.hero.lvl < 5 ? 'disp-none' : 'skill' } onClick={this.skill2}>2</button>
+                            <button className={this.props.hero.lvl < 10 ? 'disp-none' : 'skill'} onClick={this.skill3}>3</button>    
+                            <button className={this.props.hero.lvl < 15 ? 'disp-none' : 'skill'} onClick={this.skill4}>4</button>     
                             <button className='surr' onClick={this.surrender}>Surrender</button>                            
                         </div>
                     </div>

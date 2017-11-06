@@ -6,7 +6,8 @@ const middleware = store => next => action => {
         localStorage.setItem("Forest", JSON.stringify(store.getState().forest))
     }
     if(action.type == types.ADD_NEW_HERO || types.HERO_HP || types.HERO_MP || types.HERO_EXP || types.HERO_CON ||
-    types.HERO_DEATH || types.HERO_DEX || types.HERO_INT || types.HERO_STR || types.HERO_WIT || types.LVL_POINTS){
+    types.HERO_DEATH || types.HERO_DEX || types.HERO_INT || types.HERO_STR || types.HERO_WIT || types.LVL_POINTS ||
+    types.HERO_CD1 || types.HERO_CD2 || types.HERO_CD3 || types.HERO_CD4){
         localStorage.setItem("Hero", JSON.stringify(store.getState().hero))
     }
     if(action.type == types.SET_ENEMY || types.ENEMY_HP || types.KILLED){

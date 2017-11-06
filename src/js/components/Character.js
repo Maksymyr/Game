@@ -33,7 +33,7 @@ export default class Character extends React.Component {
         this.submitting = this.submitting.bind(this);
     }
     componentWillMount() {
-        if (this.props.hero.points > 5) {
+        if (this.props.hero.points >= 5) {
             this.setState({ lvlup: true, checkbox: false })
         }
     }
@@ -94,12 +94,14 @@ export default class Character extends React.Component {
                                 <div>
                                     <p>Level: {this.props.hero.lvl}</p>
                                     <p>Class: {this.props.hero.type}</p>
+                                    <p>Experience: <span className="gold">{this.props.hero.curEXP}/{this.props.hero.maxEXP}</span></p>
                                 </div>
                                 <div>
                                     <p>Health: <span className="red">{this.props.hero.curHP}/{this.props.hero.maxHP}</span></p>
                                     <p>Mana: <span className="blue">{this.props.hero.curMP}/{this.props.hero.maxMP}</span></p>
+                                    <p>Free points: <span className="white">{this.props.hero.points}</span></p>
                                 </div>
-                                <p>Experience: <span className="gold">{this.props.hero.curEXP}/{this.props.hero.maxEXP}</span></p>
+                                
                             </div>
                             <div className="scd-window">
                                 <div>
@@ -145,7 +147,11 @@ export default class Character extends React.Component {
                                 </div>
                                 <div className="att-icons">
                                     <p>
-                                        <input className="att-icon" ref="att" disabled defaultValue={this.props.hero.str}/>
+                                        <input className="att-icon" ref="att" disabled defaultValue={
+                                            this.props.hero.att1 > 0 ? 
+                                            this.props.hero.str * (1 + this.props.hero.att1*10) : 
+                                            this.props.hero.str
+                                        }/>
                                     </p>
                                     <p>
                                         <input className="att-icon" ref="def" disabled defaultValue={this.props.hero.con}/>
@@ -157,39 +163,55 @@ export default class Character extends React.Component {
                             <div className="frt-window">
                                 <p className="skill-title">Skills : </p>
                                 <div>
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/sword.png")+')'}}></div>
-                                    <p>Skill description</p>
+                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'}}></div>
+                                    <p>Skill #1 (lvl 0)</p>
+                                    <p>Crushing blow: reinforced strike</p>
                                 </div>
-                                <div className="closed-skill">
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/stun.png")+')'}}></div>
-                                    <p>Skill description</p>
+                                <div className={this.props.hero.lvl < 5 ? "closed-skill": null}>
+                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'}}></div>
+                                    <p>Skill #2 (lvl 5)</p>
+                                    <p>Stun: disorient opponent on 2-3 turn</p>
                                 </div>
-                                <div className="closed-skill">
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/health.png")+')'}}></div>
-                                    <p>Skill description</p>
+                                <div className={this.props.hero.lvl < 10 ? "closed-skill": null}>
+                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'}}></div>
+                                    <p>Skill #3 (lvl 10)</p>
+                                    <p>Vampirism: steal opponent's health</p>
                                 </div>
-                                <div className="closed-skill">
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/death.png")+')'}}></div>
-                                    <p>Skill description</p>
+                                 <div className={this.props.hero.lvl < 15 ? "closed-skill": null}> 
+                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'}}></div>
+                                    <p>Skill #4 (lvl 15)</p>
+                                    <p>Rage: increase all your parametrs</p>
                                 </div>
                             </div>
                             <div className="fth-window">
-                                <p>Attainments</p>
-                                <div>
-                                    <div></div>
-                                    <p>Skill1</p>
+                                <p className="att-title">Attainments : </p>
+                                <div className="fth-div">
+                                    <p>Weapon mastery : </p>
+                                    <p>Armor mastery : </p>
+                                    <p>Fortitude : </p>
+                                    <p>Will : </p>
                                 </div>
-                                <div>
-                                    <div></div>
-                                    <p>Skill2</p>
-                                </div>
-                                <div>
-                                    <div></div>
-                                    <p>Skill3</p>
-                                </div>
-                                <div>
-                                    <div></div>
-                                    <p>Skill4</p>
+                                <div className="att-icons">
+                                    <p>
+                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
+                                        <input className="att-icon" ref="weapon" disabled defaultValue={this.props.hero.att1 + "%"}/>
+                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                    </p>
+                                    <p>
+                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
+                                        <input className="att-icon" ref="armor" disabled defaultValue={this.props.hero.att2 + "%"}/>
+                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                    </p>
+                                    <p>
+                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
+                                        <input className="att-icon" ref="fort" disabled defaultValue={this.props.hero.att3 + "%"}/>
+                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                    </p>
+                                    <p>
+                                        {this.state.con_up ? <button className="min-icon" onClick={() => this.minus("con")}>-</button> : null}
+                                        <input className="att-icon" ref="will" disabled defaultValue={this.props.hero.att4 + "%"}/>
+                                        {this.state.checkbox ? null : <button onClick={() => this.plus("con")}>+</button>}
+                                    </p>
                                 </div>
                             </div>
                         </div> 

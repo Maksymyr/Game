@@ -48,26 +48,21 @@
             
             div {
                 border: 1px solid #312a22;
+                border-bottom: none;
                 border-right:none; 
                 float: left;
                 width: 50%;
                 color: #ead59c;
-                margin-bottom: 15px;
+                margin-bottom: 4px;
                 
                 p{
                     clear: both;
-                    margin: 10px 0;
+                    margin: 15px 0;
                     font-size: 2.5rem;
                 }
                 
             }
-            
-            p {
-                
-                color: #ead59c;
-                font-size: 2.5rem;
-                
-            }
+           
             
         }
         .scd-window {
@@ -224,9 +219,7 @@
                 float: left;
                 padding: 11px;
                 &.closed-skill {
-                    background-color: grey;
-                    color: grey;
-                    div {
+                    div, p {
                         display: none;
                     }
                 }
@@ -235,6 +228,11 @@
                     width: 100px; 
                     background-repeat: no-repeat;
                     background-size: cover;
+                    margin-right: 15px;
+                }
+                p {
+                    margin: 10px;
+                    text-align: justify;
                 }
             }
             
@@ -244,6 +242,67 @@
             width: 100%;
             background-color: #21170d;
             border: 1px solid #312a22;
+            .att-title {
+                text-align: center;
+                margin-top: 13px;
+                width:100%;
+                height: 42px;
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: rgb(64, 64, 163); 
+                border-bottom: 1px solid #312a22;
+            }
+          
+            .fth-div {
+                float: left;
+                
+                p {
+                    margin: 38px 100px;
+                    margin-right: 150px;
+                }
+                p:first-child {
+                    margin-top: 15px;
+                }
+                p:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            .att-icons {
+                text-align: center;
+                float: left;
+                p{
+                    position: relative; 
+                }
+                .att-icon {
+                    border: 2px solid #352d1a;
+                    background-color: black;
+                    color: #ead59c;
+                    font-size: 2rem;
+                    border-radius: 50%;
+                    height: 50px;
+                    width: 80px;
+                    text-align: center;    
+                    margin: 5px;       
+                        
+                }
+                
+                button {
+                    position: absolute;
+                    left: 73px;
+                    top: 21px;
+                    border-radius: 50% ;
+                    border: none;
+                    width: 15px;
+                    height: 15px;
+                    text-align: center;
+                    background-color: #8a7f64;
+                    line-height: 1;
+                    font-size: 1.5rem;
+                }
+                .min-icon {
+                    left: 2px;
+                }
+            }
         }
     }
     .menu-list {

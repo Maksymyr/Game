@@ -144,19 +144,32 @@ body {
     height: 100%;
     margin: 50% auto;
   
-    .atck, .skill, .skill2, .surr {
-            background-color: #472d16;
-            color: #ead59c;
-            width: 100%;
-            height: 10%;
-            margin: 2% ;
-            border: none;
-            border: 2px solid #312a22;
-            &:active {
-                background-color: #221819;
-                box-shadow: inset 0 0 10px 6px black;
-            }
+    .atck, .surr,
+    // {
+    //         background-color: #472d16;
+    //         color: #ead59c;
+    //         width: 100%;
+    //         height: 10%;
+    //         margin: 2% ;
+    //         border: none;
+    //         border: 2px solid #312a22;
+    //         &:active {
+    //             background-color: #221819;
+    //             box-shadow: inset 0 0 10px 6px black;
+    //         }
     
+    // }
+    .skill {
+        background-color: #472d16;
+        color: #ead59c;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        border: 2px solid #312a22;
+        &:active {
+            background-color: #221819;
+            box-shadow: inset 0 0 10px 6px black;
+        }
     }
 }
 .red {
@@ -167,4 +180,10 @@ body {
 }
 .gold {
     color: gold;
+}
+.white {
+    color: whitesmoke;
+}
+.disp-none {
+    display: none;
 }

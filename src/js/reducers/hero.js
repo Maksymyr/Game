@@ -5,7 +5,7 @@ export default function hero(state = InitialState.hero, action) {
     let {payload, type} = action;
     switch(type){
         case types.ADD_NAME:
-            return {...state, ...payload};
+            return {...payload};
         case types.ADD_NEW_HERO: 
             return {...state, ...state.hero, ...payload };
         case types.HERO_HP: 
@@ -37,6 +37,14 @@ export default function hero(state = InitialState.hero, action) {
             return {...state, points: state.points - 5};
         case types.HERO_DEATH: 
             return {...state, curHP: 0, curMP: 0, curEXP: (state.curEXP - (state.lvl+1)*10) > 0 ? (state.curEXP - (state.lvl+1)*10) : 0};
+        case types.HERO_CD1:
+            return {...state, cdSkill1: payload};
+        case types.HERO_CD2:
+            return {...state, cdSkill2: payload};
+        case types.HERO_CD3:
+            return {...state, cdSkill3: payload};
+        case types.HERO_CD4:
+            return {...state, cdSkill4: payload};
         default:
             return state;
     }
