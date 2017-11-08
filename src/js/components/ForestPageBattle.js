@@ -6,11 +6,11 @@ import Enemy from '../logical_classes/Enemy.js';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroEXP, enemyHP, heroHP, heroMP, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
+import {heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
     skill3CD, skill4CD} from '../actions';
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP,  setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
+    return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT, heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,
         skill3CD, skill4CD}, dispatch)
 }
 
@@ -76,22 +76,33 @@ export default class ForestPageBattle extends React.Component {
 
         }
         if (this.props.hero.cdSkill1  >= 1) {
-            this.props.skill1CD(this.props.hero.cdSkill1 +1);
+            this.props.skill1CD(this.props.hero.cdSkill1 + 1);
             if (this.props.hero.cdSkill1  == 3){
                 this.props.skill1CD(0);
             }
         }
         if (this.props.hero.cdSkill2  >= 1) {
-            this.props.skill2CD(this.props.hero.cdSkill2 +1);
+            this.props.skill2CD(this.props.hero.cdSkill2 + 1);
             if (this.props.hero.cdSkill2  == 4){
                 this.props.skill2CD(0);
             }
         }
         if (this.props.hero.cdSkill3  >= 1) {
-            this.props.skill3CD(this.props.hero.cdSkill3 +1);
+            this.props.skill3CD(this.props.hero.cdSkill3 + 1);
             if (this.props.hero.cdSkill3  == 5){
                 this.props.skill3CD(0);
             }
+        }
+        if (this.props.hero.cdSkill4  >= 1) {
+            this.props.skill4CD(this.props.hero.cdSkill4 + 1);
+            // if (this.props.hero.cdSkill4  == 3){
+            //     this.props.heroSTR(this.props.hero.str/2);
+            //     this.props.heroDEX(this.props.hero.dex/2);
+            //     this.props.heroCON(this.props.hero.con/2);
+            //     this.props.heroINT(this.props.hero.int/2);
+            //     this.props.heroWIT(this.props.hero.wit/2);   
+            //     this.props.heroHP(this.props.hero.curHP/2)             
+            // }
         }
     }
     surrender() {
@@ -113,7 +124,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill2() {
-        if (this.props.hero.cdSkill2  == 0) {
+        if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl > 5) {
             let hero_attack;
             if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*3;}
             if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex*4.5);}
@@ -123,7 +134,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill3() {
-        if (this.props.hero.cdSkill3  == 0) {
+        if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl > 10) {
             let hero_attack;
             if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
             if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
@@ -133,12 +144,13 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill4() {
-        if (this.props.hero.cdSkill4  == 0) {
-            let hero_attack;
-            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*5;}
-            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*9;}
-            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*15;}
-            this.attacking(hero_attack);
+        if (this.props.hero.cdSkill4  == 0 && this.props.hero.lvl > 15) {
+            // this.props.heroSTR(this.props.hero.str*2);
+            // this.props.heroDEX(this.props.hero.dex*2);
+            // this.props.heroCON(this.props.hero.con*2);
+            // this.props.heroINT(this.props.hero.int*2);
+            // this.props.heroWIT(this.props.hero.wit*2);  
+            // this.props.heroHP(-this.props.hero.curHP)
             this.props.skill4CD(1);
         }
     }
@@ -148,16 +160,16 @@ export default class ForestPageBattle extends React.Component {
                 <div className="forest-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/forest3.jpg")+')'}}>
                     <div className="left">
                         <Hero/>
-                    </div>
-                    <div className="center">
                         <div className="battle-btns">
                             <button className='atck' onClick={() => this.attacking(null)}>Attack</button>
-                            <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-none'} onClick={this.skill}>1</button>    
-                            <button className={this.props.hero.lvl < 5 ? 'disp-none' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-none'} onClick={this.skill2}>2</button>
-                            <button className={this.props.hero.lvl < 10 ? 'disp-none' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-none'} onClick={this.skill3}>3</button>    
-                            <button className={this.props.hero.lvl < 15 ? 'disp-none' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-none'} onClick={this.skill4}>4</button>     
-                            <button className='surr' onClick={this.surrender}>Surrender</button>                            
+                            <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill} style={{backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'}}>{this.props.hero.cdSkill1 == 0 ? null : 4-this.props.hero.cdSkill1}</button>    
+                            <button className={this.props.hero.lvl < 5 ? 'disp-op100 skill' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill2} style={{backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'}}>{this.props.hero.cdSkill2 == 0 ? null : 5-this.props.hero.cdSkill2}</button>
+                            <button className={this.props.hero.lvl < 10 ? 'disp-op100 skill' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill3} style={{backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'}}>{this.props.hero.cdSkill3 == 0 ? null : 6-this.props.hero.cdSkill3}</button>    
+                            <button className={this.props.hero.lvl < 15 ? 'disp-op100 skill' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill4} style={{backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'}}>{this.props.hero.cdSkill4 == 0 ? null : this.props.hero.cdSkill4 < 4 ? 4-this.props.hero.cdSkill4 : "-"}</button>     
+                            <button className='surr' onClick={this.surrender}>Retreat</button>                            
                         </div>
+                    </div>
+                    <div className="center">
                     </div>
                     <div className="right">
                         <Enemy/>

@@ -31,11 +31,17 @@ export default class Settings extends React.Component {
                     <div className="left">
                     </div>
                     <div className="center">
+                        <div className="btns"> 
+                        <p>Settings:</p>
+                            <div className="enter-name">
+                                <button onClick={this.returning}>Back</button>
+                                <button onClick={this.restarting}>Restart</button>
+                            </div>
+                        </div> 
                     </div>
+                    
                     <div className="right">
-                 
-                    <button onClick={this.returning}>Back</button>
-                    <button onClick={this.restarting}>Restart</button>
+ 
                     </div>
                 </div>
 

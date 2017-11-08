@@ -4,7 +4,7 @@ import wizard from '../../img/wizard.jpg';
 
 export const chooseWar = { type: "Warrior", img: warrior, 
 curHP: 40, maxHP: 40, curMP: 10, maxMP: 10, 
-curEXP: 9, maxEXP: 10, lvl: 0, points: 0, att_points: 1,
+curEXP: 9, maxEXP: 10, lvl: 15, points: 0, att_points: 1,
 str: 3, dex: 2, con: 4, int: 0, wit: 1,
 cdSkill1: 0, cdSkill2: 0, cdSkill3: 0, cdSkill4: 0,
 att1: 0, att2: 0, att3: 0, att4: 0};
