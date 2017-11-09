@@ -41,7 +41,7 @@ export default class Hero extends React.Component {
                         <h3>{this.props.newHero.type}</h3>
                         <div className="chars">
                             
-                            <h4 className="lvl-bar">Level: {this.props.newHero.lvl+1}</h4>
+                            <h4 className="lvl-bar">Level: {this.props.newHero.lvl}</h4>
                             <p className='hp'>Health: {this.props.newHero.maxHP} / {this.props.newHero.curHP}</p> 
                             <p className='mp'>Mana: {this.props.newHero.maxMP} / {this.props.newHero.curMP}</p>
                             <p>Experience: {this.props.newHero.curEXP} / {this.props.newHero.maxEXP}</p>

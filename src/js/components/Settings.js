@@ -34,8 +34,8 @@ export default class Settings extends React.Component {
                         <div className="btns"> 
                         <p>Settings:</p>
                             <div className="enter-name">
-                                <button onClick={this.returning}>Back</button>
                                 <button onClick={this.restarting}>Restart</button>
+                                <button onClick={this.returning}>Back</button>
                             </div>
                         </div> 
                     </div>

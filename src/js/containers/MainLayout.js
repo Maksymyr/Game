@@ -11,10 +11,9 @@ import Character from '../components/Character.js';
 import Inventory from '../components/Inventory.js';
 import Achivments from '../components/Achivments.js';
 import Settings from '../components/Settings.js';
+import Notify from '../components/Notify.js';
 
 
-
-{/* CONNECT => WILL NOT UPDATE PAGE! */}
 export default class MainLayout extends React.Component {
 
     render() {
@@ -38,6 +37,7 @@ export default class MainLayout extends React.Component {
                     <Route path="/settings" component={Settings}/>
                     <Route path="/achivments" component={Achivments}/>
                 </Switch>
+                <Notify/>
                 {/* <Route path="*" component={Footer} /> */}
             </div>
         )

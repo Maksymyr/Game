@@ -26,5 +26,6 @@ export const heroAtt1 = (payload) => ({type: types.HERO_ATT1, payload});
 export const heroAtt2 = (payload) => ({type: types.HERO_ATT2, payload});
 export const heroAtt3 = (payload) => ({type: types.HERO_ATT3, payload});
 export const heroAtt4 = (payload) => ({type: types.HERO_ATT4, payload});
+export const addNotify = (payload) => ({type: types.ADD_NOTIFY, payload});
 
 

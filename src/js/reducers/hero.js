@@ -39,7 +39,7 @@ export default function hero(state = InitialState.hero, action) {
         case types.LVL_ATT_POINTS:
             return {...state, att_points: state.att_points - 1};
         case types.HERO_DEATH: 
-            return {...state, curHP: 0, curMP: 0, curEXP: (state.curEXP - (state.lvl+1)*10) > 0 ? (state.curEXP - (state.lvl+1)*10) : 0};
+            return {...state, curHP: 1, curMP: 1, curEXP: (state.curEXP - (state.lvl+1)*10) > 0 ? (state.curEXP - (state.lvl+1)*10) : 0};
         case types.HERO_CD1:
             return {...state, cdSkill1: payload};
         case types.HERO_CD2:

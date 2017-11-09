@@ -24,7 +24,7 @@ export const HERO_ATT1 = "HERO_ATT1";
 export const HERO_ATT2 = "HERO_ATT2";
 export const HERO_ATT3 = "HERO_ATT3";
 export const HERO_ATT4 = "HERO_ATT4";
-
+export const ADD_NOTIFY = "ADD_NOTIFY";
 
 
 
