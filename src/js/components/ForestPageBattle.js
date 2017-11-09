@@ -47,7 +47,7 @@ export default class ForestPageBattle extends React.Component {
         if (imported_damage == null) {
             if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str;}
             if (this.props.hero.type == "Archer") { hero_attack = Math.floor(this.props.hero.dex*1.5);}
-            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*2;}
+            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int/2;}
         }
         else {
             hero_attack = imported_damage; 
@@ -158,56 +158,72 @@ export default class ForestPageBattle extends React.Component {
     }
     skill() {
         if (this.props.hero.cdSkill1  == 0) {
-            this.props.heroMP(5);
-            let hero_attack;
-            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
-            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
-            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
-            this.attacking(hero_attack);
-            this.props.skill1CD(1);
+            if (this.props.hero.curMP >= 5) {
+            
+                this.props.heroMP(5);
+                let hero_attack;
+                if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
+                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
+                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
+                this.attacking(hero_attack);
+                this.props.skill1CD(1); 
+            }
+            else 
+                this.props.addNotify('Not enough MP!');
         }
     }
     skill2() {
         if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl > 5) {
-            this.props.heroMP(8);
-            let hero_attack;
-            if (this.props.hero.type == "Warrior") { hero_attack = Math.floor(this.props.hero.str/2);}
-            if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex/1.5);}
-            if (this.props.hero.type == "Wizard") { hero_attack = Math.floor(this.props.hero.int);}
-            this.attacking(hero_attack);
-            this.props.skill2CD(1);
-
+            if (this.props.hero.curMP >= 8) {
+                this.props.heroMP(8);
+                let hero_attack;
+                if (this.props.hero.type == "Warrior") { hero_attack = Math.floor(this.props.hero.str/2);}
+                if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex/1.5);}
+                if (this.props.hero.type == "Wizard") { hero_attack = Math.floor(this.props.hero.int);}
+                this.attacking(hero_attack);
+                this.props.skill2CD(1);
+                }
+            else 
+                this.props.addNotify('Not enough MP!');
         }
     }
     skill3() {
         if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl > 10) {
-            this.props.heroMP(15);
-            let hero_attack;
-            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
-            if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
-            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
-            this.attacking(hero_attack);
-            if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
-                this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
-            else
-                this.props.heroHP(-Math.floor(hero_attack/2));
-            this.props.skill3CD(1);
+            if (this.props.hero.curMP >= 15) {
+                this.props.heroMP(15);
+                let hero_attack;
+                if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
+                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
+                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
+                this.attacking(hero_attack);
+                if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
+                    this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                else
+                    this.props.heroHP(-Math.floor(hero_attack/2));
+                this.props.skill3CD(1);
+            }
+            else 
+                this.props.addNotify('Not enough MP!');
         }
     }
     skill4() {
         if (this.props.hero.cdSkill4  == 0 && this.props.hero.lvl >= 15) {
-            this.props.heroMP(30);
-            this.props.addNotify('You are under "Berserk" effect!');
-            setTimeout(() => {
-                this.props.heroSTR(this.props.hero.str);
-                this.props.heroDEX(this.props.hero.dex);
-                this.props.heroCON(this.props.hero.con);
-                this.props.heroINT(this.props.hero.int);
-                this.props.heroWIT(this.props.hero.wit);  
-                this.props.heroHP(-this.props.hero.curHP);
-                this.props.heroMP(-this.props.hero.curMP); 
-                this.props.skill4CD(1);
-            },1500)
+            if (this.props.hero.curMP >= 30) {
+                this.props.heroMP(30);
+                this.props.addNotify('You are under "Berserk" effect!');
+                setTimeout(() => {
+                    this.props.heroSTR(this.props.hero.str);
+                    this.props.heroDEX(this.props.hero.dex);
+                    this.props.heroCON(this.props.hero.con);
+                    this.props.heroINT(this.props.hero.int);
+                    this.props.heroWIT(this.props.hero.wit);  
+                    this.props.heroHP(-this.props.hero.curHP);
+                    this.props.heroMP(-this.props.hero.curMP); 
+                    this.props.skill4CD(1);
+                },1500)
+            }
+            else 
+                this.props.addNotify('Not enough MP!'); 
         }
     }
     render() {
@@ -218,10 +234,10 @@ export default class ForestPageBattle extends React.Component {
                         <Hero/>
                         <div className="battle-btns">
                             <button className='atck' onClick={() => this.attacking(null)}>Attack</button>
-                            <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill} style={{backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'}}>{this.props.hero.cdSkill1 == 0 ? null : 4-this.props.hero.cdSkill1}</button>    
-                            <button className={this.props.hero.lvl < 5 ? 'disp-op100 skill' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill2} style={{backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'}}>{this.props.hero.cdSkill2 == 0 ? null : 5-this.props.hero.cdSkill2}</button>
-                            <button className={this.props.hero.lvl < 10 ? 'disp-op100 skill' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill3} style={{backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'}}>{this.props.hero.cdSkill3 == 0 ? null : 6-this.props.hero.cdSkill3}</button>    
-                            <button className={this.props.hero.lvl < 15 ? 'disp-op100 skill' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill4} style={{backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'}}>{this.props.hero.cdSkill4 == 0 ? null : this.props.hero.cdSkill4 < 4 ? 4-this.props.hero.cdSkill4 : "-"}</button>     
+                            <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill1arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill1wiz.jpg")+')'}}>{this.props.hero.cdSkill1 == 0 ? null : 4-this.props.hero.cdSkill1}</button>    
+                            <button className={this.props.hero.lvl < 5 ? 'disp-op100 skill' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill2} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill2arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill2wiz.jpg")+')'}}>{this.props.hero.cdSkill2 == 0 ? null : 5-this.props.hero.cdSkill2}</button>
+                            <button className={this.props.hero.lvl < 10 ? 'disp-op100 skill' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill3} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill3arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill3wiz.jpg")+')'}}>{this.props.hero.cdSkill3 == 0 ? null : 6-this.props.hero.cdSkill3}</button>    
+                            <button className={this.props.hero.lvl < 15 ? 'disp-op100 skill' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill4} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill4arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill4wiz.jpg")+')'}}>{this.props.hero.cdSkill4 == 0 ? null : this.props.hero.cdSkill4 < 4 ? 4-this.props.hero.cdSkill4 : "-"}</button>     
                             <button className='surr' onClick={this.surrender}>Retreat</button>                            
                         </div>
                     </div>

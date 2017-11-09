@@ -198,9 +198,7 @@ export default class Character extends React.Component {
                                 <div className="att-icons">
                                     <p>
                                         <input className="att-icon" ref="att" disabled defaultValue={
-                                            
-                                            Math.floor(this.props.hero.str * (1 +this.props.hero.att1*10/100)) 
-                                            
+                                        this.props.hero.type == "Warrior" ? Math.floor(this.props.hero.str * (1 +this.props.hero.att1*10/100))  : this.props.hero.type == "Archer" ? Math.floor(this.props.hero.dex * (1 +this.props.hero.att1*10/100))  : Math.floor(this.props.hero.int * (1 +this.props.hero.att1*10/100))
                                         }/>
                                     </p>
                                     <p>
@@ -213,30 +211,30 @@ export default class Character extends React.Component {
                             <div className="frt-window">
                                 <p className="skill-title">Skills : </p>
                                 <div>
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'}}></div>
+                                    <div style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill1arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill1wiz.jpg")+')'}}></div>
                                     <p>Skill #1 (lvl 0)</p>
-                                    <p>Crushing blow: reinforced strike</p>
+                                    <p>{this.props.hero.type == "Warrior" ? "Crushing blow: reinforced strike" : this.props.hero.type == "Archer" ? "Tripple shot: reinforced shot" : "Ice bolt: magic strike"}</p>
                                 </div>
                                 <div className={this.props.hero.lvl < 5 ? "closed-skill": null}>
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'}}></div>
+                                    <div style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill2arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill2wiz.jpg")+')'}}></div>
                                     <p>Skill #2 (lvl 5)</p>
-                                    <p>Stun: disorient opponent on 2-3 turn</p>
+                                    <p>{this.props.hero.type == "Warrior" ? "Stun: disorient opponent on 1-2 turn" : this.props.hero.type == "Archer" ? "Stun shot: disorient opponent on 1-2 turn" : "Freeze: disorient opponent on 1-2 turn"}</p>
                                 </div>
                                 <div className={this.props.hero.lvl < 10 ? "closed-skill": null}>
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'}}></div>
+                                    <div style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill3arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill3wiz.jpg")+')'}}></div>
                                     <p>Skill #3 (lvl 10)</p>
-                                    <p>Vampirism: steal opponent's health</p>
+                                    <p>{this.props.hero.type == "Warrior" ? "Vampiric strike: steal opponent's health" : this.props.hero.type == "Archer" ? "Vampiric shot: steal opponent's health" : "Vampirism: steal opponent's health"}</p>
                                 </div>
                                  <div className={this.props.hero.lvl < 15 ? "closed-skill": null}> 
-                                    <div style={{backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'}}></div>
+                                    <div style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill4arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill4wiz.jpg")+')'}}></div>
                                     <p>Skill #4 (lvl 15)</p>
-                                    <p>Rage: increase all your parametrs</p>
+                                    <p>{this.props.hero.type == "Warrior" ? "Rage: increase all your parameters" : this.props.hero.type == "Archer" ? "Snipe: increase all your parameters" : "Avatar: increase all your parameters"}</p>
                                 </div>
                             </div>
                             <div className="fth-window">
                                 <p className="att-title">Attainments : </p>
                                 <div className="fth-div">
-                                    <p>Weapon mastery : </p>
+                                    <p>{this.props.hero.type == "Warrior" ? "Weapon mastery :" : this.props.hero.type == "Archer" ? "Bow mastery :" : "Magic mastery :"} </p>
                                     <p>Armor mastery : </p>
                                     <p>Fortitude : </p>
                                     <p>Will : </p>
