@@ -15,9 +15,8 @@ export default function hero(state = InitialState.hero, action) {
         case types.HERO_EXP: 
             let exp = state.curEXP + payload;
             if (exp >= state.maxEXP){
-                return {...state, curEXP: (exp-state.maxEXP), curHP: state.maxHP, lvl: (state.lvl + 1), 
-                points: (state.points + 5), att_points: (state.att_points + 1)}
-                // , maxEXP: state.lvl < 5 ? state.maxEXP+30: state.lvl < 10? state.maxEXP+50: state.maxEXP+100};
+                return {...state, curEXP: (exp-state.maxEXP), curHP: state.maxHP, curMP: state.maxMP, lvl: (state.lvl + 1), 
+                points: (state.points + 5), att_points: (state.att_points + 1), maxEXP: state.lvl < 5 ? state.maxEXP + (state.lvl+1)*5: state.lvl < 10? state.maxEXP+50: state.maxEXP+100};
             }
             else if (exp < 0) {
                 return {...state, curEXP: 0};

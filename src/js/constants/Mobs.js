@@ -43,7 +43,7 @@ export const mobs= [
     ,[
         {name: "Werewolf", type: "Humanoid", exp: 21, img: werewolf, curHP: 120, maxHP: 120, curMP: 30, maxMP: 30, lvl: 3, str: 6, dex: 7, con: 12, int: 3, wit: 3 }, 
         {name: "Beast", type: "Animal", exp: 27, img: beast, curHP: 160, maxHP: 160, curMP: 30, maxMP: 30, lvl: 3, str: 8, dex: 6, con: 16, int: 3, wit: 3 }, 
-        {name: "Forest golem", type: "Creature", exp: 20, img: forest_golem, curHP: 200, maxHP: 200, curMP: 30, maxMP: 30, lvl: 3, str: 6, dex: 5, con: 20, int: 3, wit: 3 },         
+        {name: "Forest golem", type: "Creature", exp: 40, img: forest_golem, curHP: 200, maxHP: 200, curMP: 30, maxMP: 30, lvl: 3, str: 6, dex: 5, con: 20, int: 3, wit: 3 },         
         {name: "Unicorn", type: "Animal", exp: 23, img: unicorn, curHP: 130, maxHP: 130, curMP: 30, maxMP: 30, lvl: 3, str: 7, dex: 6, con: 13, int: 3, wit: 3 }]   
     ,[
         {name: "Skeleton", type: "Undead", exp: 50, img: skeleton, curHP: 200, maxHP: 200, curMP: 30, maxMP: 30, lvl: 4, str: 12, dex: 7, con: 20, int: 4, wit: 4 }, 

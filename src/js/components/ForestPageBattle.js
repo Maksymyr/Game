@@ -173,7 +173,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill2() {
-        if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl > 5) {
+        if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl >= 5) {
             if (this.props.hero.curMP >= 8) {
                 this.props.heroMP(8);
                 let hero_attack;
@@ -188,16 +188,17 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill3() {
-        if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl > 10) {
+        if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl >= 10) {
             if (this.props.hero.curMP >= 15) {
                 this.props.heroMP(15);
                 let hero_attack;
                 if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
-                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*6;}
-                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*9;}
+                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*4;}
+                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
                 this.attacking(hero_attack);
                 if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
                     this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
                 else
                     this.props.heroHP(-Math.floor(hero_attack/2));
                 this.props.skill3CD(1);
