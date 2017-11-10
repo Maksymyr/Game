@@ -25,6 +25,18 @@ import demoncat from '../../img/lvl6/demon-cat.jpg';
 import demonhunt from '../../img/lvl6/demon-hunt.jpg';
 import demonwar from '../../img/lvl6/demon-war.jpg';
 
+import demonpriest from '../../img/lvl7/demon-priest.jpg';
+import evilbeast from '../../img/lvl7/evil-beast.jpg';
+import reaper from '../../img/lvl7/reaper.jpg';
+
+import croc from '../../img/lvl8/croc.jpg';
+import forestdrake from '../../img/lvl8/forest-drake.jpg';
+import hidra from '../../img/lvl8/hidra.jpg';
+
+import dragon from '../../img/lvl9/dragon.jpg';
+import fallen from '../../img/lvl10/fallen.jpg';
+
+
 export const mobs= [
     [ 
         {name: "Antman", type: "Creature", img: antman, exp: 1, curHP: 10, maxHP: 10, curMP: 0, maxMP: 0, lvl: 0, str: 2, dex: 3, con: 1, int: 0, wit: 0 }, 
@@ -46,13 +58,25 @@ export const mobs= [
         {name: "Forest golem", type: "Creature", exp: 40, img: forest_golem, curHP: 200, maxHP: 200, curMP: 30, maxMP: 30, lvl: 3, str: 6, dex: 5, con: 20, int: 3, wit: 3 },         
         {name: "Unicorn", type: "Animal", exp: 23, img: unicorn, curHP: 130, maxHP: 130, curMP: 30, maxMP: 30, lvl: 3, str: 7, dex: 6, con: 13, int: 3, wit: 3 }]   
     ,[
-        {name: "Skeleton", type: "Undead", exp: 50, img: skeleton, curHP: 200, maxHP: 200, curMP: 30, maxMP: 30, lvl: 4, str: 12, dex: 7, con: 20, int: 4, wit: 4 }, 
-        {name: "Zombie", type: "Undead", exp: 52, img: zomb, curHP: 220, maxHP: 220, curMP: 30, maxMP: 30, lvl: 4, str: 10, dex: 6, con: 22, int: 4, wit: 4 }, 
-        {name: "Spirit", type: "Mage", exp: 60, img: darkspirit, curHP: 150, maxHP: 150, curMP: 30, maxMP: 30, lvl: 4, str: 3, dex: 5, con: 15, int: 10, wit: 8 }]
+        {name: "Skeleton", type: "Undead", exp: 50, img: skeleton, curHP: 200, maxHP: 200, curMP: 40, maxMP: 40, lvl: 4, str: 12, dex: 7, con: 20, int: 4, wit: 4 }, 
+        {name: "Zombie", type: "Undead", exp: 52, img: zomb, curHP: 220, maxHP: 220, curMP: 40, maxMP: 40, lvl: 4, str: 10, dex: 6, con: 22, int: 4, wit: 4 }, 
+        {name: "Spirit", type: "Mage", exp: 60, img: darkspirit, curHP: 150, maxHP: 150, curMP: 40, maxMP: 40, lvl: 4, str: 3, dex: 5, con: 15, int: 10, wit: 8 }]
     ,[
-        {name: "Demon cat", type: "Demon", exp: 85, img: demoncat, curHP: 250, maxHP: 250, curMP: 30, maxMP: 30, lvl: 5, str: 12, dex: 15, con: 25, int: 5, wit: 5 }, 
-        {name: "Demon hunter", type: "Demon", exp: 92, img: demonhunt, curHP: 300, maxHP: 300, curMP: 30, maxMP: 30, lvl: 5, str: 14, dex: 10, con: 30, int: 5, wit: 5 }, 
-        {name: "Demon warrior", type: "Demon", exp: 95, img: demonwar, curHP: 320, maxHP: 320, curMP: 30, maxMP: 30, lvl: 5, str: 15, dex: 8, con: 32, int: 5, wit: 5 }]
+        {name: "Demon cat", type: "Demon", exp: 85, img: demoncat, curHP: 250, maxHP: 250, curMP: 50, maxMP: 50, lvl: 5, str: 12, dex: 15, con: 25, int: 5, wit: 5 }, 
+        {name: "Demon hunter", type: "Demon", exp: 92, img: demonhunt, curHP: 300, maxHP: 300, curMP: 50, maxMP: 50, lvl: 5, str: 14, dex: 10, con: 30, int: 5, wit: 5 }, 
+        {name: "Demon warrior", type: "Demon", exp: 95, img: demonwar, curHP: 320, maxHP: 320, curMP: 50, maxMP: 50, lvl: 5, str: 15, dex: 8, con: 32, int: 5, wit: 5 }]
     
-        
+    ,[
+        {name: "Demon priest", type: "Mage", exp: 132, img: demonpriest, curHP: 300, maxHP: 300, curMP: 100, maxMP: 100, lvl: 6, str: 2, dex: 9, con: 30, int: 25, wit: 10 }, 
+        {name: "Evil beast", type: "Demon", exp: 142, img: evilbeast, curHP: 400, maxHP: 400, curMP: 60, maxMP: 60, lvl: 6, str: 28, dex: 7, con: 40, int: 6, wit: 6 }, 
+        {name: "Reaper", type: "Demon", exp: 121, img: reaper, curHP: 370, maxHP: 370, curMP: 60, maxMP: 60, lvl: 6, str: 21, dex: 15, con: 37, int: 6, wit: 6 }]
+    ,[
+        {name: "Croc", type: "Demon", exp: 205, img: croc, curHP: 450, maxHP: 450, curMP: 70, maxMP: 70, lvl: 7, str: 35, dex: 15, con: 45, int: 7, wit: 7 }, 
+        {name: "Forest drake", type: "Creature", exp: 215, img: forestdrake, curHP: 480, maxHP: 480, curMP: 70, maxMP: 70, lvl: 7, str: 32, dex: 15, con: 48, int: 7, wit: 7 }, 
+        {name: "Hidra", type: "Creature", exp: 241, img: hidra, curHP: 520, maxHP: 520, curMP: 70, maxMP: 70, lvl: 7, str: 28, dex: 15, con: 52, int: 7, wit: 7 }]
+    ,[
+        {name: "Dragon", type: "Creature", exp: 400, img: dragon, curHP: 800, maxHP: 800, curMP: 80, maxMP: 80, lvl: 8, str: 50, dex: 40, con: 80, int: 8, wit: 8 }]
+    ,[
+        {name: "Fallen angel", type: "Creature", exp: 1000, img: fallen, curHP: 2000, maxHP: 2000, curMP: 100, maxMP: 100, lvl: 9, str: 100, dex: 150, con: 200, int: 10, wit: 10 }]  
+    
     ]; 

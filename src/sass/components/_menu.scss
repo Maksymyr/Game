@@ -21,6 +21,25 @@
     padding: 40px;
     font-size: 2rem;
     color: #ead59c;
+
+    .inventory {
+        float: left;
+        background-color: #21170d;
+        border: 3px solid #312a22;
+        width: 85vw;
+        height: 600px;
+        .inv-slot {
+            border: 1px solid #312a22;
+            box-sizing: border-box;
+            width: 5%;
+            height: 10%;
+            float: left;
+            .inv-img {
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+    }
     .first {
         float: left;
         width: 450px;

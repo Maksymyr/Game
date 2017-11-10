@@ -27,5 +27,6 @@ export const heroAtt2 = (payload) => ({type: types.HERO_ATT2, payload});
 export const heroAtt3 = (payload) => ({type: types.HERO_ATT3, payload});
 export const heroAtt4 = (payload) => ({type: types.HERO_ATT4, payload});
 export const addNotify = (payload) => ({type: types.ADD_NOTIFY, payload});
-
+export const addItemToInventory = (payload) => ({type: types.ADD_ITEM, payload});
+export const removeItemFromInventory = (payload) => ({type: types.REMOVE_ITEM, payload});
 
