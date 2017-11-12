@@ -27,7 +27,7 @@
         background-color: #21170d;
         border: 3px solid #312a22;
         width: 85vw;
-        height: 600px;
+        height: 550px;
         .inv-slot {
             border: 1px solid #312a22;
             box-sizing: border-box;
@@ -35,8 +35,26 @@
             height: 10%;
             float: left;
             .inv-img {
-                background-size: contain;
+                border-radius: 3px;
+                background-size: 100% 100%;
                 background-repeat: no-repeat;
+                position: relative;
+                .info {
+                    z-index: 9999;
+                    font-size: 12px;
+                    position: absolute;
+                    top:80%;
+                    left:50%;
+                    background-color: #000;
+                    padding: 5px 10px 5px 10px;
+                    color: white;
+                    opacity: 0;
+                    border-radius: 5px;
+                    text-align: center;
+                    animation: tooltip-anim 1s;
+                    animation-fill-mode: forwards;
+                    transition: 1s;
+                }
             }
         }
     }
@@ -350,5 +368,16 @@
         .menu-img:nth-child(3) {
             background-position: 22% 50%;
         }
+    }
+}
+@keyframes tooltip-anim  {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
     }
 }

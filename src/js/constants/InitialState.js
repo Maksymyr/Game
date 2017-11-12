@@ -1,7 +1,4 @@
-import gold from '../../img/Items/Money.png'
-import goldring from '../../img/Items/Gold_ring.png'
-import cake from '../../img/Items/Cake.png'
-import book from '../../img/Items/Book.png'
+import gold from '../../img/Items/Money.jpg';
 
 export default {
     
@@ -9,5 +6,5 @@ export default {
     enemy: JSON.parse(localStorage.getItem('Enemy')) !== null ? JSON.parse(localStorage.getItem('Enemy')) : false || {},
     levelOfForest: JSON.parse(localStorage.getItem('Forest'))  || 0,
     notify: "",
-    inventory: [{img: gold, name: "gold"}, {img: goldring, name: "gold ring"}, {img: book, name: "book"}, {img: cake, name: "cake"}]
+    inventory: [{img: gold, name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 0, used: false}]
 };
