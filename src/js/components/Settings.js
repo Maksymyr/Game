@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as choosenTypes from '../constants/StarterSets';
-import {enemyKilled, addHeroName, setForestLvl} from '../actions';
+import {enemyKilled, addHeroName, setForestLvl, delInventory} from '../actions';
 import {bindActionCreators} from 'redux';
 import Sidebar from './Sidebar.js';
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ enemyKilled, addHeroName, setForestLvl}, dispatch);
+    return bindActionCreators({ enemyKilled, addHeroName, setForestLvl, delInventory}, dispatch);
 }
 
 @connect(null, mapDispatchToProps)
@@ -20,6 +20,7 @@ export default class Settings extends React.Component {
         this.props.addHeroName(undefined);
         this.props.setForestLvl(0);
         this.props.enemyKilled();
+        this.props.delInventory();
         localStorage.clear();
         this.props.history.push("/");
     }

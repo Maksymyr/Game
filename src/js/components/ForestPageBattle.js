@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {hero: state.hero, enemy: state.enemy};
+    return {hero: state.hero, enemy: state.enemy, inventory: state.inventory};
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -45,9 +45,7 @@ export default class ForestPageBattle extends React.Component {
         let hero_attack;
         let enemy_attack;
         if (imported_damage == null) {
-            if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str;}
-            if (this.props.hero.type == "Archer") { hero_attack = Math.floor(this.props.hero.dex*1.5);}
-            if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int/2;}
+            hero_attack = this.props.hero.atck;
         }
         else {
             hero_attack = imported_damage; 
@@ -56,7 +54,7 @@ export default class ForestPageBattle extends React.Component {
             enemy_attack = 0;
         }
         else {
-            enemy_attack= this.props.enemy.str;
+            enemy_attack= Math.floor(this.props.enemy.str*(100-this.props.hero.def)/100);
         }
 
         this.props.enemyHP(hero_attack);

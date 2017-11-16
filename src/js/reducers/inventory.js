@@ -1,9 +1,12 @@
 import InitialState from '../constants/InitialState';
 import * as types from '../constants/ActionTypes';
+import gold from '../../img/Items/Money.jpg';
 
 export default function inventory(state = InitialState.inventory, action) {
     let {payload, type} = action;
     switch(type){
+        case types.DEL_INVENTORY:
+            return [{img: gold, name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 10, used: false}];
         case types.MOVE_MONEY:
             
             state[0].quantity = state[0].quantity+payload;

@@ -29,6 +29,8 @@ export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const USE_ITEM = "USE_ITEM";
 export const MOVE_MONEY = "MOVE_MONEY";
-
+export const DEL_INVENTORY = "DEL_INVENTORY";
+export const CHANGE_ATCK = "CHANGE_ATCK";
+export const CHANGE_DEF = "CHANGE_DEF";
 
 

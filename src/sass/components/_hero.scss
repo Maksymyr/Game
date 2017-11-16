@@ -3,9 +3,7 @@
     width: 250px;
     height: 400px;
     border: 5px solid #21170d;
-    // padding: 3em;
-    // box-sizing: border-box;
-    // float: left;
+
     
     p {
         font-size: 2rem;
@@ -28,28 +26,16 @@
         text-align: center; 
     }
     .image-style {
-        // overflow: hidden;
         width: 100%;
         height: 80%;
         background-position: 50%;
         background-size: cover;
         margin: auto;
-        // display: block;
+
         border: 2px solid #312a22;
         position: relative;
         box-sizing: border-box;
-        // .lvl-bar {
-        //     // border: 2px solid black;
-        //     // border-radius: 50%;
-        //     width: 30px;
-        //     height: 20px;
-        //     margin: -20px 0 0 0px;
-        //     color: white;
-        //     background: #150b01;
-        //     font-size: 14px;
-        //     // padding-left: 30px;
-        //     // padding-top: 30px;
-        // }
+
         .under-exp-bar {
             background-color: #1b1203;
             height: 10px;
@@ -62,12 +48,12 @@
         }
         .exp-bar {
             height: 8px;
-            background-color: rgb(214, 214, 98);
+            background-color: rgb(207, 145, 57);
             position: absolute;
             top:0;
             left:0;
-           
             
+            color: white;
         }
         .under-hp-bar {
             background-color: #1b1203;
@@ -86,6 +72,8 @@
             position: absolute;
             bottom:11px;
             left:0;
+            
+            color: white;
         }
         .under-mp-bar {
             background-color: #1b1203;
@@ -104,6 +92,8 @@
             position: absolute;
             bottom:1px;
             left:0;
+            
+            color: white;
         }
     }
     .profile-btns{
@@ -122,11 +112,7 @@
                 color: #ead59c;
                 width: 100%;
                 height: 100%;
-                // display: inline-table;
-                // display: flex;
-                // justify-content: center;
-                // align-items: center;
-                border: none;
+                border-radius: 0;
                 border: 2px solid #312a22;
 
             }

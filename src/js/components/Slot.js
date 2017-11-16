@@ -36,14 +36,17 @@ export default class Slot extends React.Component {
             if (this.props.item.type == "potion") {
                 switch(this.props.item.name) {
                     case "Mana potion":
-                        console.log("mp++")
+                        
                         this.props.heroMP(-this.props.hero.curMP*this.props.item.curMP/100);
                         return this.props.useItem(this.props.item);
                     case "Health potion":
-                        console.log("hp++")
+                        
                         this.props.heroHP(-this.props.hero.curHP*this.props.item.curHP/100);                
                         return this.props.useItem(this.props.item);
                 }
+            }
+            if (this.props.item.type == "rise") {
+                this.props.heroLvlPoints(-1);
             }
             this.props.useItem(this.props.item);
         }

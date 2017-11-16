@@ -23,11 +23,14 @@ export default class Hero extends React.Component {
                         <h2>{this.props.newHero.name}</h2>  
                         <div className="image-style" style={{backgroundImage: 'url('+this.props.newHero.img+')'}}>
                             <div className="under-exp-bar"></div> 
-                            <div className="exp-bar" style={{width: this.props.newHero.curEXP*100/this.props.newHero.maxEXP+"%"}}></div>
+                            <div className="exp-bar" style={{width: this.props.newHero.curEXP*100/this.props.newHero.maxEXP+"%"}}>
+                            {Math.floor(this.props.newHero.curEXP*100/this.props.newHero.maxEXP)+"%"}</div>
                             <div className="under-hp-bar"></div>
-                            <div className="hp-bar" style={{width: this.props.newHero.curHP*100/this.props.newHero.maxHP+"%"}}></div>
+                            <div className="hp-bar" style={{width: this.props.newHero.curHP*100/this.props.newHero.maxHP+"%"}}>
+                            {Math.floor(this.props.newHero.curHP*100/this.props.newHero.maxHP)+"%"}</div>
                             <div className="under-mp-bar"></div>
-                            <div className="mp-bar" style={{width: this.props.newHero.curMP*100/this.props.newHero.maxMP+"%"}}></div>
+                            <div className="mp-bar" style={{width: this.props.newHero.curMP*100/this.props.newHero.maxMP+"%"}}>
+                            {Math.floor(this.props.newHero.curMP*100/this.props.newHero.maxMP)+"%"}</div>
                         </div>  
                         <div className="profile-btns">
                             <div className={this.state.switchbox ? "profile clicked" : "profile"}><button onClick={this.switcher}>Hero</button></div>
