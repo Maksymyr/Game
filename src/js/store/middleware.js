@@ -13,6 +13,9 @@ const middleware = store => next => action => {
     if(action.type == types.SET_ENEMY || types.ENEMY_HP || types.KILLED){
         localStorage.setItem("Enemy", JSON.stringify(store.getState().enemy))
     }
+    if(action.type == types.ADD_ITEM || types.REMOVE_ITEM || types.USE_ITEM){
+        localStorage.setItem("Inventory", JSON.stringify(store.getState().inventory))
+    }
     return;
 
 }

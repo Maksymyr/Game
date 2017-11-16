@@ -4,17 +4,17 @@ import {Link} from 'react-router-dom';
 import Hero from '../logical_classes/Hero.js';
 import Enemy from '../logical_classes/Enemy.js';
 
-
+import * as items from '../constants/Items';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT, 
     heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
-    skill3CD, skill4CD} from '../actions';
+    skill3CD, skill4CD, addItemToInventory, moveMoney} from '../actions';
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, 
         heroINT, heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
-        skill3CD, skill4CD}, dispatch)
+        skill3CD, skill4CD, addItemToInventory, moveMoney}, dispatch)
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -65,9 +65,15 @@ export default class ForestPageBattle extends React.Component {
             this.props.enemyHP(this.props.enemy.curHP);
             this.props.heroHP(-enemy_attack);
             this.props.heroEXP(this.props.enemy.exp);
+            this.props.moveMoney((this.props.enemy.lvl+1)*5);
+            let loot = Math.floor(Math.random()*(3+this.props.hero.lvl - this.props.enemy.lvl));
+            if (this.props.enemy.drop && loot==0) {
+                this.props.addItemToInventory(this.props.enemy.drop);
+            }
+            
             this.setState({hero_lvl: this.props.hero.lvl}, () => {
                 if (this.props.hero.lvl > this.state.hero_lvl) {
-                    this.props.addNotify("You win and get "+ (parseInt(this.props.hero.lvl)+1) + " level!");
+                    this.props.addNotify("You win and get "+ parseInt(this.props.hero.lvl) + " level!");
                     this.props.history.push("/character");
                 } 
                 else {

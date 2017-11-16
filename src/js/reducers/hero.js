@@ -9,14 +9,20 @@ export default function hero(state = InitialState.hero, action) {
         case types.ADD_NEW_HERO: 
             return {...state, ...state.hero, ...payload };
         case types.HERO_HP: 
-            return {...state, curHP: state.curHP - payload};
+            if (state.curHP-payload > state.maxHP)
+                return {...state, curHP: state.maxHP}
+            else
+                return {...state, curHP: state.curHP - payload};
         case types.HERO_MP: 
-            return {...state, curMP: state.curMP - payload};
+            if (state.curMP-payload > state.maxMP)
+                return {...state, curMP: state.maxMP}
+            else
+                return {...state, curMP: state.curMP - payload};
         case types.HERO_EXP: 
             let exp = state.curEXP + payload;
             if (exp >= state.maxEXP){
                 return {...state, curEXP: (exp-state.maxEXP), curHP: state.maxHP, curMP: state.maxMP, lvl: (state.lvl + 1), 
-                points: (state.points + 5), att_points: (state.att_points + 1), maxEXP: state.lvl < 5 ? state.maxEXP + (state.lvl+1)*5: state.lvl < 10? state.maxEXP+50: state.maxEXP+100};
+                points: (state.points + 5), att_points: (state.att_points + 1), maxEXP: state.lvl < 5 ? state.maxEXP + (state.lvl+1)*10 : state.lvl < 10? state.maxEXP+75 : state.maxEXP+150};
             }
             else if (exp < 0) {
                 return {...state, curEXP: 0};

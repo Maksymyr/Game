@@ -34,8 +34,15 @@
             width: 5%;
             height: 10%;
             float: left;
-            .inv-img {
-                border-radius: 3px;
+            
+            .inv-img-used {
+                border: 3px solid gold;
+                border-radius: 0; 
+            }
+            .inv-img{ 
+                border-radius: 3px; 
+            }
+            .inv-img, .inv-img-used {
                 background-size: 100% 100%;
                 background-repeat: no-repeat;
                 position: relative;

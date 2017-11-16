@@ -29,4 +29,5 @@ export const heroAtt4 = (payload) => ({type: types.HERO_ATT4, payload});
 export const addNotify = (payload) => ({type: types.ADD_NOTIFY, payload});
 export const addItemToInventory = (payload) => ({type: types.ADD_ITEM, payload});
 export const removeItemFromInventory = (payload) => ({type: types.REMOVE_ITEM, payload});
-export const useItem = (payload) => ({type: types.USE_ITEM, payload})
+export const useItem = (payload) => ({type: types.USE_ITEM, payload});
+export const moveMoney = (payload) => ({type: types.MOVE_MONEY, payload})
