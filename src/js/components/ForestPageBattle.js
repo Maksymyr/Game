@@ -11,6 +11,7 @@ import {heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT,
     heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
     skill3CD, skill4CD, addItemToInventory, moveMoney} from '../actions';
 
+
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, 
         heroINT, heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
@@ -45,7 +46,21 @@ export default class ForestPageBattle extends React.Component {
         let hero_attack;
         let enemy_attack;
         if (imported_damage == null) {
-            hero_attack = this.props.hero.atck;
+            switch (this.props.hero.type) {
+                case "Warrior":
+                    hero_attack = (this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    break;
+                case "Archer":
+                    hero_attack = (this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    break;
+                case "Wizard":
+                    this.props.heroMP(5);
+                    hero_attack = (this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    break;
+                default: 
+                    break;
+            }
+            
         }
         else {
             hero_attack = imported_damage; 
@@ -162,73 +177,182 @@ export default class ForestPageBattle extends React.Component {
     }
     skill() {
         if (this.props.hero.cdSkill1  == 0) {
-            if (this.props.hero.curMP >= 5) {
-            
-                this.props.heroMP(5);
-                let hero_attack;
-                if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*2;}
-                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*3;}
-                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
-                this.attacking(hero_attack);
-                this.props.skill1CD(1); 
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { 
+                if (this.props.hero.curMP >= 2) {
+                    this.props.heroMP(2);
+                    hero_attack = 2*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    this.props.skill1CD(1); 
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
             }
-            else 
-                this.props.addNotify('Not enough MP!');
+            if (this.props.hero.type == "Archer") { 
+                if (this.props.hero.curMP >= 4) {
+                    this.props.heroMP(4);
+                    hero_attack = 3*(this.props.hero.dex+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    this.props.skill1CD(1); 
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+            }
+            if (this.props.hero.type == "Wizard") {
+                if (this.props.hero.curMP >= 10) { 
+                    this.props.heroMP(10);
+                    hero_attack = 4*(this.props.hero.int+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    this.props.skill1CD(1); 
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+            }
         }
     }
     skill2() {
         if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl >= 5) {
-            if (this.props.hero.curMP >= 8) {
-                this.props.heroMP(8);
-                let hero_attack;
-                if (this.props.hero.type == "Warrior") { hero_attack = Math.floor(this.props.hero.str/2);}
-                if (this.props.hero.type == "Archer") { hero_attack =  Math.floor(this.props.hero.dex/1.5);}
-                if (this.props.hero.type == "Wizard") { hero_attack = Math.floor(this.props.hero.int);}
-                this.attacking(hero_attack);
-                this.props.skill2CD(1);
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { 
+                if (this.props.hero.curMP >= 5) {
+                        this.props.heroMP(5);
+                    hero_attack = Math.floor((this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100*2);
+                    this.attacking(hero_attack);
+                    this.props.skill2CD(1);
                 }
-            else 
-                this.props.addNotify('Not enough MP!');
+                else 
+                    this.props.addNotify('Not enough MP!');
+                }
+            if (this.props.hero.type == "Archer") { 
+                if (this.props.hero.curMP >= 8) {
+                    this.props.heroMP(8);
+                    hero_attack =  Math.floor((this.props.hero.dex+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100*1.5);
+                    this.attacking(hero_attack);
+                    this.props.skill2CD(1);
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+            }
+            if (this.props.hero.type == "Wizard") { 
+                if (this.props.hero.curMP >= 15) {
+                    this.props.heroMP(15);
+                    hero_attack = Math.floor((this.props.hero.int+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                    this.attacking(hero_attack);
+                    this.props.skill2CD(1);
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+            }
         }
     }
     skill3() {
         if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl >= 10) {
-            if (this.props.hero.curMP >= 15) {
-                this.props.heroMP(15);
-                let hero_attack;
-                if (this.props.hero.type == "Warrior") { hero_attack = this.props.hero.str*4;}
-                if (this.props.hero.type == "Archer") { hero_attack = this.props.hero.dex*4;}
-                if (this.props.hero.type == "Wizard") { hero_attack = this.props.hero.int*4;}
-                this.attacking(hero_attack);
-                if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
-                    this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
-                else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
-                else
-                    this.props.heroHP(-Math.floor(hero_attack/2));
-                this.props.skill3CD(1);
-            }
-            else 
-                this.props.addNotify('Not enough MP!');
+            let hero_attack;
+            if (this.props.hero.type == "Warrior") { 
+                if (this.props.hero.curMP >= 10) {
+                    this.props.heroMP(10);
+                    hero_attack = 4*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
+                    else
+                        this.props.heroHP(-Math.floor(hero_attack/2));
+                    this.props.skill3CD(1);
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+                }
+            if (this.props.hero.type == "Archer") { 
+                if (this.props.hero.curMP >= 15) {
+                    this.props.heroMP(15);
+                    hero_attack = 4*(this.props.hero.dex+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
+                    else
+                        this.props.heroHP(-Math.floor(hero_attack/2));
+                    this.props.skill3CD(1);
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+                }
+            if (this.props.hero.type == "Wizard") { 
+                if (this.props.hero.curMP >= 25) {
+                    this.props.heroMP(25);
+                    hero_attack = 4*(this.props.hero.int+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    this.attacking(hero_attack);
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
+                    else
+                        this.props.heroHP(-Math.floor(hero_attack/2));
+                    this.props.skill3CD(1);
+                }
+                else 
+                    this.props.addNotify('Not enough MP!');
+                }
         }
     }
     skill4() {
         if (this.props.hero.cdSkill4  == 0 && this.props.hero.lvl >= 15) {
-            if (this.props.hero.curMP >= 30) {
-                this.props.heroMP(30);
-                this.props.addNotify('You are under "Berserk" effect!');
-                setTimeout(() => {
-                    this.props.heroSTR(this.props.hero.str);
-                    this.props.heroDEX(this.props.hero.dex);
-                    this.props.heroCON(this.props.hero.con);
-                    this.props.heroINT(this.props.hero.int);
-                    this.props.heroWIT(this.props.hero.wit);  
-                    this.props.heroHP(-this.props.hero.curHP);
-                    this.props.heroMP(-this.props.hero.curMP); 
-                    this.props.skill4CD(1);
-                },1500)
+            switch(this.props.hero.type){
+                case "Warrior":
+                    if (this.props.hero.curMP >= 20) {
+                        this.props.heroMP(20);
+                        this.props.addNotify('You are under "Berserk" effect!');
+                        setTimeout(() => {
+                            this.props.heroSTR(this.props.hero.str);
+                            this.props.heroDEX(this.props.hero.dex);
+                            this.props.heroCON(this.props.hero.con);
+                            this.props.heroINT(this.props.hero.int);
+                            this.props.heroWIT(this.props.hero.wit);  
+                            this.props.heroHP(-this.props.hero.curHP);
+                            this.props.heroMP(-this.props.hero.curMP); 
+                            this.props.skill4CD(1);
+                        },1500)
+                    }
+                    else 
+                        this.props.addNotify('Not enough MP!'); 
+                    break;
+                case "Archer":
+                    if (this.props.hero.curMP >= 30) {
+                        this.props.heroMP(30);
+                        this.props.addNotify('You are under "Berserk" effect!');
+                        setTimeout(() => {
+                            this.props.heroSTR(this.props.hero.str);
+                            this.props.heroDEX(this.props.hero.dex);
+                            this.props.heroCON(this.props.hero.con);
+                            this.props.heroINT(this.props.hero.int);
+                            this.props.heroWIT(this.props.hero.wit);  
+                            this.props.heroHP(-this.props.hero.curHP);
+                            this.props.heroMP(-this.props.hero.curMP); 
+                            this.props.skill4CD(1);
+                        },1500)
+                    }
+                    else 
+                        this.props.addNotify('Not enough MP!'); 
+                    break;
+                case "Wizard":
+                    if (this.props.hero.curMP >= 50) {
+                        this.props.heroMP(50);
+                        this.props.addNotify('You are under "Berserk" effect!');
+                        setTimeout(() => {
+                            this.props.heroSTR(this.props.hero.str);
+                            this.props.heroDEX(this.props.hero.dex);
+                            this.props.heroCON(this.props.hero.con);
+                            this.props.heroINT(this.props.hero.int);
+                            this.props.heroWIT(this.props.hero.wit);  
+                            this.props.heroHP(-this.props.hero.curHP);
+                            this.props.heroMP(-this.props.hero.curMP); 
+                            this.props.skill4CD(1);
+                        },1500)
+                    }
+                    else 
+                        this.props.addNotify('Not enough MP!'); 
+                    break;
             }
-            else 
-                this.props.addNotify('Not enough MP!'); 
         }
     }
     render() {
