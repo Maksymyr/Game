@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Info from './Info';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {useItem, heroHP, heroMP, heroLvlPoints, changeDeffence, changeAttack} from '../actions';
 
@@ -11,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
     return {hero: state.hero, inventory: state.inventory}
 }
-
+@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Slot extends React.Component {
     constructor(props) {
@@ -32,44 +33,47 @@ export default class Slot extends React.Component {
     
     }
     handleUse = () => {
-        if (this.props.hero.type == this.props.item.class || this.props.item.class == "none") {
-            if (this.props.item.type == "potion") {
-                switch(this.props.item.name) {
-                    case "Mana potion":
-                        this.props.heroMP(-this.props.hero.curMP*this.props.item.curMP/100);
-                        return this.props.useItem(this.props.item);
-                    case "Health potion":
-                        this.props.heroHP(-this.props.hero.curHP*this.props.item.curHP/100);                
-                        return this.props.useItem(this.props.item);
+        // console.log(this.props.match.url);
+        if (this.props.match.url.includes("inventory")) {
+            if (this.props.hero.type == this.props.item.class || this.props.item.class == "none") {
+                if (this.props.item.type == "potion") {
+                    switch(this.props.item.name) {
+                        case "Mana potion":
+                            this.props.heroMP(-this.props.hero.maxMP*this.props.item.maxMP/100);
+                            return this.props.useItem(this.props.item);
+                        case "Health potion":
+                            this.props.heroHP(-this.props.hero.maxHP*this.props.item.maxHP/100);                
+                            return this.props.useItem(this.props.item);
+                    }
                 }
+                else if (this.props.item.type == "rise") {
+                    this.props.heroLvlPoints(-1);
+                }
+                else if (this.props.item.category == "armor") {
+                    if(this.props.item.used) {
+                        //off
+                        console.log("off")
+                        
+                        this.props.changeDeffence(-this.props.item.def)
+                    }
+                    else {
+                        console.log("on")
+                        this.props.changeDeffence(this.props.item.def)
+                        //on
+                    }
+                }
+                else if (this.props.item.category == "weapon") {
+                    if(this.props.item.used) {
+                        //off
+                        this.props.changeAttack(-this.props.item.atck)
+                    }
+                    else {
+                        this.props.changeAttack(this.props.item.atck)
+                        //on
+                    }
+                }
+                this.props.useItem(this.props.item);
             }
-            else if (this.props.item.type == "rise") {
-                this.props.heroLvlPoints(-1);
-            }
-            else if (this.props.item.category == "armor") {
-                if(this.props.item.used) {
-                    //off
-                    console.log("off")
-                    
-                    this.props.changeDeffence(-this.props.item.def)
-                }
-                else {
-                    console.log("on")
-                    this.props.changeDeffence(this.props.item.def)
-                    //on
-                }
-            }
-            else if (this.props.item.category == "weapon") {
-                if(this.props.item.used) {
-                    //off
-                    this.props.changeAttack(-this.props.item.atck)
-                }
-                else {
-                    this.props.changeAttack(this.props.item.atck)
-                    //on
-                }
-            }
-            this.props.useItem(this.props.item);
         }
     }
     render() {

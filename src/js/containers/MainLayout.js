@@ -12,7 +12,7 @@ import Inventory from '../components/Inventory.js';
 import Achivments from '../components/Achivments.js';
 import Settings from '../components/Settings.js';
 import Notify from '../components/Notify.js';
-
+import Shop from '../components/Shop.js'
 
 export default class MainLayout extends React.Component {
 
@@ -36,6 +36,8 @@ export default class MainLayout extends React.Component {
                     <Route path="/inventory" component={Inventory}/>
                     <Route path="/settings" component={Settings}/>
                     <Route path="/achivments" component={Achivments}/>
+                    <Route path="/store" component={Shop}/>
+                    
                 </Switch>
                 <Notify/>
                 {/* <Route path="*" component={Footer} /> */}

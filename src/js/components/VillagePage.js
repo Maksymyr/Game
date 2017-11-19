@@ -40,10 +40,10 @@ export default class VillagePage extends React.Component {
                     </div>
                     <div className="right">
                         <div className="btns">
-                            {/* <Link to="/store"><button>Store</button></Link>
-                            <Link to="/headman"><button>Headman</button></Link> */}
-                            <Link className='torest' to="/rest"><button>Rest</button></Link>
-                            <Link className='inforest' to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
+                            <Link className='hunt' to="/headman"><button>Headman</button></Link>
+                            <Link className='hunt' to="/store"><button>Store</button></Link>                            
+                            <Link className='hunt' to="/rest"><button>Rest</button></Link>
+                            <Link className='hunt' to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
                         </div>
                     </div>
                 </div>

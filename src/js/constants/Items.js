@@ -41,9 +41,9 @@ import shoulderArc from '../../img/armor/shoulderArc.jpg';
 
 
 
-export const manapot = {img: bluepotion, name: "Mana potion", type: "potion", category: "common", class: "none", price: 10, used: false, quantity: 0, curMP: 20}
+export const manapot = {img: bluepotion, name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curMP: 20}
 export const skill = {img: book, name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 0, points: 1}
-export const healthpot = {img: redpotion, name: "Health potion", type: "potion", category: "common", class: "none", price: 10, used: false, quantity: 0, curHP: 20}
+export const healthpot = {img: redpotion, name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curHP: 20}
 export const bootswar = {img: bootsWar, name: "Iron boots", type: "boots", category: "armor", class: "Warrior", price: 150, used: false, quantity: 0, def: 8}
 export const bootsmag = {img: bootsMag, name: "Cloth boots", type: "boots", category: "armor", class: "Wizard", price: 150, used: false, quantity: 0, def: 3}
 export const bootsarc = {img: bootsArc, name: "Leather boots", type: "boots", category: "armor", class: "Archer", price: 150, used: false, quantity: 0, def: 5}

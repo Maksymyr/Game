@@ -21,18 +21,49 @@
     padding: 40px;
     font-size: 2rem;
     color: #ead59c;
-
-    .inventory {
+    .shop-title {
+        text-align: center;
+        span{  
+            width: 200px;
+            display: block;
+            background-color: #21170d;
+            /* height: 37px; */
+            padding: 20px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            border: 1px solid #312a22;
+        }
+    }
+    .trade-plate {
+        height: 55px;
+        margin-bottom: 20px;
+        .inv-slot {
+            height: 100%;
+        }
+    }
+    .inventory-shop {
+        height: 220px;
+        margin-bottom: 20px;
+        .inv-slot {
+            height: 25%;
+        }
+    }
+    .inventory{
+        height: 550px;
+        .inv-slot {
+            height: 10%;
+        }
+    }
+    .inventory, .inventory-shop, .trade-plate {
         float: left;
         background-color: #21170d;
         border: 3px solid #312a22;
         width: 85vw;
-        height: 550px;
         .inv-slot {
             border: 1px solid #312a22;
             box-sizing: border-box;
             width: 5%;
-            height: 10%;
+            
             float: left;
             
             .inv-img-used {
@@ -360,9 +391,15 @@
         }
     }
     .menu-list {
+        height: 280px;
+    }
+    .menu-list-shop {
+        height: 350px;
+    }
+    .menu-list, .menu-list-shop {
         float: right;
         width: 65px;
-        height: 280px;
+        
         background-color: #21170d;
         border: 2px solid #312a22;
 

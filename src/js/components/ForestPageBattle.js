@@ -69,7 +69,7 @@ export default class ForestPageBattle extends React.Component {
             enemy_attack = 0;
         }
         else {
-            enemy_attack= Math.floor(this.props.enemy.str*(100-this.props.hero.def)/100);
+            enemy_attack= Math.floor(this.props.enemy.str*(100-this.props.hero.armDef)/100);
         }
 
         this.props.enemyHP(hero_attack);
@@ -78,7 +78,7 @@ export default class ForestPageBattle extends React.Component {
             this.props.enemyHP(this.props.enemy.curHP);
             this.props.heroHP(-enemy_attack);
             this.props.heroEXP(this.props.enemy.exp);
-            this.props.moveMoney((this.props.enemy.lvl+1)*5);
+            this.props.moveMoney(this.props.enemy.lvl+1);
             let loot = Math.floor(Math.random()*(3+this.props.hero.lvl - this.props.enemy.lvl));
             if (this.props.enemy.drop && loot==0) {
                 this.props.addItemToInventory(this.props.enemy.drop);
