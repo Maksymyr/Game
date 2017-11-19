@@ -41,7 +41,7 @@ export default class Enemy extends React.Component {
                         <h3>{this.props.newEnemy.type}</h3>
                         <div className="chars">
                             
-                            <h4 className="lvl-bar">Level: {this.props.newEnemy.lvl+1}</h4>
+                            <h4 className="lvl-bar">Level: {this.props.newEnemy.lvl}</h4>
                             <p className='hp'>Health: {this.props.newEnemy.curHP} / {this.props.newEnemy.maxHP}</p> 
                             <p className='mp'>Mana: {this.props.newEnemy.curMP} / {this.props.newEnemy.maxMP}</p>
                             <p className="char-right">Strength: {this.props.newEnemy.str}</p>

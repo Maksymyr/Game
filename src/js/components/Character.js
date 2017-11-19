@@ -127,6 +127,7 @@
             this.props.history.push("/");
         }
         render() {
+            console.log(this.props.hero.weapAtck)
             return (
                <div className="village">
                     <div className="village-img" style={{ height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/levelup.jpg")+')'}}>
@@ -188,13 +189,27 @@
                                     <div>
                                         <p>Attack : </p>
                                         <p>Deffence : </p>
+                                        <p>Weapon : </p>
+                                        <p>Armor : </p>
                                     </div>
                                     <div className="att-icons">
                                         <p>
-                                            <input className="att-icon" ref="att" disabled defaultValue={this.props.hero.atck}/>
+                                            <input className="att-icon" ref="att" disabled value={
+                                               
+                                                Math.floor(this.props.hero.type == "Warrior" ?
+                                                    (this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100 : this.props.hero.type == "Archer" ? 
+                                                    (this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100 :
+                                                    (this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100)
+                                                    } />
                                         </p>
                                         <p>
-                                            <input className="att-icon" ref="def" disabled defaultValue={this.props.hero.def}/>
+                                            <input className="att-icon" ref="def" disabled value={Math.floor(this.props.hero.armDef*(100+this.props.hero.att2)/100)}/>
+                                        </p> 
+                                        <p>
+                                            <input className="att-icon" ref="weapAtck" disabled value={this.props.hero.weapAtck}/>
+                                        </p> 
+                                        <p>
+                                            <input className="att-icon" ref="armDef" disabled value={this.props.hero.armDef}/>
                                         </p> 
                                     </div>
                                 </div>

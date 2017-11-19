@@ -28,7 +28,6 @@ export default class Settings extends React.Component {
         return (
             <div className='menu'>  
                 <div className="name-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/class_chouse.jpg")+')'}}>
-                    {/* <Sidebar /> */}
                     <div className="left">
                     </div>
                     <div className="center">

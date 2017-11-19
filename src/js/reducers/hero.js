@@ -35,21 +35,12 @@ export default function hero(state = InitialState.hero, action) {
                 return {...state, curEXP: Math.floor(exp)};
             }
         case types.HERO_STR: 
-            // if (state.type == "Warrior") 
-            //     return {...state, atck: Math.floor((state.str + payload)*(100+state.atck)/100), str: state.str + payload};
-            // else 
             return {...state, str: state.str + payload};
         case types.HERO_DEX: 
-            // if (state.type == "Archer") 
-            //     return {...state, atck: Math.floor((state.dex + payload)*(150+state.atck)/100), dex: state.dex + payload};
-            // else
             return {...state, dex: state.dex + payload};
         case types.HERO_CON: 
             return {...state,con: state.con + payload, maxHP: (state.con + payload)*10, curHP: (state.con + payload)*10};
         case types.HERO_INT: 
-            // if (state.type == "Wizard") 
-            //     return {...state, atck: Math.floor((state.int + payload)*(200+state.atck)/100), int: state.int + payload};
-            // else
             return {...state, int: state.int + payload};
         case types.HERO_WIT: 
             return {...state, wit: state.wit + payload, maxMP: (state.wit + payload)*10, curMP: (state.wit + payload)*10};

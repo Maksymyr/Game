@@ -48,14 +48,14 @@ export default class ForestPageBattle extends React.Component {
         if (imported_damage == null) {
             switch (this.props.hero.type) {
                 case "Warrior":
-                    hero_attack = (this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    hero_attack = Math.floor((this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Archer":
-                    hero_attack = (this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    hero_attack = Math.floor((this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Wizard":
                     this.props.heroMP(5);
-                    hero_attack = (this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
+                    hero_attack = Math.floor((this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 default: 
                     break;
@@ -63,7 +63,7 @@ export default class ForestPageBattle extends React.Component {
             
         }
         else {
-            hero_attack = imported_damage; 
+            hero_attack = Math.floor(imported_damage); 
         }
         if (this.props.hero.cdSkill2  > 0 && this.props.hero.cdSkill2 < (2+Math.floor(Math.random()))){
             enemy_attack = 0;

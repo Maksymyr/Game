@@ -33,7 +33,7 @@ export default class Inventory extends React.Component {
             let a = <Slot key={i} item={this.props.inventory[i]} index={i} />;
             arr.push(a);
         }
-        console.log(arr)
+
         return arr
     }
 
