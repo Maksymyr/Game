@@ -45,6 +45,9 @@ export default class ForestPage extends React.Component {
         this.props.setEnemy(shuffle(mobs.mobs[this.props.forest-1])[0]);
         
     }
+    portal = () => {
+        this.props.changeForestLvl(-this.props.forest);
+    }
     render() {
         return (
             <div className='forest'>
@@ -61,6 +64,8 @@ export default class ForestPage extends React.Component {
                             <Link className="hunt" to={"/forest-battle"}><button onClick={this.addEnemy}>Hunt</button></Link>
                             {this.props.heroLvl+1 >= this.props.forest && this.props.forest < 10 ? <a className="deep"><button onClick={this.levelUp}>Go deeper in forest</button></a>  : null}
                             <Link className="goback" to={this.props.forest == 1 ? "/village" : "forest"}><button onClick={this.levelDown}>Go back</button></Link>
+                            {this.props.heroLvl > 5 ? <Link className='hunt' to="/village"><button onClick={this.portal}>Portal to the village</button></Link> : null}
+                            
                         </div>
                     </div>
               </div>

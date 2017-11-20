@@ -34,4 +34,7 @@ export const moveMoney = (payload) => ({type: types.MOVE_MONEY, payload});
 export const delInventory = (payload) => ({type: types.DEL_INVENTORY, payload});
 export const changeAttack = (payload) => ({type: types.CHANGE_ATCK, payload});
 export const changeDeffence = (payload) => ({type: types.CHANGE_DEF, payload});
-
+export const addItemToShop = (payload) => ({type: types.ADD_SHOP, payload});
+export const removeItemFromShop = (payload) => ({type: types.REMOVE_SHOP, payload});
+export const shopMoney = (payload) => ({type: types.SHOP_MONEY, payload});
+export const delShop = (payload) => ({type: types.DEL_SHOP, payload});

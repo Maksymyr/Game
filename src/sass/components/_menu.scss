@@ -27,16 +27,22 @@
             width: 200px;
             display: block;
             background-color: #21170d;
-            /* height: 37px; */
-            padding: 20px;
+            padding: 10px;
             margin: 0 auto;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border: 1px solid #312a22;
         }
     }
     .trade-plate {
         height: 55px;
         margin-bottom: 20px;
+        .inv-slot {
+            height: 100%;
+        }
+    }
+    .trade-plate-1 {
+        height: 55px;
+        margin-bottom: -4px;
         .inv-slot {
             height: 100%;
         }
@@ -54,7 +60,7 @@
             height: 10%;
         }
     }
-    .inventory, .inventory-shop, .trade-plate {
+    .inventory, .inventory-shop, .trade-plate, .trade-plate-1 {
         float: left;
         background-color: #21170d;
         border: 3px solid #312a22;

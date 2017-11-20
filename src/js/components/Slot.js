@@ -39,10 +39,10 @@ export default class Slot extends React.Component {
                 if (this.props.item.type == "potion") {
                     switch(this.props.item.name) {
                         case "Mana potion":
-                            this.props.heroMP(-this.props.hero.maxMP*this.props.item.maxMP/100);
+                            this.props.heroMP(-this.props.hero.maxMP*this.props.item.curMP/100);
                             return this.props.useItem(this.props.item);
                         case "Health potion":
-                            this.props.heroHP(-this.props.hero.maxHP*this.props.item.maxHP/100);                
+                            this.props.heroHP(-this.props.hero.maxHP*this.props.item.curHP/100);                
                             return this.props.useItem(this.props.item);
                     }
                 }
@@ -51,15 +51,10 @@ export default class Slot extends React.Component {
                 }
                 else if (this.props.item.category == "armor") {
                     if(this.props.item.used) {
-                        //off
-                        console.log("off")
-                        
                         this.props.changeDeffence(-this.props.item.def)
                     }
                     else {
-                        console.log("on")
                         this.props.changeDeffence(this.props.item.def)
-                        //on
                     }
                 }
                 else if (this.props.item.category == "weapon") {
@@ -75,13 +70,16 @@ export default class Slot extends React.Component {
                 this.props.useItem(this.props.item);
             }
         }
+        else {
+            this.props.item.type != "money" && this.props.item.used == false ? this.props.item.tradecheck ? this.props.backToInventary(this.props.item) : this.props.move(this.props.item) : null;
+        }
     }
     render() {
 
         return (
            <div className="inv-slot" onClick={this.handleUse} onMouseEnter={this.props.item ? this.handleEnter : null} onMouseLeave={this.props.item ? this.handleLeave : null}>
                 <div className={this.props.item && this.props.item.used ? "inv-img-used" : "inv-img"} style={ this.props.item ? { height: "100%", width: "100%", backgroundImage: 'url('+this.props.item.img+')'} : null }>
-                    {this.state.checkbox ? <Info>{this.props.item ? this.props.item.name : null}</Info> : null}
+                    {this.props.match.url.includes("inventory") && this.state.checkbox ? <Info>{this.props.item ? this.props.item.name : null}</Info> : null}
                     <p>{this.props.item ? this.props.item.quantity : null}</p>
                 </div>
                

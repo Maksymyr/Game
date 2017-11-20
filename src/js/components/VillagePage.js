@@ -26,6 +26,9 @@ export default class VillagePage extends React.Component {
     levelUp = () => {
         this.props.changeForestLvl(1); 
     }
+    portal = () => {
+        this.props.changeForestLvl(7); 
+    }
     render() {
         return (
             <div className="village">
@@ -40,10 +43,12 @@ export default class VillagePage extends React.Component {
                     </div>
                     <div className="right">
                         <div className="btns">
-                            <Link className='hunt' to="/headman"><button>Headman</button></Link>
+                            <Link className='hunt' to="/tavern"><button>Tavern</button></Link>
                             <Link className='hunt' to="/store"><button>Store</button></Link>                            
                             <Link className='hunt' to="/rest"><button>Rest</button></Link>
                             <Link className='hunt' to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
+                            {this.props.hero.lvl >= 7 ? <Link className='hunt' to="/forest"><button onClick={this.portal}>Portal to 7 lvl</button></Link> : null}
+                            
                         </div>
                     </div>
                 </div>

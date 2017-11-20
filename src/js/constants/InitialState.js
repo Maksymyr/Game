@@ -8,5 +8,7 @@ export default {
     levelOfForest: JSON.parse(localStorage.getItem('Forest'))  || 0,
     notify: "",
     inventory: JSON.parse(localStorage.getItem('Inventory')) !== null ? JSON.parse(localStorage.getItem('Inventory')) : false || [{img: gold, name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 10, used: false}, 
-    {img: book, name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 1, points: 1}]
+    {img: book, name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 1, points: 1}],
+    shop: JSON.parse(localStorage.getItem('Shop')) !== null ? JSON.parse(localStorage.getItem('Shop')) : false || [{img: gold, name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 999, used: false}, 
+    {img: book, name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 999, points: 1}]
 };
