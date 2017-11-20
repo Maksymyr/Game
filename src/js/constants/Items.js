@@ -39,8 +39,7 @@ import shoulderWar from '../../img/armor/shoulderWar.jpg';
 import shoulderMag from '../../img/armor/shoulderMag.jpg';
 import shoulderArc from '../../img/armor/shoulderArc.jpg';
 
-
-
+export const money = {img: gold, name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 0, used: false}
 export const manapot = {img: bluepotion, name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curMP: 20}
 export const skill = {img: book, name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 0, points: 1}
 export const healthpot = {img: redpotion, name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curHP: 20}

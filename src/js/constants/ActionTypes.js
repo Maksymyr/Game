@@ -36,4 +36,5 @@ export const ADD_SHOP = "ADD_SHOP";
 export const REMOVE_SHOP = "REMOVE_SHOP";
 export const SHOP_MONEY = "SHOP_MONEY";
 export const DEL_SHOP = "DEL_SHOP";
+export const RELOAD_INV = "RELOAD_INV";
 

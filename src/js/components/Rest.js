@@ -28,8 +28,8 @@ export default class Rest extends React.Component {
         let resttime;
 
             resttime = setInterval(() => {
-                (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? this.props.heroHP(-this.props.hero.lvl+3): (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? null : clearInterval(resttime),
-                (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? this.props.heroMP(-this.props.hero.lvl+3): (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? null : clearInterval(resttime)
+                (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? this.props.heroHP(-this.props.hero.lvl-3): (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? null : clearInterval(resttime),
+                (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? this.props.heroMP(-this.props.hero.lvl-3): (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? null : clearInterval(resttime)
             }, 2000)
 
     

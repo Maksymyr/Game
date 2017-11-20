@@ -16,7 +16,8 @@
         background-position: 22% 50%;
     }
 }
-.char-window {
+
+.char-window, .char-window-shop {
     opacity: 0.95;    
     padding: 40px;
     font-size: 2rem;
@@ -29,6 +30,7 @@
             background-color: #21170d;
             padding: 10px;
             margin: 0 auto;
+            margin-top: -20px;
             margin-bottom: 20px;
             border: 1px solid #312a22;
         }
@@ -36,39 +38,54 @@
     .trade-plate {
         height: 55px;
         margin-bottom: 20px;
+        width: 45vw;
+        clear: both;
         .inv-slot {
             height: 100%;
+            width: 10%;
         }
     }
     .trade-plate-1 {
         height: 55px;
         margin-bottom: -4px;
+        width: 45vw;
+        clear: both;
+        overflow-y: scroll; 
+        
         .inv-slot {
             height: 100%;
+            width: 10%;
         }
     }
     .inventory-shop {
         height: 220px;
         margin-bottom: 20px;
+        width: 45vw;
+        clear: both;
+        
+        
         .inv-slot {
             height: 25%;
+            width: 10%;
         }
     }
     .inventory{
         height: 550px;
+        width: 85vw;
         .inv-slot {
             height: 10%;
+            width: 5%;
         }
     }
     .inventory, .inventory-shop, .trade-plate, .trade-plate-1 {
         float: left;
         background-color: #21170d;
         border: 3px solid #312a22;
-        width: 85vw;
+        
         .inv-slot {
             border: 1px solid #312a22;
             box-sizing: border-box;
-            width: 5%;
+            
             
             float: left;
             
@@ -402,10 +419,31 @@
     .menu-list-shop {
         height: 350px;
     }
+    .card {
+        width: 38vw;
+        height:  500px;
+        float: left;
+        margin-left: 1vw;
+        button {
+            background-color: #472d16;
+            color: #ead59c;
+            width: 30%;
+            height: 50px;
+            border: none;
+            border: 2px solid #312a22;
+            &:active {
+                background-color: #221819;
+                box-shadow: inset 0 0 10px 6px black;
+            }
+        }
+    }
+    .shop-inv {
+        float: left;
+    }
     .menu-list, .menu-list-shop {
-        float: right;
+        float: left;
         width: 65px;
-        
+        margin-left: 1vw;
         background-color: #21170d;
         border: 2px solid #312a22;
 

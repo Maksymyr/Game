@@ -54,9 +54,15 @@ export default class ForestPageBattle extends React.Component {
                     hero_attack = Math.floor((this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Wizard":
-                    this.props.heroMP(5);
-                    hero_attack = Math.floor((this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
-                    break;
+                    if (this.props.hero.curMP >= 5) {
+                        this.props.heroMP(5);
+                        hero_attack = Math.floor((this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                        break;
+                    }
+                    else {
+                        hero_attack = Math.floor((this.props.hero.int+this.props.hero.weapAtck)/2*(100+this.props.hero.att1)/100);
+                        break;
+                    }
                 default: 
                     break;
             }
