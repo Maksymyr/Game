@@ -139,7 +139,7 @@
                                     <div>
                                         <p>Level: {this.props.hero.lvl}</p>
                                         <p>Class: {this.props.hero.type}</p>
-                                        <p>Experience: <span className="gold">{this.props.hero.curEXP}/{this.props.hero.maxEXP}</span></p>
+                                        <p>Exp: <span className="gold">{this.props.hero.curEXP}/{this.props.hero.maxEXP}</span></p>
                                     </div>
                                     <div>
                                         <p>Health: <span className="red">{this.props.hero.curHP}/{this.props.hero.maxHP}</span></p>

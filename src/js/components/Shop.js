@@ -122,7 +122,50 @@ export default class Shop extends React.Component {
         }
     }
     moveGoodsFromShop = (item) => {
-
+        let arrayCheck = this.state.goodsS.filter(arrItem => {
+            if (arrItem.name == item.name)
+                return true
+        })
+        if (arrayCheck[0]) {
+            this.setState({goodsS: this.state.goodsS.map(arrItem => {
+                if (item.name == arrItem.name) {
+                    return {...arrItem, quantity: arrItem.quantity+1} 
+                }
+                else return arrItem
+                })
+            })
+            if (item.quantity > 1) {
+                this.setState({shop: this.state.shop.map(arrItem => {
+                    if (item.name == arrItem.name) {
+                        return {...arrItem, quantity: arrItem.quantity-1} 
+                    }
+                    else return arrItem
+                    })
+                })
+            }
+            else {
+                this.setState({shop: this.state.shop.filter(arrItem => item.name != arrItem.name)})
+            }
+            
+        }
+        else {
+            if (item.quantity > 1) {
+  
+                    this.setState({goodsS: [...this.state.goodsS, {...item, quantity: 1, tradecheck: true}]});
+                    this.setState({shop: this.state.shop.map(arrItem => {
+                        if (item.name == arrItem.name) {
+                            return {...arrItem, quantity: arrItem.quantity-1} 
+                        }
+                        else return arrItem
+                    })
+                })
+                
+            }
+            else {
+                this.setState({goodsS: [...this.state.goodsS, {...item, tradecheck: true}]});
+                this.setState({shop: this.state.shop.filter(arrItem => item.name != arrItem.name)})
+            }
+        }
     }
     moveGoodsFromInventary = (item) => {
         let arrayCheck = this.state.goodsNS.filter(arrItem => {
