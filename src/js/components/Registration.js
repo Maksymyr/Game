@@ -11,11 +11,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(null, mapDispatchToProps)
-export default class ChouseNameMenu extends React.Component {
+export default class Registration extends React.Component {
 
     setName = () => {  
-        this.props.addHeroName({name: this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase()
-        });
+        this.props.addHeroName({name: this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase(), password: this.refs.password.value});
+        console.log(this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase())
     }
     
     render() {
@@ -27,8 +27,11 @@ export default class ChouseNameMenu extends React.Component {
                     <div className="center">
                         <div className="btns"> 
                             <p className="start-p">Enter your name:</p>
-                            <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
-                            <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
+                            <form>
+                                <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
+                                <input className="start-name-inp" ref="password" type="text" placeholder="Password"/>                                
+                                <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
+                            </form>
                         </div>
                     </div>
                     <div className="right">

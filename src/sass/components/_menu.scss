@@ -92,9 +92,13 @@
             .inv-img-used {
                 border: 3px solid gold;
                 border-radius: 0; 
+                height: "100%"; 
+                width: "100%";
             }
             .inv-img{ 
                 border-radius: 3px; 
+                height: "100%"; 
+                width: "100%";
             }
             .inv-img, .inv-img-used {
                 background-size: 100% 100%;

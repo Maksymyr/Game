@@ -37,4 +37,5 @@ export const REMOVE_SHOP = "REMOVE_SHOP";
 export const SHOP_MONEY = "SHOP_MONEY";
 export const DEL_SHOP = "DEL_SHOP";
 export const RELOAD_INV = "RELOAD_INV";
-
+export const SAVE_GAME = "SAVE_GAME";
+export const RESTART_GAME = "RESTART_GAME";

@@ -5,7 +5,7 @@ export default function hero(state = InitialState.hero, action) {
     let {payload, type} = action;
     switch(type){
         case types.ADD_NAME:
-            return {...payload};
+            return {id: Math.random()*100, ...payload};
         case types.CHANGE_ATCK:
             return {...state, weapAtck: state.weapAtck+payload}
         case types.CHANGE_DEF:

@@ -3,7 +3,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 import StartMenu from '../components/StartMenu.js';
 import VillagePage from '../components/VillagePage.js';
-import ChouseNameMenu from '../components/ChouseNameMenu.js';
+import Registration from '../components/Registration.js';
 import ForestPage from '../components/ForestPage.js';
 import ForestPageBattle from '../components/ForestPageBattle.js';
 import Rest from '../components/Rest.js';
@@ -26,7 +26,7 @@ export default class MainLayout extends React.Component {
                     <Route exact path="/" component={ForestPageBattle} /> :
                     <Route exact path="/" component={ForestPage} /> :
                     <Route exact path="/" component={VillagePage} /> : 
-                    <Route exact path="/" component={ChouseNameMenu} />}
+                    <Route exact path="/" component={Registration} />}
 
                     <Route path="/start" component={StartMenu} />
                     <Route path="/village" component= {VillagePage} />

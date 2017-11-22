@@ -100,7 +100,7 @@ export default class ForestPageBattle extends React.Component {
                     this.props.history.push("/forest");
                 }
             });
-            setTimeout(() => {
+            // setTimeout(() => {
 
                 this.props.enemyKilled();
                 if (this.props.hero.cdSkill4 > 0 && this.props.hero.cdSkill4 < 3){
@@ -112,11 +112,11 @@ export default class ForestPageBattle extends React.Component {
                     this.props.heroHP(this.props.hero.curHP/2);  
                     this.props.heroMP(this.props.hero.curMP/2);             
                 }
-            }, 1500)
+            // }, 1500)
         }
         else if (this.props.hero.curHP-enemy_attack <= 0) {
             this.props.addNotify("You've died and lost your experience & all HP/MP!");
-            setTimeout(() => {
+            // setTimeout(() => {
                 this.props.setForestLvl(0);
                 this.props.heroDeath();
                 this.props.history.push("/village");
@@ -128,7 +128,7 @@ export default class ForestPageBattle extends React.Component {
                     this.props.heroINT(-this.props.hero.int/2);
                     this.props.heroWIT(-this.props.hero.wit/2);               
                 }
-            },1500)
+            // },1500)
         }
         if (this.props.hero.cdSkill1  >= 1) {
             this.props.skill1CD(this.props.hero.cdSkill1 + 1);
@@ -164,7 +164,7 @@ export default class ForestPageBattle extends React.Component {
     surrender() {
         let lose = -Math.floor(Math.random()*(this.props.hero.lvl+1)*(this.props.enemy.lvl+1));
         this.props.addNotify("You've retreated and lost " + lose + " exp & some HP/MP!");
-        setTimeout(() => {
+        // setTimeout(() => {
             this.props.heroHP(Math.floor(this.props.hero.curHP/3) + Math.floor(Math.random())*(this.props.hero.curHP/2));
             this.props.heroMP(Math.floor(this.props.hero.curMP/3) + Math.floor(Math.random())*(this.props.hero.curMP/2));
             this.props.heroEXP(lose);
@@ -179,7 +179,7 @@ export default class ForestPageBattle extends React.Component {
                 this.props.heroMP(this.props.hero.curMP/2)          
             }
             this.props.enemyKilled();
-        }, 1500)
+        // }, 1500)
     }
     skill() {
         if (this.props.hero.cdSkill1  == 0) {
@@ -308,7 +308,7 @@ export default class ForestPageBattle extends React.Component {
                     if (this.props.hero.curMP >= 20) {
                         this.props.heroMP(20);
                         this.props.addNotify('You are under "Berserk" effect!');
-                        setTimeout(() => {
+                        // setTimeout(() => {
                             this.props.heroSTR(this.props.hero.str);
                             this.props.heroDEX(this.props.hero.dex);
                             this.props.heroCON(this.props.hero.con);
@@ -317,7 +317,7 @@ export default class ForestPageBattle extends React.Component {
                             this.props.heroHP(-this.props.hero.curHP);
                             this.props.heroMP(-this.props.hero.curMP); 
                             this.props.skill4CD(1);
-                        },1500)
+                        // },1500)
                     }
                     else 
                         this.props.addNotify('Not enough MP!'); 
@@ -326,7 +326,7 @@ export default class ForestPageBattle extends React.Component {
                     if (this.props.hero.curMP >= 30) {
                         this.props.heroMP(30);
                         this.props.addNotify('You are under "Berserk" effect!');
-                        setTimeout(() => {
+                        // setTimeout(() => {
                             this.props.heroSTR(this.props.hero.str);
                             this.props.heroDEX(this.props.hero.dex);
                             this.props.heroCON(this.props.hero.con);
@@ -335,7 +335,7 @@ export default class ForestPageBattle extends React.Component {
                             this.props.heroHP(-this.props.hero.curHP);
                             this.props.heroMP(-this.props.hero.curMP); 
                             this.props.skill4CD(1);
-                        },1500)
+                        // },1500)
                     }
                     else 
                         this.props.addNotify('Not enough MP!'); 
@@ -344,7 +344,7 @@ export default class ForestPageBattle extends React.Component {
                     if (this.props.hero.curMP >= 50) {
                         this.props.heroMP(50);
                         this.props.addNotify('You are under "Berserk" effect!');
-                        setTimeout(() => {
+                        // setTimeout(() => {
                             this.props.heroSTR(this.props.hero.str);
                             this.props.heroDEX(this.props.hero.dex);
                             this.props.heroCON(this.props.hero.con);
@@ -353,7 +353,7 @@ export default class ForestPageBattle extends React.Component {
                             this.props.heroHP(-this.props.hero.curHP);
                             this.props.heroMP(-this.props.hero.curMP); 
                             this.props.skill4CD(1);
-                        },1500)
+                        // },1500)
                     }
                     else 
                         this.props.addNotify('Not enough MP!'); 

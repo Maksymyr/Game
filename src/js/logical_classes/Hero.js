@@ -1,5 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import warrior from '../../img/warrior.jpg';
+import archer from '../../img/archer.jpg';
+import wizard from '../../img/wizard.jpg';
 
 const mapStateToProps = (state, ownProps) => {
     return {newHero: state.hero}
@@ -21,7 +24,9 @@ export default class Hero extends React.Component {
             return (
                 <div className='cards-style'>
                         <h2>{this.props.newHero.name}</h2>  
-                        <div className="image-style" style={{backgroundImage: 'url('+this.props.newHero.img+')'}}>
+                        <div className="image-style" style={this.props.newHero.type=="Warrior" ? 
+                        {backgroundImage: 'url('+ warrior +')'} : this.props.newHero.type=="Archer" ? 
+                        {backgroundImage: 'url('+ archer +')'} : {backgroundImage: 'url('+ wizard +')'}}>
                             <div className="under-exp-bar"></div> 
                             <div className="exp-bar" style={{width: this.props.newHero.curEXP*100/this.props.newHero.maxEXP+"%"}}>
                             {Math.floor(this.props.newHero.curEXP*100/this.props.newHero.maxEXP)+"%"}</div>

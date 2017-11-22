@@ -39,3 +39,5 @@ export const removeItemFromShop = (payload) => ({type: types.REMOVE_SHOP, payloa
 export const shopMoney = (payload) => ({type: types.SHOP_MONEY, payload});
 export const delShop = (payload) => ({type: types.DEL_SHOP, payload});
 export const reloadInventory = (payload) => ({type: types.RELOAD_INV, payload})
+export const saveGame = (payload) => ({type: types.SAVE_GAME, payload});
+export const restartGame = (payload) => ({type: types.RESTART_GAME, payload})
