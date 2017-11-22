@@ -12,12 +12,19 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(null, mapDispatchToProps)
 export default class Registration extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            newUser: false
+        }
+    }
     setName = () => {  
         this.props.addHeroName({name: this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase(), password: this.refs.password.value});
         console.log(this.refs.name.value.trim().charAt(0).toUpperCase() + this.refs.name.value.trim().substr(1).toLowerCase())
     }
-    
+    registration = () => {
+        this.setState({ newUser: !this.state.newUser})
+    }
     render() {
         return (
             <div className='start-menu'> 
@@ -25,13 +32,21 @@ export default class Registration extends React.Component {
                     <div className="left">
                     </div>
                     <div className="center">
-                        <div className="btns"> 
-                            <p className="start-p">Enter your name:</p>
+                        <div className="registration-btns"> 
+                            <p className="start-p">{this.state.newUser ? "Registration:" : "Enter the game"}</p>
+                            {this.state.newUser ? 
                             <form>
-                                <input className="start-name-inp" ref="name" type="text" placeholder="Name"/>
-                                <input className="start-name-inp" ref="password" type="text" placeholder="Password"/>                                
-                                <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Submit</button></Link>
-                            </form>
+                                <label>Login:<input className="start-name-inp" ref="name" type="text" placeholder="Name"/></label><br/>
+                                <label>Password:<input className="start-name-inp" ref="password" type="text" placeholder="Password"/></label><br/>
+                                <label>Repeat:<input className="start-name-inp" ref="passwordCheck" type="text" placeholder="Password"/></label><br/>
+                                <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Registrate</button></Link>
+                            </form> :
+                            <form>
+                                <label>Login:<input className="start-name-inp" ref="name" type="text" placeholder="Name"/></label><br/>
+                                <label>Password:<input className="start-name-inp" ref="password" type="text" placeholder="Password"/></label><br/>                              
+                                <Link className="enter-name" to='/start'><button onClick={() => this.setName()}>Enter</button></Link>
+                            </form>}
+                                <div className="enter-name"><button onClick={this.registration}>{this.state.newUser ? "Back" : "New user"}</button></div>
                         </div>
                     </div>
                     <div className="right">

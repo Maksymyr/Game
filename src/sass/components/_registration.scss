@@ -1,0 +1,52 @@
+.registration-btns {
+    width: 40%;
+    height: 20%;
+    margin: 60% auto;
+    form {
+        margin-bottom: 10px;
+    }
+    label {
+        font-size: 14px;
+    }
+    .enter-name {
+        width: 100%;
+        height: 100%;
+        
+        button {
+            background-color: #472d16;
+            color: #ead59c;
+            width: 100%;
+            height: 30px;
+            margin: 2%;
+            border: none;
+            border: 2px solid #312a22;
+            border-radius: 0;
+            &:active {
+                background-color: #221819;
+                box-shadow: inset 0 0 10px 6px black;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: #221819;
+                box-shadow: inset 0 0 10px 6px black;
+            }
+        }
+    }
+    .start-p {
+        color: #312a22;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .start-name-inp {
+        background-color: whitesmoke;
+        text-align: center;
+        color: #312a22;
+        width: 100%;
+        padding: 0 10px;
+        height: 30px;
+        margin: 2%;
+        border: none;
+        border: 2px solid #312a22;
+    }
+}
