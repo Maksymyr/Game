@@ -8,8 +8,10 @@ export default function inventory(state = InitialState.inventory, action) {
     let {payload, type} = action;
     switch(type){
         case types.DEL_INVENTORY:
-            return [{img: 'Money', name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 10, used: false},
-            {img: 'Book', name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 1, points: 1}];
+            return [
+                {img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 10, used: false},
+                {img: 'Book', name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 1, points: 1}
+            ];
         case types.MOVE_MONEY:
             
             state[0].quantity = state[0].quantity+payload;

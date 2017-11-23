@@ -1,7 +1,7 @@
-import gold from '../../img/Items/Money.jpg';
-// import redpotion from '../../img/Items/Red_potion.jpg';
-// import bluepotion from '../../img/Items/Blue_potion.jpg';
-import book from '../../img/Items/Book.jpg';
+// import gold from '../../img/Items/Money.jpg';
+// // import redpotion from '../../img/Items/Red_potion.jpg';
+// // import bluepotion from '../../img/Items/Blue_potion.jpg';
+// import book from '../../img/Items/Book.jpg';
 
 // import low_sword from '../../img/Weapon/low_sword.jpg';
 // import mid_sword from '../../img/Weapon/mid_sword.jpg';
@@ -39,10 +39,10 @@ import book from '../../img/Items/Book.jpg';
 // import shoulderMag from '../../img/armor/shoulderMag.jpg';
 // import shoulderArc from '../../img/armor/shoulderArc.jpg';
 
-export const money = {img: 'Money', name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 0, used: false}
-export const manapot = {img: 'Blue_potion', name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curMP: 20}
+export const money = {img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 0, used: false}
+export const manapot = {img: 'blue_potion', name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curMP: 20}
 export const skill = {img: 'Book', name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 0, points: 1}
-export const healthpot = {img: 'Red_potion', name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curHP: 20}
+export const healthpot = {img: 'red_potion', name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 0, curHP: 20}
 export const bootswar = {img: 'bootsWar', name: "Iron boots", type: "boots", category: "armor", class: "Warrior", price: 150, used: false, quantity: 0, def: 8}
 export const bootsmag = {img: 'bootsMag', name: "Cloth boots", type: "boots", category: "armor", class: "Wizard", price: 150, used: false, quantity: 0, def: 3}
 export const bootsarc = {img: 'bootsArc', name: "Leather boots", type: "boots", category: "armor", class: "Archer", price: 150, used: false, quantity: 0, def: 5}

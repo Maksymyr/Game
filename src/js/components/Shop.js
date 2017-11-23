@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Slot from './Slot.js';
 import Enemy from '../logical_classes/Enemy';
-import gold from '../../img/Items/Money.jpg';
+
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -261,8 +261,8 @@ export default class Shop extends React.Component {
                     this.setState({goodsS: x})
                 }
                 else{
-                    this.setState({goodsS: [{img: gold, name: "Gold", 
-                    type: "money", category: "money", class: "money", 
+                    this.setState({goodsS: [{img: "Money", name: "Gold", 
+                    type: "money", category: "common", class: "money", 
                     price: 1, quantity: this.state.goodsS[0].quantity-item.price/2, used: false}, ...x]})
                 }
                 console.log("back to inv")
@@ -274,15 +274,15 @@ export default class Shop extends React.Component {
                     this.setState({goodsNS: x})
                 }
                 else{
-                    this.setState({goodsNS: [{img: gold, name: "Gold", 
-                    type: "money", category: "money", class: "money", 
+                    this.setState({goodsNS: [{img: "Money", name: "Gold", 
+                    type: "money", category: "common", class: "money", 
                     price: 1, quantity: this.state.goodsNS[0].quantity-item.price, used: false}, ...x]})
                 }
                 console.log("back to shop")
                 let y = [...this.state.inventory];
                 y.shift();
-                this.setState({inventory: [{img: gold, name: "Gold", 
-                type: "money", category: "money", class: "money", 
+                this.setState({inventory: [{img: "Money", name: "Gold", 
+                type: "money", category: "common", class: "money", 
                 price: 1, quantity: this.state.inventory[0].quantity+item.price, used: false} , ...y]})
            
             }
@@ -298,8 +298,8 @@ export default class Shop extends React.Component {
                         else return name;
                 })})}
                 else {
-                    this.setState({goodsS: [{img: gold, name: "Gold", 
-                    type: "money", category: "money", class: "money", 
+                    this.setState({goodsS: [{img: "Money", name: "Gold", 
+                    type: "money", category: "common", class: "money", 
                     price: 1, quantity: item.price/2, used: false},...this.state.goodsS]});
                 }
                 console.log("from inv")
@@ -313,15 +313,15 @@ export default class Shop extends React.Component {
                             else return name;
                     })})}
                     else {
-                        this.setState({goodsNS: [{img: gold, name: "Gold", 
-                        type: "money", category: "money", class: "money", 
+                        this.setState({goodsNS: [{img: "Money", name: "Gold", 
+                        type: "money", category: "common", class: "money", 
                         price: 1, quantity: item.price, used: false},...this.state.goodsNS]});
                     }
                     console.log("from shop")
                     let y = [...this.state.inventory];
                     y.shift();
-                    this.setState({inventory: [{img: gold, name: "Gold", 
-                    type: "money", category: "money", class: "money", 
+                    this.setState({inventory: [{img: "Money", name: "Gold", 
+                    type: "money", category: "common", class: "money", 
                     price: 1, quantity: this.state.inventory[0].quantity-item.price, used: false} , ...y]})
                
             }

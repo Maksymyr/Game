@@ -8,13 +8,13 @@ export default {
     levelOfForest: JSON.parse(localStorage.getItem('Forest'))  || 0,
     notify: {},
     inventory: JSON.parse(localStorage.getItem('Inventory')) !== null ? JSON.parse(localStorage.getItem('Inventory')) : false || 
-    [{img: 'Money', name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 10, used: false},
+    [{img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 10, used: false},
     {img: 'Book', name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 1, points: 1}],
     shop: JSON.parse(localStorage.getItem('Shop')) !== null ? JSON.parse(localStorage.getItem('Shop')) : false || 
-    [{img: 'Money', name: "Gold", type: "money", category: "money", class: "money", price: 1, quantity: 999, used: false}
-    ,{img: 'Blue_potion', name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 999, curMP: 20}
+    [{img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 999, used: false}
+    ,{img: 'blue_potion', name: "Mana potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 999, curMP: 20}
     ,{img: 'Book', name: "Book", type: "rise", category: "common", class: "none", price: 1000, used: false, quantity: 999, points: 1}
-    ,{img: 'Red_potion', name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 999, curHP: 20}
+    ,{img: 'red_potion', name: "Health potion", type: "potion", category: "common", class: "none", price: 50, used: false, quantity: 999, curHP: 20}
     ,{img: 'bootsWar', name: "Iron boots", type: "boots", category: "armor", class: "Warrior", price: 150, used: false, quantity: 999, def: 8}
     ,{img: 'bootsMag', name: "Cloth boots", type: "boots", category: "armor", class: "Wizard", price: 150, used: false, quantity: 999, def: 3}
     ,{img: 'bootsArc', name: "Leather boots", type: "boots", category: "armor", class: "Archer", price: 150, used: false, quantity: 999, def: 5}
