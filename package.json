@@ -1,7 +1,5 @@
 {
-  "name": "react-course",
-  "version": "",
-  "description": "first lesson",
+  "name": "dark-forest",
   "main": "index.js",
   "scripts": {
     "dev": "node webpack-dev-server.js",
@@ -10,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uppermanis"
+    "url": "git+https://github.com/maksymyr/Game.git"
   },
-  "author": "Stepan Soroka",
+  "author": "Maksym Popov",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -48,5 +46,11 @@
     "url-loader": "^0.6.2",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/maksymyr/Game/issues"
+  },
+  "homepage": "https://github.com/maksymyr/Game#readme",
+  "version": "1.0.0",
+  "description": ""
 }
