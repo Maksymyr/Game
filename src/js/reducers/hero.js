@@ -4,8 +4,10 @@ import * as types from '../constants/ActionTypes';
 export default function hero(state = InitialState.hero, action) {
     let {payload, type} = action;
     switch(type){
+        case types.LOAD_GAME:
+            return {...payload.hero};
         case types.ADD_NAME:
-            return {id: Math.random()*100, ...payload};
+            return {name: payload};
         case types.CHANGE_ATCK:
             return {...state, weapAtck: state.weapAtck+payload}
         case types.CHANGE_DEF:

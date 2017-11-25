@@ -7,6 +7,9 @@ import * as items from '../constants/Items';
 export default function inventory(state = InitialState.inventory, action) {
     let {payload, type} = action;
     switch(type){
+
+        case types.LOAD_GAME:
+            return [...payload.inventory]
         case types.DEL_INVENTORY:
             return [
                 {img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 10, used: false},

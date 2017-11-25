@@ -21,11 +21,14 @@ export default class MainLayout extends React.Component {
         return(
             <div className='wrapper'>
                 <Switch>
-                    {localStorage.getItem("Hero") ? localStorage.getItem("Forest") > 0 ? 
+                    {JSON.parse(localStorage.getItem("Hero")) != null  ?
+                    Object.keys(JSON.parse(localStorage.getItem("Hero"))).length > 0 ?
+                    localStorage.getItem("Forest") > 0 ? 
                     JSON.parse(localStorage.getItem("Enemy")).name != null ? 
                     <Route exact path="/" component={ForestPageBattle} /> :
                     <Route exact path="/" component={ForestPage} /> :
                     <Route exact path="/" component={VillagePage} /> : 
+                    <Route exact path="/" component={Registration} /> :
                     <Route exact path="/" component={Registration} />}
 
                     <Route path="/start" component={StartMenu} />

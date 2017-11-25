@@ -45,22 +45,24 @@ export default class ForestPageBattle extends React.Component {
     attacking(imported_damage) {
         let hero_attack;
         let enemy_attack;
+        var randomizer = 0.8+Math.random()*0.5;
         if (imported_damage == null) {
             switch (this.props.hero.type) {
                 case "Warrior":
-                    hero_attack = Math.floor((this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                
+                    hero_attack = Math.floor(randomizer*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Archer":
-                    hero_attack = Math.floor((this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                    hero_attack = Math.floor(randomizer*(this.props.hero.dex*1.2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Wizard":
                     if (this.props.hero.curMP >= 5) {
                         this.props.heroMP(5);
-                        hero_attack = Math.floor((this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                        hero_attack = Math.floor(randomizer*(this.props.hero.int*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                         break;
                     }
                     else {
-                        hero_attack = Math.floor((this.props.hero.int+this.props.hero.weapAtck)/2*(100+this.props.hero.att1)/100);
+                        hero_attack = Math.floor(randomizer*(this.props.hero.int+this.props.hero.weapAtck)/2*(100+this.props.hero.att1)/100);
                         break;
                     }
                 default: 
@@ -69,15 +71,22 @@ export default class ForestPageBattle extends React.Component {
             
         }
         else {
-            hero_attack = Math.floor(imported_damage); 
+            hero_attack = Math.floor(randomizer*imported_damage); 
         }
         if (this.props.hero.cdSkill2  > 0 && this.props.hero.cdSkill2 < (2+Math.floor(Math.random()))){
             enemy_attack = 0;
         }
         else {
-            enemy_attack= Math.floor(this.props.enemy.str*(100-this.props.hero.armDef)/100);
+            if (this.props.enemy.type == "Mage") enemy_attack= Math.floor(randomizer*this.props.enemy.int*1.5*(100-this.props.hero.armDef)/100);
+            if (this.props.enemy.type == "Humanoid") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*0.8+this.props.enemy.dex*0.8)*(100-this.props.hero.armDef)/100);
+            if (this.props.enemy.type == "Creature") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)*(100-this.props.hero.armDef)/100);                
+            if (this.props.enemy.type == "Demon") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.3+this.props.enemy.dex*0.4)*(100-this.props.hero.armDef)/100);                
+            if (this.props.enemy.type == "Undead") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*0.8+this.props.enemy.con*0.6)*(100-this.props.hero.armDef)/100);                
+            if (this.props.enemy.type == "Bird") enemy_attack= Math.floor(randomizer*(this.props.enemy.dex*0.8+this.props.enemy.str*0.6)*(100-this.props.hero.armDef)/100);                
+            if (this.props.enemy.type == "Animal") enemy_attack= Math.floor(randomizer*(this.props.enemy.dex+this.props.enemy.str*0.8)*(100-this.props.hero.armDef)/100);                
+            else enemy_attack= Math.floor(randomizer*this.props.enemy.str*(100-this.props.hero.armDef)/100);
         }
-
+        console.log(hero_attack + " : " + enemy_attack)
         this.props.enemyHP(hero_attack);
         this.props.heroHP(enemy_attack);
         if (this.props.enemy.curHP-hero_attack <= 0) {

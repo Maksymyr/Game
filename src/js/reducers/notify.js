@@ -5,6 +5,9 @@ export default function notify(state = InitialState.notify, action) {
     let {type, payload} = action;
 
     switch(type) {
+
+    case types.LOAD_GAME:
+        return {...payload.notify}
     case(types.ADD_NOTIFY):
         return payload;
     default:

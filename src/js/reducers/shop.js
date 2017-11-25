@@ -5,6 +5,9 @@ import * as types from '../constants/ActionTypes';
 export default function shop(state = InitialState.shop, action) {
     let {payload, type} = action;
     switch(type){
+
+        case types.LOAD_GAME:
+            return [...payload.shop]
         case types.DEL_SHOP:
             return [];
         case types.SHOP_MONEY:

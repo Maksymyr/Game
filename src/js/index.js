@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 
-store.subscribe(()=>{
+// store.subscribe(()=>{
 
     
-    console.log("changes")})
+//     console.log("changes")})
 import '../sass/common.scss';
 import MainLayout from './containers/MainLayout.js'
 

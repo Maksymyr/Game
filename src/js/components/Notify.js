@@ -18,8 +18,10 @@ export default class Notify extends Component {
     render() {
         // console.log(this.props.notify);
         {
-            if (this.props.notify.name == undefined )
+            if (this.props.notify == null || this.props.notify.name == undefined) {
+                this.props.addNotify("")
                 return null 
+            }
             else { 
                 // setTimeout(() => {this.props.addNotify("")}, 1500)
                 return (

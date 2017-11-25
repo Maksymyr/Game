@@ -5,10 +5,12 @@ export default function store(state = InitialState, action) {
     let {type, payload} = action;
 
     switch(type) {
-    case(types.SAVE_GAME):
+    case types.SAVE_GAME:
         return state;
-    case(types.RESTART_GAME):
+    case types.RESTART_GAME:
         return state;
+    case types.LOAD_GAME:
+        return payload;
     default:
         return state;
     }

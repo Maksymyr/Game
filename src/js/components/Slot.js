@@ -80,7 +80,7 @@ export default class Slot extends React.Component {
        
     }
     render() {
-        this.props.item ? console.log(this.props.item.img) : null;
+        
         return (
            <div className="inv-slot" onClick={this.handleUse} onContextMenu={this.handleContext} onMouseEnter={this.props.item ? this.handleEnter : null} onMouseLeave={this.props.item ? this.handleLeave : null}>
                 <div className={this.props.item && this.props.item.used ? "inv-img-used" : "inv-img"} style={ this.props.item ? { height: "100%", width: "100%", backgroundImage: "url("+ require(`../../img/${this.props.item.category}/${this.props.item.img}.jpg`)+ ")" } : null }>
