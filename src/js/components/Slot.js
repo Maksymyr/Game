@@ -49,16 +49,28 @@ export default class Slot extends React.Component {
                         this.props.heroLvlPoints(-1);
                     }
                     else if (this.props.item.category == "armor") {
-                        if(this.props.item.used) {
-                            this.props.changeDeffence(-this.props.item.def)
+                        var slots = this.props.hero.armSlots;
+                        let armor = {};
+                        let result = 0;
+                        for (let key in slots) {
+                            if (key != this.props.item.type) {
+                                result += slots[key];
+                            }
+                            else {
+                                if(this.props.item.used) {
+                                    armor[this.props.item.type] = 0;
+                                }
+                                else {
+                                    result += this.props.item.def;
+                                    armor[this.props.item.type] = this.props.item.def;
+                                }
+                            }
                         }
-                        else {
-                            this.props.changeDeffence(this.props.item.def)
-                        }
+                        this.props.changeDeffence({armor: armor, result: result});
                     }
                     else if (this.props.item.category == "weapon") {
                         if(this.props.item.used) {
-                            this.props.changeAttack(-this.props.item.atck)
+                            this.props.changeAttack(0)
                         }
                         else {
                             this.props.changeAttack(this.props.item.atck)
