@@ -9,9 +9,9 @@ export default function hero(state = InitialState.hero, action) {
         case types.ADD_NAME:
             return {name: payload};
         case types.CHANGE_ATCK:
-            return {...state, weapAtck: state.weapAtck+payload}
+            return {...state, weapAtck: payload}
         case types.CHANGE_DEF:
-            return {...state, armDef: state.armDef+payload}
+            return {...state, armDef: payload}
         case types.ADD_NEW_HERO: 
             return {...state, ...state.hero, ...payload };
         case types.HERO_HP: 

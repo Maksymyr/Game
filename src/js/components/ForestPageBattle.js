@@ -10,6 +10,7 @@ import {bindActionCreators} from 'redux';
 import {heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT, 
     heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
     skill3CD, skill4CD, addItemToInventory, moveMoney} from '../actions';
+import enemy from '../reducers/enemy';
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, 
@@ -78,35 +79,38 @@ export default class ForestPageBattle extends React.Component {
             enemy_attack = 0;
         }
         else {
-            console.log(this.props.enemy.type);
             switch (this.props.enemy.type) {
                 case "Mage":
-                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.int*1.5*(100-this.props.hero.armDef)/100); console.log(enemy_attack);
+                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.int*1.5*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);
                     break;
                 case  "Humanoid": 
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.dex*0.8)*(100-this.props.hero.armDef)/100);
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.dex*0.8)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);
                     break;
                 case "Creature": 
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)*(100-this.props.hero.armDef)/100);  
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);  
                     break;              
                 case "Demon":
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.3+this.props.enemy.dex*0.4)*(100-this.props.hero.armDef)/100);                
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.3+this.props.enemy.dex*0.4)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);                
                     break;
                 case "Undead": 
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.con*0.6)*(100-this.props.hero.armDef)/100);                
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.con*0.6)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);                
                     break;
                 case "Bird": 
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex*0.8+this.props.enemy.str*0.6)*(100-this.props.hero.armDef)/100);                
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex*0.8+this.props.enemy.str*0.6)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);                
                     break;
                 case "Animal":
-                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex+this.props.enemy.str*0.8)*(100-this.props.hero.armDef)/100);                
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex+this.props.enemy.str*0.8)*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);                
                     break;
                 default: 
-                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.str*(100-this.props.hero.armDef)/100);
+                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.str*(100-(this.props.hero.armDef*(100+this.props.hero.att2)/100))/100);
                     break;
             }
+            console.log(this.props.hero.armDef*(100+this.props.hero.att2)/100)
+            console.log(enemy_attack)
+            console.log(Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)))
+            console.log((100-this.props.hero.armDef)/100)
+            
         }
-        console.log(hero_attack + " : " + enemy_attack)
         this.props.enemyHP(hero_attack);
         this.props.heroHP(enemy_attack);
         if (this.props.enemy.curHP-hero_attack <= 0) {
