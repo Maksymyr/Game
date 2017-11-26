@@ -40,3 +40,5 @@ export const RELOAD_INV = "RELOAD_INV";
 export const SAVE_GAME = "SAVE_GAME";
 export const RESTART_GAME = "RESTART_GAME";
 export const LOAD_GAME = "LOAD_GAME";
+export const SET_PORTAL = "SET_PORTAL";
+

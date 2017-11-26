@@ -2,17 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {changeForestLvl, setEnemy} from '../actions';
+import {changeForestLvl, setEnemy, setPortal, heroMP} from '../actions';
 import Sidebar from './Sidebar.js';
 
 import * as mobs from '../constants/Mobs.js';
 import Hero from '../logical_classes/Hero.js';
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({changeForestLvl, setEnemy}, dispatch);
+    return bindActionCreators({changeForestLvl, setEnemy, setPortal, heroMP}, dispatch);
 }
 const mapStateToProps = (state, ownProps) => {
-    return {forest: state.forest, heroLvl: state.hero.lvl};
+    return {forest: state.forest, hero: state.hero};
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -46,7 +46,14 @@ export default class ForestPage extends React.Component {
         
     }
     portal = () => {
-        this.props.changeForestLvl(-this.props.forest);
+        if (this.props.hero.curMP >= Math.floor(this.props.hero.maxMP*0.1)) {
+            this.props.heroMP(Math.floor(this.props.hero.maxMP*0.1));
+            this.props.setPortal(this.props.forest)
+            this.props.changeForestLvl(-this.props.forest);
+        }
+        else {
+            alert ("No enough MP!")
+        }
     }
     render() {
         return (
@@ -62,9 +69,12 @@ export default class ForestPage extends React.Component {
                         <div className="btns">
                             <p>Forest lvl: {this.props.forest}</p>
                             <Link className="hunt" to={"/forest-battle"}><button onClick={this.addEnemy}>Hunt</button></Link>
-                            {this.props.heroLvl+1 >= this.props.forest && this.props.forest < 10 ? <a className="deep"><button onClick={this.levelUp}>Go deeper in forest</button></a>  : null}
+                            {this.props.hero.lvl+1 >= this.props.forest && this.props.forest < 10 ? <a className="deep"><button onClick={this.levelUp}>Go deeper in forest</button></a>  : null}
                             <Link className="goback" to={this.props.forest == 1 ? "/village" : "forest"}><button onClick={this.levelDown}>Go back</button></Link>
-                            {this.props.heroLvl > 5 ? <Link className='hunt' to="/village"><button onClick={this.portal}>Portal to the village</button></Link> : null}
+                            {this.props.hero.lvl >= 3 && this.props.forest > 3 ? this.props.hero.curMP >= Math.floor(this.props.hero.maxMP*0.1) 
+                            ? <Link className='portal' to="/village"><button onClick={this.portal}>Portal to the village ({Math.floor(this.props.hero.maxMP*0.1)} MP)</button></Link> 
+                            : <a className='portal-unworked'><button onClick={this.portal}>Portal to the village ({Math.floor(this.props.hero.maxMP*0.1)} MP)</button></a> 
+                            : null}
                             
                         </div>
                     </div>

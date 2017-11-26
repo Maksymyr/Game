@@ -29,6 +29,7 @@ export default class Settings extends React.Component {
         this.props.setForestLvl(0);
         this.props.enemyKilled();
         this.props.delInventory();
+        this.props.setPortal(0);
         localStorage.clear();
         this.props.history.push("/");
     }
@@ -37,6 +38,7 @@ export default class Settings extends React.Component {
         this.props.setForestLvl(0);
         this.props.enemyKilled();
         this.props.delInventory();
+        this.props.setPortal(0);
         localStorage.clear();
         this.props.history.push("/");
     }

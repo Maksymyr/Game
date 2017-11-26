@@ -69,6 +69,9 @@ const middleware = store => next => action => {
     if(action.type == types.ADD_SHOP || types.REMOVE_SHOP || types.DEL_SHOP || types.SHOP_MONEY){
         localStorage.setItem("Shop", JSON.stringify(store.getState().shop))
     }
+    if(action.type == types.SET_PORTAL){
+      localStorage.setItem("Portal", JSON.stringify(store.getState().portal))
+    }
     return;
 
 }

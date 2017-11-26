@@ -6,13 +6,13 @@ import Sidebar from './Sidebar.js';
 import Hero from '../logical_classes/Hero.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {heroHP, changeForestLvl} from '../actions';
+import {heroHP, changeForestLvl, setPortal} from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({heroHP, changeForestLvl}, dispatch);
+    return bindActionCreators({heroHP, changeForestLvl, setPortal}, dispatch);
 }
 const mapStateToProps = (state, ownProps) => {
-    return {hero: state.hero}
+    return {hero: state.hero, portal: state.portal}
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -27,7 +27,8 @@ export default class VillagePage extends React.Component {
         this.props.changeForestLvl(1); 
     }
     portal = () => {
-        this.props.changeForestLvl(7); 
+        this.props.changeForestLvl(this.props.portal); 
+        this.props.setPortal(0);
     }
     render() {
         return (
@@ -47,7 +48,8 @@ export default class VillagePage extends React.Component {
                             <Link className='hunt' to="/store"><button>Store</button></Link>                            
                             <Link className='hunt' to="/rest"><button>Rest</button></Link>
                             <Link className='hunt' to="/forest"><button onClick={this.levelUp}>Forest</button></Link>
-                            {this.props.hero.lvl >= 7 ? <Link className='hunt' to="/forest"><button onClick={this.portal}>Portal to 7 lvl</button></Link> : null}
+                            {this.props.hero.lvl >= 3 && this.props.portal > 0 ? 
+                            <Link className='hunt' to="/forest"><button onClick={this.portal}>Portal to {this.props.portal} lvl</button></Link> : null}
                             
                         </div>
                     </div>

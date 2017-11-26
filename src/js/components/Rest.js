@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {heroHP, heroMP, saveGame} from '../actions';
 import Sidebar from './Sidebar.js';
-import { setTimeout } from 'timers';
+import { setTimeout, clearTimeout } from 'timers';
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({heroHP, heroMP}, dispatch);
@@ -23,50 +23,23 @@ export default class Rest extends React.Component {
             checkbox: false
         }
         this.handleSleep = this.handleSleep.bind(this);
-        this.handleBack = this.handleBack.bind(this);
-        this.sleep = this.sleep.bind(this);
-        
-        
     }
     handleSleep() {
-        this.setState({checkbox: !this.state.checkbox});
-        
-        if (!this.state.checkbox) {
-            this.sleep(true);
-            console.log("zzz");
-        }
-        else {
-            this.sleep(false);
-        }
+        this.setState({checkbox: true});
+        let timerr = setInterval(()=>{
+        this.props.heroHP(-this.props.hero.lvl-3)
+        this.props.heroMP(-this.props.hero.lvl-3)
+            if (this.props.hero.curHP >= this.props.hero.maxHP && this.props.hero.curMP >= this.props.hero.maxMP){
+                clearInterval(timerr);
+                this.setState({checkbox: false});
+            }
+        },1000)
     }
-    sleep(bool) {
-        if (bool) {
-            
-            this.props.heroHP(-this.props.hero.lvl)
-            this.props.heroMP(-this.props.hero.lvl)
-            setTimeout(()=>{
-                if (this.props.hero.curHP < this.props.hero.maxHP || this.props.hero.curMP < this.props.hero.maxMP) {
-                    this.sleep(true);
-                } 
-                else  {
-                    this.handleBack();
-                }
-            },1000)
-        }
-        // (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? this.props.heroHP(-this.props.hero.lvl-3): (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? null : clearInterval(resttime),
-        // (this.props.hero.curMP < this.props.hero.maxMP) && this.state.checkbox ? this.props.heroMP(-this.props.hero.lvl-3): (this.props.hero.curHP < this.props.hero.maxHP) && this.state.checkbox ? null : clearInterval(resttime)
-    }
-    handleBack() {
-        this.setState({checkbox: false});
-        this.sleep(false);
-    }
-
-    
     render() {
         return (
            <div className="village">
                <div className="village-img" style={{height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/fire.jpg")+')'}}>
-                    <Sidebar />
+                {this.state.checkbox ? null : <Sidebar />}
                     <div className="left">
                         <Hero/>
                     </div>
@@ -74,8 +47,8 @@ export default class Rest extends React.Component {
                     </div>
                     <div className="right">
                         <div className="btns">
-                            <a className="torest"><button onClick={this.handleSleep}>{this.state.checkbox ? "Awake" : "Sleep"}</button></a>
-                            {this.state.checkbox ? null : <Link className="inforest" to="/village"><button onClick={this.handleBack}>Back</button></Link> }
+                            <a className="torest">{this.state.checkbox ? null : <button onClick={this.handleSleep}>Sleep</button>}</a>
+                            {this.state.checkbox ? null : <Link className="inforest" to="/village"><button>Back</button></Link> }
                         </div>
                     </div>
                 </div>

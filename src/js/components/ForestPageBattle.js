@@ -11,7 +11,6 @@ import {heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, heroINT,
     heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
     skill3CD, skill4CD, addItemToInventory, moveMoney} from '../actions';
 
-
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({heroEXP, enemyHP, heroHP, heroMP, heroSTR, heroDEX, heroCON, 
         heroINT, heroWIT, setForestLvl, heroDeath, enemyKilled, skill1CD, skill2CD,addNotify,
@@ -45,24 +44,26 @@ export default class ForestPageBattle extends React.Component {
     attacking(imported_damage) {
         let hero_attack;
         let enemy_attack;
-        var randomizer = 0.8+Math.random()*0.5;
+        var heroRandomizer = 0.8+Math.random()*0.5;
+        var enemyRandomizer = 0.8+Math.random()*0.5;
+        
         if (imported_damage == null) {
             switch (this.props.hero.type) {
                 case "Warrior":
                 
-                    hero_attack = Math.floor(randomizer*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                    hero_attack = Math.floor(heroRandomizer*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Archer":
-                    hero_attack = Math.floor(randomizer*(this.props.hero.dex*1.2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                    hero_attack = Math.floor(heroRandomizer*(this.props.hero.dex*1.2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                     break;
                 case "Wizard":
                     if (this.props.hero.curMP >= 5) {
                         this.props.heroMP(5);
-                        hero_attack = Math.floor(randomizer*(this.props.hero.int*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
+                        hero_attack = Math.floor(heroRandomizer*(this.props.hero.int*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100);
                         break;
                     }
                     else {
-                        hero_attack = Math.floor(randomizer*(this.props.hero.int+this.props.hero.weapAtck)/2*(100+this.props.hero.att1)/100);
+                        hero_attack = Math.floor(heroRandomizer*(this.props.hero.int+this.props.hero.weapAtck)/2*(100+this.props.hero.att1)/100);
                         break;
                     }
                 default: 
@@ -71,20 +72,39 @@ export default class ForestPageBattle extends React.Component {
             
         }
         else {
-            hero_attack = Math.floor(randomizer*imported_damage); 
+            hero_attack = Math.floor(heroRandomizer*imported_damage); 
         }
         if (this.props.hero.cdSkill2  > 0 && this.props.hero.cdSkill2 < (2+Math.floor(Math.random()))){
             enemy_attack = 0;
         }
         else {
-            if (this.props.enemy.type == "Mage") enemy_attack= Math.floor(randomizer*this.props.enemy.int*1.5*(100-this.props.hero.armDef)/100);
-            if (this.props.enemy.type == "Humanoid") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*0.8+this.props.enemy.dex*0.8)*(100-this.props.hero.armDef)/100);
-            if (this.props.enemy.type == "Creature") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)*(100-this.props.hero.armDef)/100);                
-            if (this.props.enemy.type == "Demon") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.3+this.props.enemy.dex*0.4)*(100-this.props.hero.armDef)/100);                
-            if (this.props.enemy.type == "Undead") enemy_attack= Math.floor(randomizer*(this.props.enemy.str*0.8+this.props.enemy.con*0.6)*(100-this.props.hero.armDef)/100);                
-            if (this.props.enemy.type == "Bird") enemy_attack= Math.floor(randomizer*(this.props.enemy.dex*0.8+this.props.enemy.str*0.6)*(100-this.props.hero.armDef)/100);                
-            if (this.props.enemy.type == "Animal") enemy_attack= Math.floor(randomizer*(this.props.enemy.dex+this.props.enemy.str*0.8)*(100-this.props.hero.armDef)/100);                
-            else enemy_attack= Math.floor(randomizer*this.props.enemy.str*(100-this.props.hero.armDef)/100);
+            console.log(this.props.enemy.type);
+            switch (this.props.enemy.type) {
+                case "Mage":
+                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.int*1.5*(100-this.props.hero.armDef)/100); console.log(enemy_attack);
+                    break;
+                case  "Humanoid": 
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.dex*0.8)*(100-this.props.hero.armDef)/100);
+                    break;
+                case "Creature": 
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.5)*(100-this.props.hero.armDef)/100);  
+                    break;              
+                case "Demon":
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*1.5+this.props.enemy.int*0.3+this.props.enemy.dex*0.4)*(100-this.props.hero.armDef)/100);                
+                    break;
+                case "Undead": 
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.str*0.8+this.props.enemy.con*0.6)*(100-this.props.hero.armDef)/100);                
+                    break;
+                case "Bird": 
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex*0.8+this.props.enemy.str*0.6)*(100-this.props.hero.armDef)/100);                
+                    break;
+                case "Animal":
+                    enemy_attack= Math.floor(enemyRandomizer*(this.props.enemy.dex+this.props.enemy.str*0.8)*(100-this.props.hero.armDef)/100);                
+                    break;
+                default: 
+                    enemy_attack= Math.floor(enemyRandomizer*this.props.enemy.str*(100-this.props.hero.armDef)/100);
+                    break;
+            }
         }
         console.log(hero_attack + " : " + enemy_attack)
         this.props.enemyHP(hero_attack);
@@ -226,7 +246,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill2() {
-        if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl >= 5) {
+        if (this.props.hero.cdSkill2  == 0 && this.props.hero.lvl >= 2) {
             let hero_attack;
             if (this.props.hero.type == "Warrior") { 
                 if (this.props.hero.curMP >= 5) {
@@ -261,7 +281,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill3() {
-        if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl >= 10) {
+        if (this.props.hero.cdSkill3  == 0 && this.props.hero.lvl >= 5) {
             let hero_attack;
             if (this.props.hero.type == "Warrior") { 
                 if (this.props.hero.curMP >= 10) {
@@ -311,7 +331,7 @@ export default class ForestPageBattle extends React.Component {
         }
     }
     skill4() {
-        if (this.props.hero.cdSkill4  == 0 && this.props.hero.lvl >= 15) {
+        if (this.props.hero.cdSkill4  == 0 && this.props.hero.lvl >= 7) {
             switch(this.props.hero.type){
                 case "Warrior":
                     if (this.props.hero.curMP >= 20) {
@@ -379,9 +399,9 @@ export default class ForestPageBattle extends React.Component {
                         <div className="battle-btns">
                             <button className='atck' onClick={() => this.attacking(null)}>Attack</button>
                             <button className={this.props.hero.cdSkill1 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill1war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill1arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill1wiz.jpg")+')'}}>{this.props.hero.cdSkill1 == 0 ? null : 4-this.props.hero.cdSkill1}</button>    
-                            <button className={this.props.hero.lvl < 5 ? 'disp-op100 skill' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill2} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill2arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill2wiz.jpg")+')'}}>{this.props.hero.cdSkill2 == 0 ? null : 5-this.props.hero.cdSkill2}</button>
-                            <button className={this.props.hero.lvl < 10 ? 'disp-op100 skill' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill3} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill3arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill3wiz.jpg")+')'}}>{this.props.hero.cdSkill3 == 0 ? null : 6-this.props.hero.cdSkill3}</button>    
-                            <button className={this.props.hero.lvl < 15 ? 'disp-op100 skill' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill4} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill4arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill4wiz.jpg")+')'}}>{this.props.hero.cdSkill4 == 0 ? null : this.props.hero.cdSkill4 < 4 ? 4-this.props.hero.cdSkill4 : "-"}</button>     
+                            <button className={this.props.hero.lvl < 2 ? 'disp-op100 skill' : this.props.hero.cdSkill2 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill2} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill2war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill2arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill2wiz.jpg")+')'}}>{this.props.hero.cdSkill2 == 0 ? null : 5-this.props.hero.cdSkill2}</button>
+                            <button className={this.props.hero.lvl < 5 ? 'disp-op100 skill' : this.props.hero.cdSkill3 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill3} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill3war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill3arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill3wiz.jpg")+')'}}>{this.props.hero.cdSkill3 == 0 ? null : 6-this.props.hero.cdSkill3}</button>    
+                            <button className={this.props.hero.lvl < 7 ? 'disp-op100 skill' : this.props.hero.cdSkill4 == 0 ? 'skill' : 'disp-op skill'} onClick={this.skill4} style={this.props.hero.type == "Warrior" ? {backgroundImage: 'url('+require("../../img/Skills/skill4war.jpg")+')'} : this.props.hero.type == "Archer" ? {backgroundImage: 'url('+require("../../img/Skills/skill4arch.jpg")+')'} : {backgroundImage: 'url('+require("../../img/Skills/skill4wiz.jpg")+')'}}>{this.props.hero.cdSkill4 == 0 ? null : this.props.hero.cdSkill4 < 4 ? 4-this.props.hero.cdSkill4 : "-"}</button>     
                             <button className='surr' onClick={this.surrender}>Retreat</button>                            
                         </div>
                     </div>

@@ -9,6 +9,7 @@ export default {
     {},
     levelOfForest: JSON.parse(localStorage.getItem('Forest'))  || 0,
     notify: {},
+    portal: 0,
     inventory: 
     JSON.parse(localStorage.getItem('Inventory')) !== null ? JSON.parse(localStorage.getItem('Inventory')) : false || 
     [{img: 'Money', name: "Gold", type: "money", category: "common", class: "money", price: 1, quantity: 10, used: false},

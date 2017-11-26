@@ -61,7 +61,7 @@ export const mobs= [
     ,[
         {name: "Skeleton", type: "Undead", drop: items.chestarc, exp: 50, img: skeleton, curHP: 200, maxHP: 200, curMP: 40, maxMP: 40, lvl: 4, str: 13, dex: 7, con: 20, int: 4, wit: 4 }, 
         {name: "Zombie", type: "Undead", drop: items.chestwar, exp: 52, img: zomb, curHP: 220, maxHP: 220, curMP: 40, maxMP: 40, lvl: 4, str: 12, dex: 6, con: 22, int: 4, wit: 4 }, 
-        {name: "Spirit", type: "Mage", drop: items.chestmag, exp: 60, img: darkspirit, curHP: 150, maxHP: 150, curMP: 40, maxMP: 40, lvl: 4, str: 3, dex: 5, con: 15, int: 10, wit: 8 }]
+        {name: "Spirit", type: "Mage", drop: items.chestmag, exp: 60, img: darkspirit, curHP: 150, maxHP: 150, curMP: 40, maxMP: 40, lvl: 4, str: 3, dex: 5, con: 15, int: 20, wit: 8 }]
     ,[
         {name: "Demon cat", type: "Demon", drop: items.pantmag, exp: 85, img: demoncat, curHP: 250, maxHP: 250, curMP: 50, maxMP: 50, lvl: 5, str: 14, dex: 15, con: 25, int: 5, wit: 5 }, 
         {name: "Demon hunter", type: "Demon", drop: items.pantarc, exp: 92, img: demonhunt, curHP: 300, maxHP: 300, curMP: 50, maxMP: 50, lvl: 5, str: 18, dex: 10, con: 30, int: 5, wit: 5 }, 
