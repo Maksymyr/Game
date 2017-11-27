@@ -199,11 +199,11 @@
                                                 Math.floor(this.props.hero.type == "Warrior" ?
                                                     (this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100 : this.props.hero.type == "Archer" ? 
                                                     (this.props.hero.dex*1.5+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100 :
-                                                    (this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100)
+                                                    (this.props.hero.int*2+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100) + "%"
                                                     } />
                                         </p>
                                         <p>
-                                            <input className="att-icon" ref="def" disabled value={Math.floor(this.props.hero.armDef*(100+this.props.hero.att2)/100)}/>
+                                            <input className="att-icon" ref="def" disabled value={Math.floor(this.props.hero.armDef*(100+this.props.hero.att2)/100) > 80 ? "MAX" : Math.floor(this.props.hero.armDef*(100+this.props.hero.att2)/100)+"%"}/>
                                         </p> 
                                         <p>
                                             <input className="att-icon" ref="weapAtck" disabled value={this.props.hero.weapAtck}/>
@@ -248,24 +248,24 @@
                                     </div>
                                     <div className="att-icons">
                                         <p>
-                                            {this.state.att1_up ? <button className="min-icon" onClick={() => this.att_minus("att1")}>-</button> : null}
+                                            {this.props.hero.att1 < 100 ? this.state.att1_up ? <button className="min-icon" onClick={() => this.att_minus("att1")}>-</button> : null : null}
                                             <input className="att-icon" ref="att1" disabled defaultValue={this.props.hero.att1 + "%"}/>
-                                            {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att1")}>+</button>}
+                                            {this.props.hero.att1 < 100 ? this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att1")}>+</button> : null}
                                         </p>
                                         <p>
-                                            {this.state.att2_up ? <button className="min-icon" onClick={() => this.att_minus("att2")}>-</button> : null}
+                                            {this.props.hero.att2 < 100 ? this.state.att2_up ? <button className="min-icon" onClick={() => this.att_minus("att2")}>-</button> : null : null}
                                             <input className="att-icon" ref="att2" disabled defaultValue={this.props.hero.att2 + "%"}/>
-                                            {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att2")}>+</button>}
+                                            {this.props.hero.att2 < 100 ? this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att2")}>+</button> : null}
                                         </p>
                                         <p>
-                                            {this.state.att3_up ? <button className="min-icon" onClick={() => this.att_minus("att3")}>-</button> : null}
+                                            {this.props.hero.att3 < 100 ? this.state.att3_up ? <button className="min-icon" onClick={() => this.att_minus("att3")}>-</button> : null : null}
                                             <input className="att-icon" ref="att3" disabled defaultValue={this.props.hero.att3 + "%"}/>
-                                            {this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att3")}>+</button>}
+                                            {this.props.hero.att3 < 100 ? this.state.att_checkbox  ? null : <button onClick={() => this.att_plus("att3")}>+</button> : null}
                                         </p>
                                         <p>
-                                            {this.state.att4_up ? <button className="min-icon" onClick={() => this.att_minus("att4")}>-</button> : null}
+                                            {this.props.hero.att4 < 100 ? this.state.att4_up ? <button className="min-icon" onClick={() => this.att_minus("att4")}>-</button> : null : null}
                                             <input className="att-icon" ref="att4" disabled defaultValue={this.props.hero.att4 + "%"}/>
-                                            {this.state.att_checkbox ? null : <button onClick={() => this.att_plus("att4")}>+</button>}
+                                            {this.props.hero.att4 < 100 ? this.state.att_checkbox ? null : <button onClick={() => this.att_plus("att4")}>+</button> : null}
                                         </p>
                                     </div>
                                     {this.state.att_checkbox && this.state.att_lvlup ? <button className="submit-lvl" onClick={this.att_submitting}>Submit</button> : null}
