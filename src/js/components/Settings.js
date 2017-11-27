@@ -2,14 +2,14 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as choosenTypes from '../constants/StarterSets';
-import {enemyKilled, addHeroName, setForestLvl, delInventory, saveGame, restartGame} from '../actions';
+import {enemyKilled, addHeroName, setForestLvl, delInventory, saveGame, restartGame, setPortal} from '../actions';
 import {bindActionCreators} from 'redux';
 import Sidebar from './Sidebar.js';
 import { setTimeout } from 'timers';
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ enemyKilled, addHeroName, setForestLvl, delInventory, saveGame, restartGame}, dispatch);
+    return bindActionCreators({ enemyKilled, addHeroName, setForestLvl, delInventory, saveGame, restartGame, setPortal}, dispatch);
 }
 
 @connect(null, mapDispatchToProps)
