@@ -31,11 +31,11 @@ export default class Hero extends React.Component {
                             <div className="exp-bar" style={{width: this.props.newHero.curEXP*100/this.props.newHero.maxEXP+"%"}}>
                             {Math.floor(this.props.newHero.curEXP*100/this.props.newHero.maxEXP)+"%"}</div>
                             <div className="under-hp-bar"></div>
-                            <div className="hp-bar" style={{width: this.props.newHero.curHP*100/this.props.newHero.maxHP+"%"}}>
-                            {Math.floor(this.props.newHero.curHP*100/this.props.newHero.maxHP)+"%"}</div>
+                            <div className="hp-bar" style={{width: (this.props.newHero.curHP*100/(this.props.newHero.maxHP*(this.props.newHero.att3+100)/100))+"%"}}>
+                            {Math.floor(this.props.newHero.curHP*100/(this.props.newHero.maxHP*(this.props.newHero.att3+100)/100))+"%"}</div>
                             <div className="under-mp-bar"></div>
-                            <div className="mp-bar" style={{width: this.props.newHero.curMP*100/this.props.newHero.maxMP+"%"}}>
-                            {Math.floor(this.props.newHero.curMP*100/this.props.newHero.maxMP)+"%"}</div>
+                            <div className="mp-bar" style={{width: this.props.newHero.curMP*100/(this.props.newHero.maxMP*(this.props.newHero.att4+100)/100)+"%"}}>
+                            {Math.floor(this.props.newHero.curMP*100/(this.props.newHero.maxMP*(this.props.newHero.att4+100)/100))+"%"}</div>
                         </div>  
                         <div className="profile-btns">
                             <div className={this.state.switchbox ? "profile clicked" : "profile"}><button onClick={this.switcher}>Hero</button></div>
@@ -50,8 +50,8 @@ export default class Hero extends React.Component {
                         <div className="chars">
                             
                             <h4 className="lvl-bar">Level: {this.props.newHero.lvl}</h4>
-                            <p className='hp'>Health: {this.props.newHero.curHP} / {this.props.newHero.maxHP}</p> 
-                            <p className='mp'>Mana: {this.props.newHero.curMP} / {this.props.newHero.maxMP}</p>
+                            <p className='hp'>Health: {this.props.newHero.curHP} / {this.props.newHero.maxHP*(this.props.newHero.att3+100)/100}</p> 
+                            <p className='mp'>Mana: {this.props.newHero.curMP} / {this.props.newHero.maxMP*(this.props.newHero.att4+100)/100}</p>
                             <p>Experience: {this.props.newHero.curEXP} / {this.props.newHero.maxEXP}</p>
                             <p className="char-right">Strength: {this.props.newHero.str}</p>
                             <p className="char-right">Dexterity: {this.props.newHero.dex}</p>

@@ -24,18 +24,15 @@ export default class Slot extends React.Component {
 
     }
     handleEnter = () => {
-
         this.setState({checkbox: true})
-
     }
     handleLeave = () => {       
         this.setState({checkbox: false})
-    
     }
     handleUse = () => {
             if (this.props.match.url.includes("inventory")) {
-                if (this.props.hero.type == this.props.item.class || this.props.item.class == "none") {
-                    if (this.props.item.type == "potion") {
+                if (this.props.hero.type === this.props.item.class || this.props.item.class === "none") {
+                    if (this.props.item.type === "potion") {
                         switch(this.props.item.name) {
                             case "Mana potion":
                                 this.props.heroMP(-this.props.hero.maxMP*this.props.item.curMP/100);
@@ -45,38 +42,35 @@ export default class Slot extends React.Component {
                                 return this.props.useItem(this.props.item);
                         }
                     }
-                    else if (this.props.item.type == "rise") {
+                    else if (this.props.item.type === "rise") {
                         this.props.heroLvlPoints(-1);
                     }
-                    else if (this.props.item.category == "armor") {
+                    else if (this.props.item.category === "armor") {
+                        let armor = {};
+                        let result = 0;
                         if (Object.keys(this.props.hero.armSlots).length <= 0) {
-                            let armor = {};
                             armor[this.props.item.type] = this.props.item.def;
-                            let result = this.props.item.def;
-                            this.props.changeDeffence({armor: armor, result: result});
+                            result = this.props.item.def;
+                            this.props.changeDeffence({armor, result});
                         }
                         else {
-                            var slots = this.props.hero.armSlots;
-                            let armor = {};
-                            let result = 0;
+                            let slots = this.props.hero.armSlots;
                             for (let key in slots) {
-                                if (key == this.props.item.type) {
-                                    result += slots[key];
-                                }
-                                else {
+                                if (key != this.props.item.type) {
                                     if(this.props.item.used) {
+                                        result = -(this.props.item.def);
                                         armor[this.props.item.type] = 0;
                                     }
                                     else {
-                                        result += this.props.item.def;
+                                        result = this.props.item.def;
                                         armor[this.props.item.type] = this.props.item.def;
                                     }
                                 }
                             }
-                            this.props.changeDeffence({armor: armor, result: result});
+                            this.props.changeDeffence({armor, result});
                         }
                     }
-                    else if (this.props.item.category == "weapon") {
+                    else if (this.props.item.category === "weapon") {
                         if(this.props.item.used) {
                             this.props.changeAttack(0)
                         }
@@ -88,7 +82,7 @@ export default class Slot extends React.Component {
                 }
             }
             else {
-                if (this.props.item.type != "money" && this.props.item.used == false) { 
+                if (this.props.item.type !== "money" && this.props.item.used === false) { 
                     this.props.item.tradecheck ? this.props.back(this.props.item) : this.props.move(this.props.item);
                 }
             }

@@ -67,8 +67,6 @@
             if (this.state.count == this.props.hero.points-1) {
                 this.setState({checkbox: true})
             }
-          
-            
         }
         minus(att) {
             if (this.refs[att].value > this.props.hero[att]) {
@@ -127,7 +125,7 @@
             this.props.history.push("/");
         }
         render() {
-            console.log(this.props.hero.weapAtck)
+            console.log(this.props.hero)
             return (
                <div className="village">
                     <div className="village-img" style={{ height: "100%", width: "100%", backgroundImage: 'url('+require("../../img/levelup.jpg")+')'}}>
@@ -142,8 +140,8 @@
                                         <p>Exp: <span className="gold">{this.props.hero.curEXP}/{this.props.hero.maxEXP}</span></p>
                                     </div>
                                     <div>
-                                        <p>Health: <span className="red">{this.props.hero.curHP}/{this.props.hero.maxHP}</span></p>
-                                        <p>Mana: <span className="blue">{this.props.hero.curMP}/{this.props.hero.maxMP}</span></p>
+                                        <p>Health: <span className="red">{this.props.hero.curHP}/{this.props.hero.maxHP*(this.props.hero.att3+100)/100}</span></p>
+                                        <p>Mana: <span className="blue">{this.props.hero.curMP}/{this.props.hero.maxMP*(this.props.hero.att4+100)/100}</span></p>
                                         <p>Free points: <span className="white">{this.props.hero.points-this.state.count < 0 ? this.props.hero.points:this.props.hero.points-this.state.count}</span></p>
                                     </div>
                                     

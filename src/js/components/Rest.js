@@ -29,7 +29,7 @@ export default class Rest extends React.Component {
         let timerr = setInterval(()=>{
         this.props.heroHP(-this.props.hero.lvl-3)
         this.props.heroMP(-this.props.hero.lvl-3)
-            if (this.props.hero.curHP >= this.props.hero.maxHP && this.props.hero.curMP >= this.props.hero.maxMP){
+            if (this.props.hero.curHP >= this.props.hero.maxHP*(this.props.hero.att3+100)/100 && this.props.hero.curMP >= this.props.hero.maxMP*(this.props.hero.att4+100)/100){
                 clearInterval(timerr);
                 this.setState({checkbox: false});
             }

@@ -287,8 +287,8 @@ export default class ForestPageBattle extends React.Component {
                     this.props.heroMP(10);
                     hero_attack = 4*(this.props.hero.str+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
                     this.attacking(hero_attack);
-                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
-                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP));
                     else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
                     else
                         this.props.heroHP(-Math.floor(hero_attack/2));
@@ -302,8 +302,8 @@ export default class ForestPageBattle extends React.Component {
                     this.props.heroMP(15);
                     hero_attack = 4*(this.props.hero.dex+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
                     this.attacking(hero_attack);
-                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
-                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP));
                     else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
                     else
                         this.props.heroHP(-Math.floor(hero_attack/2));
@@ -317,8 +317,8 @@ export default class ForestPageBattle extends React.Component {
                     this.props.heroMP(25);
                     hero_attack = 4*(this.props.hero.int+this.props.hero.weapAtck)*(100+this.props.hero.att1)/100;
                     this.attacking(hero_attack);
-                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP - this.props.hero.curHP)
-                        this.props.heroHP(-(this.props.hero.maxHP - this.props.hero.curHP));
+                    if (Math.floor(hero_attack/2) > this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP)
+                        this.props.heroHP(-(this.props.hero.maxHP*(this.props.hero.att3+100)/100 - this.props.hero.curHP));
                     else if (this.props.hero.curEXP+this.props.enemy.exp >= this.props.hero.maxEXP) {}
                     else
                         this.props.heroHP(-Math.floor(hero_attack/2));

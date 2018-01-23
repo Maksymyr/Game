@@ -11,23 +11,23 @@ export default function hero(state = InitialState.hero, action) {
         case types.CHANGE_ATCK:
             return {...state, weapAtck: payload}
         case types.CHANGE_DEF:
-            return {...state, armSlots: {...state.armSlots, ...payload.armor}, armDef: payload.result};
+            return {...state, armSlots: {...state.armSlots, ...payload.armor}, armDef: state.armDef + payload.result};
         case types.ADD_NEW_HERO: 
             return {...state, ...state.hero, ...payload };
         case types.HERO_HP: 
-            if (state.curHP-payload > state.maxHP)
-                return {...state, curHP: state.maxHP}
+            if (state.curHP-payload > state.maxHP*(state.att3+100)/100)
+                return {...state, curHP: state.maxHP*(state.att3+100)/100}
             else
                 return {...state, curHP: Math.floor(state.curHP - payload)};
         case types.HERO_MP: 
-            if (state.curMP-payload > state.maxMP)
-                return {...state, curMP: state.maxMP}
+            if (state.curMP-payload > state.maxMP*(state.att4+100)/100)
+                return {...state, curMP: state.maxMP*(state.att4+100)/100}
             else
                 return {...state, curMP: Math.floor(state.curMP - payload)};
         case types.HERO_EXP: 
             let exp = state.curEXP + payload;
             if (exp >= state.maxEXP){
-                return {...state, curEXP: Math.floor(exp-state.maxEXP), curHP: state.maxHP, curMP: state.maxMP, lvl: (state.lvl + 1), 
+                return {...state, curEXP: Math.floor(exp-state.maxEXP), curHP: state.maxHP*(state.att3+100)/100, curMP: state.maxMP*(state.att4+100)/100, lvl: (state.lvl + 1), 
                 points: (state.points + 5), att_points: (state.att_points + 1), maxEXP: state.maxEXP + (state.lvl+1)*(state.lvl+4)*10};
             }
             else if (exp < 0) {
