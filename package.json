@@ -37,7 +37,7 @@
     "expect": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "jsonfile": "^2.3.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "open-browser-webpack-plugin": "0.0.3",
     "postcss-loader": "^0.8.2",
     "react-addons-test-utils": "^15.1.0",
